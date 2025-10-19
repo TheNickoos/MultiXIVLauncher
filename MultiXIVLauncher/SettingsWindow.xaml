@@ -63,19 +63,20 @@
                 <Grid Background="#FF272727">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="197*"/>
-                        <ColumnDefinition Width="277*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="252*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="InputLauncherTextbox" HorizontalAlignment="Left" Margin="10,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" BorderThickness="0,0,0,1" Background="{x:Null}" Grid.ColumnSpan="2" Foreground="White" BorderBrush="#FF5B5B5B" FontSize="10"/>
-                    <Label Content="Please select the folder where XIVlauncher is installed in. &#xA;It shlould contain XIVLauncher.exe" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="297" FontSize="10" FontFamily="Arial" Foreground="White" Height="31" FontWeight="Bold"/>
-                    <Button x:Name="BrowseForLauncherButton" Grid.Column="1" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Background="#FF2196F3" Foreground="White" BorderBrush="Black" Margin="120,38,0,0" FontSize="10"/>
-                    <ComboBox HorizontalAlignment="Left"
+                    <TextBox x:Name="InputLauncherTextbox" HorizontalAlignment="Left" Margin="10,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" BorderThickness="0,0,0,1" Background="{x:Null}" Grid.ColumnSpan="3" Foreground="White" BorderBrush="#FF5B5B5B" FontSize="10"/>
+                    <Label Content="Please select the folder where XIVlauncher is installed in. &#xA;It shlould contain XIVLauncher.exe" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="297" FontSize="10" FontFamily="Arial" Foreground="White" Height="31" FontWeight="Bold"/>
+                    <Button x:Name="BrowseForLauncherButton" Grid.Column="2" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Background="#FF2196F3" Foreground="White" BorderBrush="Black" Margin="95,38,0,0" FontSize="10"/>
+                    <ComboBox x:Name="LangageLauncherComboBox" HorizontalAlignment="Left"
           Margin="10,96,0,0"
           VerticalAlignment="Top"
           Width="302"
           Foreground="Black"
           Background="#FF272727"
           BorderBrush="#FF444444"
-          BorderThickness="0,0,0,1" Grid.ColumnSpan="2" FontSize="10">
+          BorderThickness="0,0,0,1" Grid.ColumnSpan="3" FontSize="10">
                         <ComboBox.Resources>
                             <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#FF272727"/>
                             <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="#FF272727"/>
@@ -94,7 +95,7 @@
                                 </Style.Triggers>
                             </Style>
 
-                               <Style TargetType="ToggleButton">
+                            <Style TargetType="ToggleButton">
                                 <Setter Property="Background" Value="#FF272727"/>
                                 <Setter Property="BorderThickness" Value="0"/>
                                 <Setter Property="Foreground" Value="White"/>
@@ -103,7 +104,7 @@
 
                         <ComboBoxItem IsSelected="True" Tag="en">English</ComboBoxItem>
                     </ComboBox>
-                    <Label Content="MultiXIVLauncher Language" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="297" FontSize="10" FontFamily="Arial" Foreground="White" Height="23" FontWeight="Bold"/>
+                    <Label Content="MultiXIVLauncher Language" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="297" FontSize="10" FontFamily="Arial" Foreground="White" Height="23" FontWeight="Bold"/>
 
 
 
@@ -143,7 +144,7 @@
             <TabItem Header="Preset">
                 <Grid>
                     <ListBox x:Name="PresetListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,297,0" Background="#FF272727" Foreground="White" FontFamily="Arial" FontSize="10"/>
-                    <Button x:Name="PresetAddButton" Click="PresetAddButton_Click" Content="Add a preset" HorizontalAlignment="Left" Margin="187,348,0,0" VerticalAlignment="Top" Width="85" Background="#FF2196F3" Foreground="White"/>
+                    <Button x:Name="PresetAddButton" Content="Add a preset" HorizontalAlignment="Left" Margin="187,348,0,0" VerticalAlignment="Top" Width="85" Background="#FF2196F3" Foreground="White"/>
                     <Grid x:Name="PresetGrid">
                         <Rectangle x:Name="RectangleEdit" HorizontalAlignment="Left" Height="333" Margin="187,10,0,0" Stroke="White" VerticalAlignment="Top" Width="250"/>
                         <Button x:Name="PresetSaveButton" Content="Save" HorizontalAlignment="Left" Margin="367,168,0,0" VerticalAlignment="Top" Width="65" Background="#FF2196F3" Foreground="White"/>
