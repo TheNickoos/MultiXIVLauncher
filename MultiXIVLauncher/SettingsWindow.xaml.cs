@@ -11,14 +11,16 @@ namespace MultiXIVLauncher
 {
     public partial class SettingsWindow : Window
     {
+        private readonly MainWindow _mainWindow;
         private readonly string configPath;
         private Config config;
         private Character tempCharacter;
 
 
-        public SettingsWindow()
+        public SettingsWindow(MainWindow mainWindow)
         {
             InitializeComponent();
+            _mainWindow = mainWindow;
             InitializePresetView();
             InitializeGroupView();
             InitializeCharacterView();
@@ -92,6 +94,12 @@ namespace MultiXIVLauncher
                     }
                 }
             };
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            _mainWindow.RefreshUIFromConfig(); // ✅ quand on ferme, on met tout à jour
         }
 
         private void InitializeLanguageComboBox()

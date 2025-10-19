@@ -16,7 +16,7 @@
                   VerticalAlignment="Top"
                   Width="113"
                   Height="24"
-                  Foreground="White"
+                  Foreground="Black"
                   Background="Black"
                   BorderBrush="#FFACACAC"/>
 
