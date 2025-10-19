@@ -61,6 +61,6 @@ namespace MultiXIVLauncher
     {
         public int Id { get; set; }
         public string Name { get; set; } = "";
-        public int GroupId { get; set; }
+        public List<int> GroupIds { get; set; } = new List<int>();
     }
 }

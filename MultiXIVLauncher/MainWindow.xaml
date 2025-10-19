@@ -96,7 +96,7 @@
             </Button.Template>
         </Button>
 
-        <GroupBox Header=""
+        <GroupBox x:Name="CharacterGroupBox" Header=""
           HorizontalAlignment="Left"
           Height="290"
           Margin="185,72,0,0"

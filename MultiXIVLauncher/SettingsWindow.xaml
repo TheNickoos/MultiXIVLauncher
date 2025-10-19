@@ -113,18 +113,45 @@
             </TabItem>
             <TabItem Header="Characters" Background="#FF272727" Foreground="White" FontSize="10">
                 <Grid Background="#FF272727">
-                    <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,297,0" Background="#FF272727" Foreground="White" FontFamily="Arial" FontSize="10"/>
-                    <Button Content="Add a char" HorizontalAlignment="Left" Margin="187,348,0,0" VerticalAlignment="Top" Width="56" Background="#FF2196F3" Foreground="White"/>
+                    <ListBox x:Name="CharacterListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,297,0" Background="#FF272727" Foreground="White" FontFamily="Arial" FontSize="10"/>
+                    <Button x:Name="CharacterAddButton" Content="Add a char" HorizontalAlignment="Left" Margin="187,348,0,0" VerticalAlignment="Top" Width="56" Background="#FF2196F3" Foreground="White"/>
                     <Grid x:Name="CharacterGrid">
-                        <Rectangle HorizontalAlignment="Left" Height="333" Margin="187,10,0,0" Stroke="White" VerticalAlignment="Top" Width="250"/>
+                        <Rectangle x:Name="CharacterRectangle" HorizontalAlignment="Left" Height="333" Margin="187,10,0,0" Stroke="White" VerticalAlignment="Top" Width="250"/>
                         <Button x:Name="CharacterSaveButton" Content="Save" HorizontalAlignment="Left" Margin="367,304,0,0" VerticalAlignment="Top" Width="65" Background="#FF2196F3" Foreground="White"/>
                         <TextBox x:Name="CharacterNameTextBox" HorizontalAlignment="Left" Margin="287,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" Background="#FF2196F3" Foreground="White" FontFamily="Arial" FontSize="10" BorderBrush="#FF544848"/>
-                        <Label Content="Character name" HorizontalAlignment="Left" Margin="199,22,0,0" VerticalAlignment="Top" Width="88" FontSize="10" FontFamily="Arial" Foreground="White" FontWeight="Bold"/>
-                        <ListBox x:Name="CharacterGroupListbox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="287,46,42,249" FontFamily="Arial" FontSize="10" Background="#FF2196F3" Foreground="White"/>
-                        <Label Content="Group" HorizontalAlignment="Left" Margin="199,45,0,0" VerticalAlignment="Top" Width="73" FontSize="10" FontFamily="Arial" Foreground="White" FontWeight="Bold"/>
+                        <Label x:Name="CharacterNameLabel" Content="Character name" HorizontalAlignment="Left" Margin="199,22,0,0" VerticalAlignment="Top" Width="88" FontSize="10" FontFamily="Arial" Foreground="White" FontWeight="Bold"/>
+                        <ListBox x:Name="CharacterGroupListBox"
+         SelectionMode="Multiple"
+         Margin="287,46,42,249"
+         FontFamily="Arial"
+         FontSize="10"
+         Background="#FF2196F3"
+         Foreground="White">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="Background" Value="#FF2196F3"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="Margin" Value="1"/>
+                                    <Setter Property="Padding" Value="4,2"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#FFFFC107"/>
+                                            <!-- Jaune visible -->
+                                            <Setter Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF64B5F6"/>
+                                            <!-- Bleu clair survol -->
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+                        <Label x:Name="CharacterGroupLabel" Content="Group" HorizontalAlignment="Left" Margin="199,45,0,0" VerticalAlignment="Top" Width="73" FontSize="10" FontFamily="Arial" Foreground="White" FontWeight="Bold"/>
                         <Button x:Name="CharacterDeleteButton" Content="Delete" HorizontalAlignment="Left" Margin="287,304,0,0" VerticalAlignment="Top" Background="#FF2196F3" Foreground="White" Width="65"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="287,163,0,0" VerticalAlignment="Top" Width="145"/>
-                        <Label Content="Preset" HorizontalAlignment="Left" Margin="199,161,0,0" VerticalAlignment="Top" Width="73" Foreground="White" FontFamily="Arial" FontWeight="Bold"/>
+                        <ComboBox x:Name="CharacterPresetComboBox" HorizontalAlignment="Left" Margin="287,163,0,0" VerticalAlignment="Top" Width="145"/>
+                        <Label x:Name="CharacterPresetLabel" Content="Preset" HorizontalAlignment="Left" Margin="199,161,0,0" VerticalAlignment="Top" Width="73" Foreground="White" FontFamily="Arial" FontWeight="Bold"/>
                     </Grid>
                 </Grid>
             </TabItem>

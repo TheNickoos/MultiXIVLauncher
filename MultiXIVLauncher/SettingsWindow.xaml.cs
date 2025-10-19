@@ -13,12 +13,15 @@ namespace MultiXIVLauncher
     {
         private readonly string configPath;
         private Config config;
+        private Character tempCharacter;
+
 
         public SettingsWindow()
         {
             InitializeComponent();
             InitializePresetView();
             InitializeGroupView();
+            InitializeCharacterView();
 
             configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
 
@@ -28,6 +31,7 @@ namespace MultiXIVLauncher
             ApplyConfigToUI();
             LoadPresets();
             LoadGroups();
+            LoadCharacters();
 
             if (string.IsNullOrEmpty(InputLauncherTextbox.Text))
             {
@@ -69,6 +73,10 @@ namespace MultiXIVLauncher
             GroupSaveButton.Click += GroupSaveButton_Click;
             GroupDeleteButton.Click += GroupDeleteButton_Click;
             GroupListbox.SelectionChanged += GroupListBox_SelectionChanged;
+            CharacterAddButton.Click += CharacterAddButton_Click;
+            CharacterSaveButton.Click += CharacterSaveButton_Click;
+            CharacterDeleteButton.Click += CharacterDeleteButton_Click;
+            CharacterListBox.SelectionChanged += CharacterListBox_SelectionChanged;
 
             PresetNameTextBox.TextChanged += (s, e) =>
             {
@@ -473,6 +481,287 @@ namespace MultiXIVLauncher
             GroupGrid.Visibility = Visibility.Collapsed;
             GroupAddButton.Visibility = Visibility.Visible;
         }
+
+        // --- Gestion Characters ---
+        private void InitializeCharacterView()
+        {
+            CharacterAddButton.Visibility = Visibility.Visible;
+            CharacterGrid.Visibility = Visibility.Collapsed;
+            CharacterNameLabel.Visibility = Visibility.Collapsed;
+            CharacterNameTextBox.Visibility = Visibility.Collapsed;
+            CharacterGroupLabel.Visibility = Visibility.Collapsed;
+            CharacterGroupListBox.Visibility = Visibility.Collapsed;
+            CharacterPresetLabel.Visibility = Visibility.Collapsed;
+            CharacterPresetComboBox.Visibility = Visibility.Collapsed;
+            CharacterSaveButton.Visibility = Visibility.Collapsed;
+            CharacterDeleteButton.Visibility = Visibility.Collapsed;
+            CharacterRectangle.Visibility = Visibility.Collapsed;
+        }
+
+        private void LoadCharacters()
+        {
+            CharacterListBox.Items.Clear();
+
+            if (config?.Characters == null) return;
+
+            foreach (var character in config.Characters)
+            {
+                var item = new ListBoxItem
+                {
+                    Content = character.Name,
+                    Tag = character.Id
+                };
+                CharacterListBox.Items.Add(item);
+            }
+
+            RefreshGroupAndPresetLists();
+        }
+
+        private void RefreshGroupAndPresetLists()
+        {
+            // Rafraîchir groupes
+            CharacterGroupListBox.Items.Clear();
+            if (config?.Groups != null)
+            {
+                foreach (var group in config.Groups)
+                {
+                    var item = new ListBoxItem
+                    {
+                        Content = group.Name,
+                        Tag = group.Id
+                    };
+                    CharacterGroupListBox.Items.Add(item);
+                }
+            }
+
+            // Rafraîchir presets
+            CharacterPresetComboBox.Items.Clear();
+            if (config?.Presets != null)
+            {
+                foreach (var preset in config.Presets)
+                {
+                    var item = new ComboBoxItem
+                    {
+                        Content = preset.Name,
+                        Tag = preset.Id
+                    };
+                    CharacterPresetComboBox.Items.Add(item);
+                }
+            }
+        }
+
+        private void CharacterAddButton_Click(object sender, RoutedEventArgs e)
+        {
+            CharacterAddButton.Visibility = Visibility.Collapsed;
+            CharacterGrid.Visibility = Visibility.Visible;
+            CharacterNameLabel.Visibility = Visibility.Visible;
+            CharacterNameTextBox.Visibility = Visibility.Visible;
+            CharacterGroupLabel.Visibility = Visibility.Visible;
+            CharacterGroupListBox.Visibility = Visibility.Visible;
+            CharacterPresetLabel.Visibility = Visibility.Visible;
+            CharacterPresetComboBox.Visibility = Visibility.Visible;
+            CharacterSaveButton.Visibility = Visibility.Visible;
+            CharacterRectangle.Visibility = Visibility.Visible;
+            CharacterDeleteButton.Visibility = Visibility.Collapsed;
+
+            int newId = config.Characters.Count > 0 ? config.Characters[config.Characters.Count - 1].Id + 1 : 1;
+            tempCharacter = new Character
+            {
+                Id = newId,
+                Name = "New Character",
+                GroupIds = new List<int>()
+            };
+
+            CharacterNameTextBox.Text = tempCharacter.Name;
+
+            RefreshGroupAndPresetLists();
+        }
+
+
+        private void CharacterListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CharacterListBox.SelectedItem is ListBoxItem selectedItem)
+            {
+                int id = (int)selectedItem.Tag;
+                var character = config.Characters.Find(c => c.Id == id);
+                if (character != null)
+                {
+                    CharacterGrid.Visibility = Visibility.Visible;
+                    CharacterNameLabel.Visibility = Visibility.Visible;
+                    CharacterNameTextBox.Visibility = Visibility.Visible;
+                    CharacterGroupLabel.Visibility = Visibility.Visible;
+                    CharacterGroupListBox.Visibility = Visibility.Visible;
+                    CharacterSaveButton.Visibility = Visibility.Visible;
+                    CharacterRectangle.Visibility = Visibility.Visible;
+                    CharacterDeleteButton.Visibility = Visibility.Visible;
+                    CharacterAddButton.Visibility = Visibility.Collapsed;
+
+                    // Le preset ne s'affiche pas ici
+                    CharacterPresetLabel.Visibility = Visibility.Collapsed;
+                    CharacterPresetComboBox.Visibility = Visibility.Collapsed;
+
+                    CharacterNameTextBox.Text = character.Name;
+
+                    RefreshGroupAndPresetLists();
+
+                    // Sélection des groupes multiples
+                    foreach (ListBoxItem item in CharacterGroupListBox.Items)
+                    {
+                        item.IsSelected = character.GroupIds.Contains((int)item.Tag);
+                    }
+                }
+            }
+            else
+            {
+                CharacterGrid.Visibility = Visibility.Collapsed;
+                CharacterAddButton.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void CharacterSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            Character character = null;
+
+            // Si un personnage existant est sélectionné
+            if (CharacterListBox.SelectedItem is ListBoxItem selectedItem)
+            {
+                int id = (int)selectedItem.Tag;
+                character = config.Characters.Find(c => c.Id == id);
+            }
+
+            // Sinon, on sauvegarde le personnage temporaire créé via Add
+            if (character == null && tempCharacter != null)
+                character = tempCharacter;
+
+            if (character != null)
+            {
+                character.Name = CharacterNameTextBox.Text.Trim();
+
+                // Récupérer tous les groupes sélectionnés
+                character.GroupIds = new List<int>();
+                foreach (ListBoxItem groupItem in CharacterGroupListBox.SelectedItems)
+                {
+                    character.GroupIds.Add((int)groupItem.Tag);
+                }
+
+                // Crée le dossier du personnage
+                string charactersRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Characters");
+                if (!Directory.Exists(charactersRoot))
+                    Directory.CreateDirectory(charactersRoot);
+
+                string charFolder = Path.Combine(charactersRoot, "Character_" + character.Id);
+                if (!Directory.Exists(charFolder))
+                    Directory.CreateDirectory(charFolder);
+
+                // Si un preset est sélectionné → copier son contenu
+                if (CharacterPresetComboBox.SelectedItem is ComboBoxItem presetItem)
+                {
+                    int presetId = (int)presetItem.Tag;
+                    var preset = config.Presets.Find(p => p.Id == presetId);
+                    if (preset != null && Directory.Exists(preset.FolderPath))
+                    {
+                        try
+                        {
+                            CopyDirectory(preset.FolderPath, charFolder);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Failed to copy preset files: " + ex.Message,
+                                            "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+
+                // Si c’est un nouveau personnage → on l’ajoute à la config et à la liste
+                if (!config.Characters.Exists(c => c.Id == character.Id))
+                {
+                    config.Characters.Add(character);
+
+                    var item = new ListBoxItem
+                    {
+                        Content = character.Name,
+                        Tag = character.Id
+                    };
+                    CharacterListBox.Items.Add(item);
+                }
+                else
+                {
+                    // Met à jour le nom si existant
+                    foreach (ListBoxItem item in CharacterListBox.Items)
+                    {
+                        if ((int)item.Tag == character.Id)
+                        {
+                            item.Content = character.Name;
+                            break;
+                        }
+                    }
+                }
+
+                config.Save(configPath);
+
+                // Nettoyage
+                tempCharacter = null;
+                CharacterGrid.Visibility = Visibility.Collapsed;
+                CharacterAddButton.Visibility = Visibility.Visible;
+                CharacterListBox.SelectedItem = null;
+            }
+        }
+
+
+        // --- Fonction utilitaire pour copier un dossier récursivement ---
+        private void CopyDirectory(string sourceDir, string destinationDir)
+        {
+            DirectoryInfo source = new DirectoryInfo(sourceDir);
+            DirectoryInfo target = new DirectoryInfo(destinationDir);
+
+            if (!target.Exists)
+                target.Create();
+
+            // Copie les fichiers
+            FileInfo[] files = source.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string targetFilePath = Path.Combine(target.FullName, file.Name);
+                file.CopyTo(targetFilePath, true);
+            }
+
+            // Copie récursive des sous-dossiers
+            DirectoryInfo[] dirs = source.GetDirectories();
+            foreach (DirectoryInfo subDir in dirs)
+            {
+                string newTargetDir = Path.Combine(target.FullName, subDir.Name);
+                CopyDirectory(subDir.FullName, newTargetDir);
+            }
+        }
+
+
+        private void CharacterDeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (CharacterListBox.SelectedItem is ListBoxItem selectedItem)
+            {
+                int id = (int)selectedItem.Tag;
+                var character = config.Characters.Find(c => c.Id == id);
+                if (character != null)
+                {
+                    var result = MessageBox.Show(
+                        "Are you sure you want to delete this character?",
+                        "Confirm deletion",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Warning);
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        config.Characters.Remove(character);
+                        CharacterListBox.Items.Remove(selectedItem);
+                        config.Save(configPath);
+                    }
+                }
+            }
+
+            CharacterGrid.Visibility = Visibility.Collapsed;
+            CharacterAddButton.Visibility = Visibility.Visible;
+        }
+
 
     }
 }
