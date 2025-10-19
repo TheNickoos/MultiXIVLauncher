@@ -99,7 +99,7 @@ namespace MultiXIVLauncher
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-            _mainWindow.RefreshUIFromConfig(); // ✅ quand on ferme, on met tout à jour
+            _mainWindow.RefreshUIFromConfig();
         }
 
         private void InitializeLanguageComboBox()
@@ -284,7 +284,7 @@ namespace MultiXIVLauncher
                     {
                         try
                         {
-                            Directory.Delete(preset.FolderPath, true); // true pour suppression récursive
+                            Directory.Delete(preset.FolderPath, true);
                         }
                         catch (Exception ex)
                         {
@@ -373,7 +373,6 @@ namespace MultiXIVLauncher
 
         private void GroupAddButton_Click(object sender, RoutedEventArgs e)
         {
-            // Masquer/afficher les bons éléments
             GroupAddButton.Visibility = Visibility.Collapsed;
             GroupGrid.Visibility = Visibility.Visible;
             GroupNameLabel.Visibility = Visibility.Visible;
@@ -382,7 +381,6 @@ namespace MultiXIVLauncher
             GroupRectangle.Visibility = Visibility.Visible;
             GroupDeleteButton.Visibility = Visibility.Collapsed;
 
-            // Nouveau groupe
             int newId = config.Groups.Count > 0 ? config.Groups[config.Groups.Count - 1].Id + 1 : 1;
             var newGroup = new Group
             {
@@ -393,7 +391,6 @@ namespace MultiXIVLauncher
             config.Groups.Add(newGroup);
             config.Save(configPath);
 
-            // Ajouter dans la liste
             var item = new ListBoxItem
             {
                 Content = newGroup.Name,
@@ -419,7 +416,6 @@ namespace MultiXIVLauncher
                 }
             }
 
-            // Réinitialiser l’affichage
             GroupGrid.Visibility = Visibility.Collapsed;
             GroupNameLabel.Visibility = Visibility.Collapsed;
             GroupNameTextBox.Visibility = Visibility.Collapsed;
@@ -428,7 +424,6 @@ namespace MultiXIVLauncher
             GroupRectangle.Visibility = Visibility.Collapsed;
             GroupAddButton.Visibility = Visibility.Visible;
 
-            // ✅ Réinitialiser la sélection pour permettre un nouveau clic
             GroupListbox.SelectedItem = null;
         }
 
@@ -440,7 +435,6 @@ namespace MultiXIVLauncher
                 var group = config.Groups.Find(g => g.Id == id);
                 if (group != null)
                 {
-                    // Affiche les contrôles d’édition
                     GroupGrid.Visibility = Visibility.Visible;
                     GroupNameLabel.Visibility = Visibility.Visible;
                     GroupNameTextBox.Visibility = Visibility.Visible;
@@ -449,13 +443,11 @@ namespace MultiXIVLauncher
                     GroupDeleteButton.Visibility = Visibility.Visible;
                     GroupAddButton.Visibility = Visibility.Collapsed;
 
-                    // Remplir les champs
                     GroupNameTextBox.Text = group.Name;
                 }
             }
             else
             {
-                // Aucun groupe sélectionné → retour à la vue de base
                 GroupGrid.Visibility = Visibility.Collapsed;
                 GroupAddButton.Visibility = Visibility.Visible;
             }
@@ -469,7 +461,6 @@ namespace MultiXIVLauncher
                 var group = config.Groups.Find(g => g.Id == id);
                 if (group != null)
                 {
-                    // Demander confirmation avant suppression
                     var result = MessageBox.Show(
                         $"Are you sure you want to delete the group \"{group.Name}\"?",
                         "Confirm deletion",
@@ -485,12 +476,10 @@ namespace MultiXIVLauncher
                 }
             }
 
-            // Réinitialiser l’affichage
             GroupGrid.Visibility = Visibility.Collapsed;
             GroupAddButton.Visibility = Visibility.Visible;
         }
 
-        // --- Gestion Characters ---
         private void InitializeCharacterView()
         {
             CharacterAddButton.Visibility = Visibility.Visible;
@@ -527,7 +516,6 @@ namespace MultiXIVLauncher
 
         private void RefreshGroupAndPresetLists()
         {
-            // Rafraîchir groupes
             CharacterGroupListBox.Items.Clear();
             if (config?.Groups != null)
             {
@@ -542,7 +530,6 @@ namespace MultiXIVLauncher
                 }
             }
 
-            // Rafraîchir presets
             CharacterPresetComboBox.Items.Clear();
             if (config?.Presets != null)
             {
@@ -604,7 +591,6 @@ namespace MultiXIVLauncher
                     CharacterDeleteButton.Visibility = Visibility.Visible;
                     CharacterAddButton.Visibility = Visibility.Collapsed;
 
-                    // Le preset ne s'affiche pas ici
                     CharacterPresetLabel.Visibility = Visibility.Collapsed;
                     CharacterPresetComboBox.Visibility = Visibility.Collapsed;
 
@@ -612,7 +598,6 @@ namespace MultiXIVLauncher
 
                     RefreshGroupAndPresetLists();
 
-                    // Sélection des groupes multiples
                     foreach (ListBoxItem item in CharacterGroupListBox.Items)
                     {
                         item.IsSelected = character.GroupIds.Contains((int)item.Tag);
@@ -630,14 +615,12 @@ namespace MultiXIVLauncher
         {
             Character character = null;
 
-            // Si un personnage existant est sélectionné
             if (CharacterListBox.SelectedItem is ListBoxItem selectedItem)
             {
                 int id = (int)selectedItem.Tag;
                 character = config.Characters.Find(c => c.Id == id);
             }
 
-            // Sinon, on sauvegarde le personnage temporaire créé via Add
             if (character == null && tempCharacter != null)
                 character = tempCharacter;
 
@@ -645,14 +628,12 @@ namespace MultiXIVLauncher
             {
                 character.Name = CharacterNameTextBox.Text.Trim();
 
-                // Récupérer tous les groupes sélectionnés
                 character.GroupIds = new List<int>();
                 foreach (ListBoxItem groupItem in CharacterGroupListBox.SelectedItems)
                 {
                     character.GroupIds.Add((int)groupItem.Tag);
                 }
 
-                // Crée le dossier du personnage
                 string charactersRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Characters");
                 if (!Directory.Exists(charactersRoot))
                     Directory.CreateDirectory(charactersRoot);
@@ -661,7 +642,6 @@ namespace MultiXIVLauncher
                 if (!Directory.Exists(charFolder))
                     Directory.CreateDirectory(charFolder);
 
-                // Si un preset est sélectionné → copier son contenu
                 if (CharacterPresetComboBox.SelectedItem is ComboBoxItem presetItem)
                 {
                     int presetId = (int)presetItem.Tag;
@@ -680,7 +660,6 @@ namespace MultiXIVLauncher
                     }
                 }
 
-                // Si c’est un nouveau personnage → on l’ajoute à la config et à la liste
                 if (!config.Characters.Exists(c => c.Id == character.Id))
                 {
                     config.Characters.Add(character);
@@ -694,7 +673,6 @@ namespace MultiXIVLauncher
                 }
                 else
                 {
-                    // Met à jour le nom si existant
                     foreach (ListBoxItem item in CharacterListBox.Items)
                     {
                         if ((int)item.Tag == character.Id)
@@ -707,7 +685,6 @@ namespace MultiXIVLauncher
 
                 config.Save(configPath);
 
-                // Nettoyage
                 tempCharacter = null;
                 CharacterGrid.Visibility = Visibility.Collapsed;
                 CharacterAddButton.Visibility = Visibility.Visible;
@@ -716,7 +693,6 @@ namespace MultiXIVLauncher
         }
 
 
-        // --- Fonction utilitaire pour copier un dossier récursivement ---
         private void CopyDirectory(string sourceDir, string destinationDir)
         {
             DirectoryInfo source = new DirectoryInfo(sourceDir);
@@ -725,7 +701,6 @@ namespace MultiXIVLauncher
             if (!target.Exists)
                 target.Create();
 
-            // Copie les fichiers
             FileInfo[] files = source.GetFiles();
             foreach (FileInfo file in files)
             {
@@ -733,7 +708,6 @@ namespace MultiXIVLauncher
                 file.CopyTo(targetFilePath, true);
             }
 
-            // Copie récursive des sous-dossiers
             DirectoryInfo[] dirs = source.GetDirectories();
             foreach (DirectoryInfo subDir in dirs)
             {

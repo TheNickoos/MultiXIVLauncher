@@ -12,7 +12,6 @@ namespace MultiXIVLauncher
         public List<Group> Groups { get; set; } = new List<Group>();
         public List<Character> Characters { get; set; } = new List<Character>();
 
-        // Charge le JSON depuis le chemin donné, renvoie config par défaut si fichier manquant ou corrompu
         public static Config Load(string path)
         {
             try
@@ -25,12 +24,10 @@ namespace MultiXIVLauncher
             }
             catch
             {
-                // Fichier corrompu -> retourne config vide
                 return new Config();
             }
         }
 
-        // Sauvegarde la config dans le chemin donné
         public void Save(string path)
         {
             string json = JsonConvert.SerializeObject(this, Formatting.Indented);

@@ -8,7 +8,7 @@ using System.Windows;
 // l'ensemble d'attributs suivant. Pour modifier les informations
 // associées à un assembly.
 [assembly: AssemblyTitle("MultiXIVLauncher")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A simple Multi instance for Final Fantasy XIV")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MultiXIVLauncher")]

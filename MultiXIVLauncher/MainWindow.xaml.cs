@@ -23,6 +23,7 @@ namespace MultiXIVLauncher
             RefreshUIFromConfig();
 
             GroupComboBox.SelectionChanged += (s, e) => ApplyGroupFilterAndRender();
+            LaunchGroupButton.Click += LaunchGroupButton_Click;
         }
 
         private void MogstationButton_Click(object sender, RoutedEventArgs e)
@@ -52,7 +53,7 @@ namespace MultiXIVLauncher
 
             GroupComboBox.Items.Clear();
 
-            var allItem = new ComboBoxItem { Content = "All groups", Tag = 0 };
+            var allItem = new ComboBoxItem { Content = "All groups", Tag = -1 };
             GroupComboBox.Items.Add(allItem);
 
             if (config.Groups != null)
@@ -76,11 +77,11 @@ namespace MultiXIVLauncher
 
         private void ApplyGroupFilterAndRender()
         {
-            int selectedGroupId = 0;
+            int selectedGroupId = -1;
             if (GroupComboBox.SelectedItem is ComboBoxItem sel && sel.Tag is int)
                 selectedGroupId = (int)sel.Tag;
 
-            if (selectedGroupId == 0)
+            if (selectedGroupId == -1)
             {
                 filteredCharacters = new List<Character>(allCharacters);
             }
@@ -93,7 +94,6 @@ namespace MultiXIVLauncher
             currentPage = 0;
             DisplayCurrentPage();
         }
-
 
         private void DisplayCurrentPage()
         {
@@ -246,9 +246,69 @@ namespace MultiXIVLauncher
 
         private void CharacterButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button btn && btn.Tag is int id)
+            if (IsLaunchingCharacter)
+                return;
+
+            var btn = sender as Button;
+            int id = (int)btn.Tag;
+
+            string configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
+            var config = Config.Load(configPath);
+            var character = config.Characters.Find(c => c.Id == id);
+
+            if (character != null)
+                CharacterLauncher.LaunchCharacter(character, config, this);
+        }
+
+        public bool IsLaunchingCharacter { get; private set; } = false;
+
+        public void SetLauncherInteractivity(bool enabled)
+        {
+            IsLaunchingCharacter = !enabled;
+
+            foreach (var ctrl in FindVisualChildren<Button>(this))
             {
-                MessageBox.Show($"Character {id} selected!");
+                ctrl.IsEnabled = enabled;
+            }
+
+            GroupComboBox.IsEnabled = enabled;
+        }
+
+        private static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        {
+            if (depObj != null)
+            {
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+                {
+                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+                    if (child is T)
+                        yield return (T)child;
+
+                    foreach (T childOfChild in FindVisualChildren<T>(child))
+                        yield return childOfChild;
+                }
+            }
+        }
+
+        private async void LaunchGroupButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (IsLaunchingCharacter)
+                return;
+
+            if (GroupComboBox.SelectedItem is ComboBoxItem selected)
+            {
+                int groupId = (int)selected.Tag;
+
+                string configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
+                var config = Config.Load(configPath);
+
+                if (config != null)
+                    await GroupLauncher.LaunchGroupAsync(groupId, config, this);
+            }
+            else
+            {
+                MessageBox.Show("Please select a group first.",
+                    "No group selected", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
     }
