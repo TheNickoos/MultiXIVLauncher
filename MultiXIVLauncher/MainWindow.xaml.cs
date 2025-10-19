@@ -24,5 +24,22 @@ namespace MultiXIVLauncher
         {
             InitializeComponent();
         }
+
+        private void MogstationButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://secure.square-enix.com/account/app/svc/mogstation/");
+        }
+
+        private void StatusButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://is.xivup.com/"); 
+        }
+
+        private void SettingButton_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.Owner = this;
+            settingsWindow.ShowDialog();
+        }
     }
 }
