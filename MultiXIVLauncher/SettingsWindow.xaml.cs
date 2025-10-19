@@ -18,6 +18,7 @@ namespace MultiXIVLauncher
         {
             InitializeComponent();
             InitializePresetView();
+            InitializeGroupView();
 
             configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
 
@@ -26,6 +27,7 @@ namespace MultiXIVLauncher
             LoadConfig();
             ApplyConfigToUI();
             LoadPresets();
+            LoadGroups();
 
             if (string.IsNullOrEmpty(InputLauncherTextbox.Text))
             {
@@ -63,6 +65,10 @@ namespace MultiXIVLauncher
             PresetDeleteButton.Click += PresetDeleteButton_Click;
             PresetExploreButton.Click += PresetExploreButton_Click;
             PresetListBox.SelectionChanged += PresetListBox_SelectionChanged;
+            GroupAddButton.Click += GroupAddButton_Click;
+            GroupSaveButton.Click += GroupSaveButton_Click;
+            GroupDeleteButton.Click += GroupDeleteButton_Click;
+            GroupListbox.SelectionChanged += GroupListBox_SelectionChanged;
 
             PresetNameTextBox.TextChanged += (s, e) =>
             {
@@ -320,5 +326,153 @@ namespace MultiXIVLauncher
                 PresetAddButton.Visibility = Visibility.Visible;
             }
         }
+
+        private void InitializeGroupView()
+        {
+            GroupAddButton.Visibility = Visibility.Visible;
+            GroupGrid.Visibility = Visibility.Collapsed;
+            GroupNameLabel.Visibility = Visibility.Collapsed;
+            GroupNameTextBox.Visibility = Visibility.Collapsed;
+            GroupSaveButton.Visibility = Visibility.Collapsed;
+            GroupDeleteButton.Visibility = Visibility.Collapsed;
+            GroupRectangle.Visibility = Visibility.Collapsed;
+        }
+
+        private void LoadGroups()
+        {
+            GroupListbox.Items.Clear();
+
+            if (config?.Groups == null) return;
+
+            foreach (var group in config.Groups)
+            {
+                var item = new ListBoxItem
+                {
+                    Content = group.Name,
+                    Tag = group.Id
+                };
+                GroupListbox.Items.Add(item);
+            }
+        }
+
+        private void GroupAddButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Masquer/afficher les bons éléments
+            GroupAddButton.Visibility = Visibility.Collapsed;
+            GroupGrid.Visibility = Visibility.Visible;
+            GroupNameLabel.Visibility = Visibility.Visible;
+            GroupNameTextBox.Visibility = Visibility.Visible;
+            GroupSaveButton.Visibility = Visibility.Visible;
+            GroupRectangle.Visibility = Visibility.Visible;
+            GroupDeleteButton.Visibility = Visibility.Collapsed;
+
+            // Nouveau groupe
+            int newId = config.Groups.Count > 0 ? config.Groups[config.Groups.Count - 1].Id + 1 : 1;
+            var newGroup = new Group
+            {
+                Id = newId,
+                Name = "New Group"
+            };
+
+            config.Groups.Add(newGroup);
+            config.Save(configPath);
+
+            // Ajouter dans la liste
+            var item = new ListBoxItem
+            {
+                Content = newGroup.Name,
+                Tag = newGroup.Id
+            };
+            GroupListbox.Items.Add(item);
+            GroupListbox.SelectedItem = item;
+
+            GroupNameTextBox.Text = newGroup.Name;
+        }
+
+        private void GroupSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (GroupListbox.SelectedItem is ListBoxItem selectedItem)
+            {
+                int id = (int)selectedItem.Tag;
+                var group = config.Groups.Find(g => g.Id == id);
+                if (group != null)
+                {
+                    group.Name = GroupNameTextBox.Text.Trim();
+                    selectedItem.Content = group.Name;
+                    config.Save(configPath);
+                }
+            }
+
+            // Réinitialiser l’affichage
+            GroupGrid.Visibility = Visibility.Collapsed;
+            GroupNameLabel.Visibility = Visibility.Collapsed;
+            GroupNameTextBox.Visibility = Visibility.Collapsed;
+            GroupSaveButton.Visibility = Visibility.Collapsed;
+            GroupDeleteButton.Visibility = Visibility.Collapsed;
+            GroupRectangle.Visibility = Visibility.Collapsed;
+            GroupAddButton.Visibility = Visibility.Visible;
+
+            // ✅ Réinitialiser la sélection pour permettre un nouveau clic
+            GroupListbox.SelectedItem = null;
+        }
+
+        private void GroupListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (GroupListbox.SelectedItem is ListBoxItem selectedItem)
+            {
+                int id = (int)selectedItem.Tag;
+                var group = config.Groups.Find(g => g.Id == id);
+                if (group != null)
+                {
+                    // Affiche les contrôles d’édition
+                    GroupGrid.Visibility = Visibility.Visible;
+                    GroupNameLabel.Visibility = Visibility.Visible;
+                    GroupNameTextBox.Visibility = Visibility.Visible;
+                    GroupSaveButton.Visibility = Visibility.Visible;
+                    GroupRectangle.Visibility = Visibility.Visible;
+                    GroupDeleteButton.Visibility = Visibility.Visible;
+                    GroupAddButton.Visibility = Visibility.Collapsed;
+
+                    // Remplir les champs
+                    GroupNameTextBox.Text = group.Name;
+                }
+            }
+            else
+            {
+                // Aucun groupe sélectionné → retour à la vue de base
+                GroupGrid.Visibility = Visibility.Collapsed;
+                GroupAddButton.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void GroupDeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (GroupListbox.SelectedItem is ListBoxItem selectedItem)
+            {
+                int id = (int)selectedItem.Tag;
+                var group = config.Groups.Find(g => g.Id == id);
+                if (group != null)
+                {
+                    // Demander confirmation avant suppression
+                    var result = MessageBox.Show(
+                        $"Are you sure you want to delete the group \"{group.Name}\"?",
+                        "Confirm deletion",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Warning);
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        config.Groups.Remove(group);
+                        GroupListbox.Items.Remove(selectedItem);
+                        config.Save(configPath);
+                    }
+                }
+            }
+
+            // Réinitialiser l’affichage
+            GroupGrid.Visibility = Visibility.Collapsed;
+            GroupAddButton.Visibility = Visibility.Visible;
+        }
+
     }
 }

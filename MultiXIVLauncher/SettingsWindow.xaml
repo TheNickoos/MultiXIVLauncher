@@ -120,7 +120,7 @@
                         <Button x:Name="CharacterSaveButton" Content="Save" HorizontalAlignment="Left" Margin="367,304,0,0" VerticalAlignment="Top" Width="65" Background="#FF2196F3" Foreground="White"/>
                         <TextBox x:Name="CharacterNameTextBox" HorizontalAlignment="Left" Margin="287,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" Background="#FF2196F3" Foreground="White" FontFamily="Arial" FontSize="10" BorderBrush="#FF544848"/>
                         <Label Content="Character name" HorizontalAlignment="Left" Margin="199,22,0,0" VerticalAlignment="Top" Width="88" FontSize="10" FontFamily="Arial" Foreground="White" FontWeight="Bold"/>
-                        <ListBox x:Name="GroupListbox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="287,46,42,249" FontFamily="Arial" FontSize="10" Background="#FF2196F3" Foreground="White"/>
+                        <ListBox x:Name="CharacterGroupListbox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="287,46,42,249" FontFamily="Arial" FontSize="10" Background="#FF2196F3" Foreground="White"/>
                         <Label Content="Group" HorizontalAlignment="Left" Margin="199,45,0,0" VerticalAlignment="Top" Width="73" FontSize="10" FontFamily="Arial" Foreground="White" FontWeight="Bold"/>
                         <Button x:Name="CharacterDeleteButton" Content="Delete" HorizontalAlignment="Left" Margin="287,304,0,0" VerticalAlignment="Top" Background="#FF2196F3" Foreground="White" Width="65"/>
                         <ComboBox HorizontalAlignment="Left" Margin="287,163,0,0" VerticalAlignment="Top" Width="145"/>
@@ -130,13 +130,13 @@
             </TabItem>
             <TabItem Header="Group" FontSize="10" HorizontalAlignment="Left" Width="49">
                 <Grid>
-                    <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,297,0" Background="#FF272727" Foreground="White" FontFamily="Arial" FontSize="10"/>
+                    <ListBox x:Name="GroupListbox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,297,0" Background="#FF272727" Foreground="White" FontFamily="Arial" FontSize="10"/>
                     <Button x:Name="GroupAddButton" Content="Add a group" HorizontalAlignment="Left" Margin="187,348,0,0" VerticalAlignment="Top" Width="56" Background="#FF2196F3" Foreground="White"/>
                     <Grid x:Name="GroupGrid">
-                        <Rectangle HorizontalAlignment="Left" Height="333" Margin="187,10,0,0" Stroke="White" VerticalAlignment="Top" Width="250"/>
+                        <Rectangle x:Name="GroupRectangle" HorizontalAlignment="Left" Height="333" Margin="187,10,0,0" Stroke="White" VerticalAlignment="Top" Width="250"/>
                         <Button x:Name="GroupSaveButton" Content="Save" HorizontalAlignment="Left" Margin="367,168,0,0" VerticalAlignment="Top" Width="65" Background="#FF2196F3" Foreground="White"/>
                         <TextBox x:Name="GroupNameTextBox" HorizontalAlignment="Left" Margin="287,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" Background="#FF2196F3" Foreground="White" FontFamily="Arial" FontSize="10" BorderBrush="#FF544848"/>
-                        <Label Content="Group name" HorizontalAlignment="Left" Margin="199,22,0,0" VerticalAlignment="Top" Width="88" FontSize="10" FontFamily="Arial" Foreground="White" FontWeight="Bold"/>
+                        <Label x:Name="GroupNameLabel" Content="Group name" HorizontalAlignment="Left" Margin="199,22,0,0" VerticalAlignment="Top" Width="88" FontSize="10" FontFamily="Arial" Foreground="White" FontWeight="Bold"/>
                         <Button x:Name="GroupDeleteButton" Content="Delete" HorizontalAlignment="Left" Margin="287,168,0,0" VerticalAlignment="Top" Background="#FF2196F3" Foreground="White" Width="65"/>
                     </Grid>
                 </Grid>
