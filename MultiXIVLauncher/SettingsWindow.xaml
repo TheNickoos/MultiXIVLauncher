@@ -14,7 +14,6 @@
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Padding" Value="8,4"/>
             <Setter Property="Cursor" Value="Hand"/>
-
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TabItem">
@@ -101,14 +100,9 @@
                                 <Setter Property="Foreground" Value="White"/>
                             </Style>
                         </ComboBox.Resources>
-
                         <ComboBoxItem IsSelected="True" Tag="en">English</ComboBoxItem>
                     </ComboBox>
                     <Label Content="MultiXIVLauncher Language" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="297" FontSize="10" FontFamily="Arial" Foreground="White" Height="23" FontWeight="Bold"/>
-
-
-
-
                 </Grid>
             </TabItem>
             <TabItem Header="Characters" Background="#FF272727" Foreground="White" FontSize="10">
@@ -137,12 +131,10 @@
                                     <Style.Triggers>
                                         <Trigger Property="IsSelected" Value="True">
                                             <Setter Property="Background" Value="#FFFFC107"/>
-                                            <!-- Jaune visible -->
                                             <Setter Property="Foreground" Value="Black"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="Background" Value="#FF64B5F6"/>
-                                            <!-- Bleu clair survol -->
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -172,6 +164,7 @@
                 <Grid>
                     <ListBox x:Name="PresetListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,297,0" Background="#FF272727" Foreground="White" FontFamily="Arial" FontSize="10"/>
                     <Button x:Name="PresetAddButton" Content="Add a preset" HorizontalAlignment="Left" Margin="187,348,0,0" VerticalAlignment="Top" Width="85" Background="#FF2196F3" Foreground="White"/>
+                    <Button x:Name="PresetDownloadButton" Content="Download a preset" Margin="280,348,37,0" VerticalAlignment="Top" Background="#FF2196F3" Foreground="White"/>
                     <Grid x:Name="PresetGrid">
                         <Rectangle x:Name="RectangleEdit" HorizontalAlignment="Left" Height="333" Margin="187,10,0,0" Stroke="White" VerticalAlignment="Top" Width="250"/>
                         <Button x:Name="PresetSaveButton" Content="Save" HorizontalAlignment="Left" Margin="367,168,0,0" VerticalAlignment="Top" Width="65" Background="#FF2196F3" Foreground="White"/>
@@ -184,6 +177,5 @@
                 </Grid>
             </TabItem>
         </TabControl>
-
     </Grid>
 </Window>

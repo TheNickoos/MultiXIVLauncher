@@ -12,8 +12,8 @@ namespace MultiXIVLauncher
     public partial class SettingsWindow : Window
     {
         private readonly MainWindow _mainWindow;
-        private readonly string configPath;
-        private Config config;
+        public readonly string configPath;
+        public Config config;
         private Character tempCharacter;
 
 
@@ -80,6 +80,9 @@ namespace MultiXIVLauncher
             CharacterSaveButton.Click += CharacterSaveButton_Click;
             CharacterDeleteButton.Click += CharacterDeleteButton_Click;
             CharacterListBox.SelectionChanged += CharacterListBox_SelectionChanged;
+            PresetCopyCharacterButton.Click += PresetCopyCharacterButton_Click;
+            PresetDownloadButton.Click += PresetDownloadButton_Click;
+
 
             PresetNameTextBox.TextChanged += (s, e) =>
             {
@@ -214,7 +217,7 @@ namespace MultiXIVLauncher
             PresetGrid.Visibility = Visibility.Collapsed;
         }
 
-        private void LoadPresets()
+        public void LoadPresets()
         {
             PresetListBox.Items.Clear();
 
@@ -369,6 +372,77 @@ namespace MultiXIVLauncher
             PresetAddButton.Visibility = Visibility.Visible;
 
             PresetListBox.SelectedItem = null;
+        }
+
+        private void PresetDownloadButton_Click(object sender, RoutedEventArgs e)
+        {
+            var win = new PresetDownloadWindow(this);
+            win.Owner = this;
+            win.ShowDialog();
+        }
+
+        private async void PresetCopyCharacterButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = PresetListBox.SelectedItem as ListBoxItem;
+            if (selectedItem == null)
+            {
+                MessageBox.Show("Please select a preset first.", "No preset selected",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            int presetId = (int)selectedItem.Tag;
+            var preset = config.Presets.Find(p => p.Id == presetId);
+            if (preset == null || string.IsNullOrEmpty(preset.FolderPath))
+            {
+                MessageBox.Show("Invalid preset selected.", "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            var selectWindow = new SelectCharacterWindow { Owner = this };
+            if (selectWindow.ShowDialog() == true)
+            {
+                string sourceDir = selectWindow.SelectedCharacterPath;
+                if (string.IsNullOrEmpty(sourceDir) || !Directory.Exists(sourceDir))
+                {
+                    MessageBox.Show("Invalid character directory.", "Error",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                var result = MessageBox.Show(
+                    "This will overwrite the preset’s existing content. Continue?",
+                    "Confirm overwrite",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        if (Directory.Exists(preset.FolderPath))
+                            Directory.Delete(preset.FolderPath, true);
+
+                        // Fenêtre de progression
+                        var progressWindow = new CopyProgressWindow { Owner = this };
+                        progressWindow.Show();
+
+                        await progressWindow.CopyWithProgressAsync(sourceDir, preset.FolderPath);
+
+                        progressWindow.Close();
+
+                        MessageBox.Show("Preset successfully updated from character!",
+                            "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error while copying character content:\n" + ex.Message,
+                            "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
+                }
+            }
         }
 
         private void InitializeGroupView()
@@ -783,6 +857,23 @@ namespace MultiXIVLauncher
 
             CharacterGrid.Visibility = Visibility.Collapsed;
             CharacterAddButton.Visibility = Visibility.Visible;
+        }
+
+        private static void CopyDirectoryRecursive(string sourceDir, string destDir)
+        {
+            Directory.CreateDirectory(destDir);
+
+            foreach (string file in Directory.GetFiles(sourceDir))
+            {
+                string destFile = Path.Combine(destDir, Path.GetFileName(file));
+                File.Copy(file, destFile, true);
+            }
+
+            foreach (string directory in Directory.GetDirectories(sourceDir))
+            {
+                string destSubDir = Path.Combine(destDir, Path.GetFileName(directory));
+                CopyDirectoryRecursive(directory, destSubDir);
+            }
         }
 
     }
