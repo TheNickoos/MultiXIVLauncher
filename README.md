@@ -31,6 +31,9 @@ It lets you launch several XIVLauncher sessions without Windows accounts, using 
 
 ---
 
+## Question?
+Check if your question isn't answered in the [FAQ](https://github.com/TheNickoos/MultiXIVLauncher/wiki/FAQ)
+
 ## 💡 Notes
 
 - You can organize characters into **groups** and launch several at once.  
