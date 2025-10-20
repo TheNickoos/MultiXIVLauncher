@@ -71,6 +71,7 @@ namespace MultiXIVLauncher
             PresetDeleteButton.Click += PresetDeleteButton_Click;
             PresetExploreButton.Click += PresetExploreButton_Click;
             PresetListBox.SelectionChanged += PresetListBox_SelectionChanged;
+            PresetSaveButton.Click += PresetSaveButton_Click;
             GroupAddButton.Click += GroupAddButton_Click;
             GroupSaveButton.Click += GroupSaveButton_Click;
             GroupDeleteButton.Click += GroupDeleteButton_Click;
@@ -332,6 +333,7 @@ namespace MultiXIVLauncher
                     PresetSaveButton.Visibility = Visibility.Visible;
                     PresetDeleteButton.Visibility = Visibility.Visible;
                     PresetExploreButton.Visibility = Visibility.Visible;
+                    PresetCopyCharacterButton.Visibility = Visibility.Visible;
 
                     PresetNameTextBox.Text = preset.Name;
                 }
@@ -341,6 +343,32 @@ namespace MultiXIVLauncher
                 PresetGrid.Visibility = Visibility.Collapsed;
                 PresetAddButton.Visibility = Visibility.Visible;
             }
+        }
+
+        private void PresetSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (PresetListBox.SelectedItem is ListBoxItem selectedItem)
+            {
+                int id = (int)selectedItem.Tag;
+                var preset = config.Presets.Find(g => g.Id == id);
+                if (preset != null)
+                {
+                    preset.Name = PresetNameTextBox.Text.Trim();
+                    selectedItem.Content = preset.Name;
+                    config.Save(configPath);
+                }
+            }
+
+            PresetGrid.Visibility = Visibility.Collapsed;
+            PresetNameLabel.Visibility = Visibility.Collapsed;
+            PresetNameTextBox.Visibility = Visibility.Collapsed;
+            PresetSaveButton.Visibility = Visibility.Collapsed;
+            PresetDeleteButton.Visibility = Visibility.Collapsed;
+            RectangleEdit.Visibility = Visibility.Collapsed;
+            PresetCopyCharacterButton.Visibility = Visibility.Collapsed;
+            PresetAddButton.Visibility = Visibility.Visible;
+
+            PresetListBox.SelectedItem = null;
         }
 
         private void InitializeGroupView()
@@ -733,9 +761,22 @@ namespace MultiXIVLauncher
 
                     if (result == MessageBoxResult.Yes)
                     {
-                        config.Characters.Remove(character);
-                        CharacterListBox.Items.Remove(selectedItem);
-                        config.Save(configPath);
+                        try
+                        {
+                            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                            string charDir = Path.Combine(baseDir, "Characters", $"Character_{character.Id}");
+                            if (Directory.Exists(charDir))
+                                Directory.Delete(charDir, true);
+
+                            config.Characters.Remove(character);
+                            CharacterListBox.Items.Remove(selectedItem);
+                            config.Save(configPath);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Unable to delete character folder: {ex.Message}",
+                                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                 }
             }
@@ -743,7 +784,6 @@ namespace MultiXIVLauncher
             CharacterGrid.Visibility = Visibility.Collapsed;
             CharacterAddButton.Visibility = Visibility.Visible;
         }
-
 
     }
 }

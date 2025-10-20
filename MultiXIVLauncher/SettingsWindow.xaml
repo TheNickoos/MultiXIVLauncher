@@ -179,6 +179,7 @@
                         <Label x:Name="PresetNameLabel" Content="Preset name" HorizontalAlignment="Left" Margin="199,22,0,0" VerticalAlignment="Top" Width="88" FontSize="10" FontFamily="Arial" Foreground="White" FontWeight="Bold"/>
                         <Button x:Name="PresetExploreButton" Content="Explore folder" Margin="204,131,42,0" VerticalAlignment="Top" Background="#FF2196F3" Foreground="White" Width="228"/>
                         <Button x:Name="PresetDeleteButton" Content="Delete" Margin="0,167,0,0" VerticalAlignment="Top" Background="#FF2196F3" Foreground="White" Width="66"/>
+                        <Button x:Name="PresetCopyCharacterButton" Content="Copy character content into this preset" Margin="204,106,42,0" VerticalAlignment="Top" Background="#FF2196F3" Foreground="White" Width="228"/>
                     </Grid>
                 </Grid>
             </TabItem>
