@@ -149,12 +149,6 @@
       <SubType>Designer</SubType>
       <CustomToolNamespace>MultiXIVLauncher.Properties</CustomToolNamespace>
     </EmbeddedResource>
-    <Content Include="Languages\en.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Languages\fr.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <EmbeddedResource Include="Properties\Resources.fr.resx">
       <SubType>Designer</SubType>
       <CustomToolNamespace>MultiXIVLauncher.Properties</CustomToolNamespace>
