@@ -43,7 +43,7 @@ namespace MultiXIVLauncher
                 if (config == null || config.Characters == null || config.Characters.Count == 0)
                     return;
 
-                // Associer les dossiers aux noms dans la config
+                
                 foreach (var character in config.Characters)
                 {
                     string charDir = Path.Combine(baseDir, "Character_" + character.Id);

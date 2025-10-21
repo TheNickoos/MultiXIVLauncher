@@ -15,7 +15,7 @@
     <Grid Margin="15">
         <StackPanel VerticalAlignment="Center">
 
-            <!-- Nom du groupe -->
+            
             <TextBlock x:Name="GroupNameText"
                        Tag="LaunchGroup"
                        FontSize="14"
@@ -24,7 +24,7 @@
                        Margin="0,0,0,10"
                        HorizontalAlignment="Center"/>
 
-            <!-- Texte de progression -->
+            
             <TextBlock x:Name="CharacterProgressText"
                        Tag="CharacterProgressText"
                        FontSize="12"
@@ -32,7 +32,7 @@
                        Margin="0,0,0,10"
                        HorizontalAlignment="Center"/>
 
-            <!-- Barre de progression -->
+            
             <ProgressBar x:Name="ProgressBarLaunch"
                          Tag="GroupLaunchProgressBar"
                          Height="22"

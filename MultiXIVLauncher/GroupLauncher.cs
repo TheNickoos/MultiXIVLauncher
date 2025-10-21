@@ -47,7 +47,7 @@ namespace MultiXIVLauncher
                         groupId == -1
                             ? Properties.Resources.NoCharacter
                             : string.Format(Properties.Resources.NoCharacterAssigned, groupName),
-                        Properties.Resources.NothingToLaunch, // ⚠ si ta clé est "Nothing to launch" dans le .resx, garde ce nom exact
+                        Properties.Resources.NothingToLaunch, 
                         MessageBoxButton.OK,
                         MessageBoxImage.Information);
                     return;

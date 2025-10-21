@@ -726,7 +726,8 @@ namespace MultiXIVLauncher.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Please select the folder where XIVlauncher is installed in. It should contain XIVLauncher.exe.
+        ///   Recherche une chaîne localisée semblable à Please select the folder where XIVlauncher is installed in.
+        ///It should contain XIVLauncher.exe.
         /// </summary>
         internal static string XIVLauncherPahInstruction {
             get {

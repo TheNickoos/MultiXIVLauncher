@@ -21,6 +21,8 @@ namespace MultiXIVLauncher
         {
             InitializeComponent();
             _mainWindow = mainWindow;
+            ApplyLocalization();
+
             InitializePresetView();
             InitializeGroupView();
             InitializeCharacterView();
@@ -110,6 +112,38 @@ namespace MultiXIVLauncher
             };
         }
 
+        private void ApplyLocalization()
+        {
+            SettingsWindow1.Title = Properties.Resources.SettingsTitle;
+            ConfigurationTab.Header = Properties.Resources.ConfigurationTab;
+            CharactersTab.Header = Properties.Resources.CharactersTab;
+            GroupTab.Header = Properties.Resources.Group;
+            PresetTab.Header = Properties.Resources.Preset;
+
+            XIVLauncherPahInstruction.Content = Properties.Resources.XIVLauncherPahInstruction;
+            LauncherLanguage.Content = Properties.Resources.LauncherLanguage;
+            CharacterAddButton.Content = Properties.Resources.CharacterAddButton;
+            CharacterDeleteButton.Content = Properties.Resources.DeleteButton;
+            CharacterNameLabel.Content = Properties.Resources.CharacterName;
+            CharacterGroupLabel.Content = Properties.Resources.Group;
+            CharacterPresetLabel.Content = Properties.Resources.Preset;
+            CharacterSaveButton.Content = Properties.Resources.SaveButton;
+
+            GroupNameLabel.Content = Properties.Resources.GroupName;
+            GroupAddButton.Content = Properties.Resources.GroupAddButton;
+            GroupSaveButton.Content = Properties.Resources.SaveButton;
+            GroupDeleteButton.Content = Properties.Resources.DeleteButton;
+
+            PresetNameLabel.Content = Properties.Resources.PresetName;
+            PresetSaveButton.Content = Properties.Resources.SaveButton;
+            PresetAddButton.Content = Properties.Resources.PresetAddButton;
+            PresetExploreButton.Content = Properties.Resources.PresetExploreButton;
+            PresetCopyCharacterButton.Content = Properties.Resources.PresetCopyCharacterButton;
+            PresetDeleteButton.Content = Properties.Resources.DeleteButton;
+            PresetDownloadButton.Content = Properties.Resources.PresetDownloadTitle;
+
+        }
+
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
@@ -122,7 +156,6 @@ namespace MultiXIVLauncher
             {
                 ("en", "English"),
                 ("fr", "Français"),
-                // futurs langages : ("fr", "Français"), etc.
             };
 
             LangageLauncherComboBox.Items.Clear();
@@ -435,7 +468,7 @@ namespace MultiXIVLauncher
                         if (Directory.Exists(preset.FolderPath))
                             Directory.Delete(preset.FolderPath, true);
 
-                        // Fenêtre de progression
+                        
                         var progressWindow = new CopyProgressWindow { Owner = this };
                         progressWindow.Show();
 

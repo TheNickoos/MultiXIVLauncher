@@ -21,9 +21,15 @@ namespace MultiXIVLauncher
             InitializeComponent();
 
             RefreshUIFromConfig();
+            ApplyLocalization();
 
             GroupComboBox.SelectionChanged += (s, e) => ApplyGroupFilterAndRender();
             LaunchGroupButton.Click += LaunchGroupButton_Click;
+        }
+
+        private void ApplyLocalization()
+        {
+            LaunchGroupButton.Content = Properties.Resources.LaunchGroupButton;
         }
 
         private void MogstationButton_Click(object sender, RoutedEventArgs e)

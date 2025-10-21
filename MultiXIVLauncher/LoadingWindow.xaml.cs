@@ -8,7 +8,6 @@ namespace MultiXIVLauncher
         {
             InitializeComponent();
 
-            // Texte traduit depuis le fichier .resx
             LaunchCharacterTextBlock.Text = Properties.Resources.LaunchCharacter;
         }
     }

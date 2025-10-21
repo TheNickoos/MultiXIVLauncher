@@ -55,10 +55,11 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="43*"/>
             <ColumnDefinition Width="23*"/>
-            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="19*"/>
+            <ColumnDefinition Width="11*"/>
         </Grid.ColumnDefinitions>
-        <TabControl Grid.RowSpan="2" Grid.ColumnSpan="3" Background="#FF272727">
-            <TabItem Tag="ConfigurationTab" Header="Configuation" Background="#FF272727" Foreground="White" FontSize="10">
+        <TabControl Grid.RowSpan="2" Grid.ColumnSpan="4" Background="#FF272727">
+            <TabItem x:Name="ConfigurationTab" Tag="ConfigurationTab" Header="Configuation" Background="#FF272727" Foreground="White" FontSize="10" FontFamily="Arial">
                 <Grid Background="#FF272727">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="197*"/>
@@ -66,7 +67,7 @@
                         <ColumnDefinition Width="252*"/>
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="InputLauncherTextbox" HorizontalAlignment="Left" Margin="10,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" BorderThickness="0,0,0,1" Background="{x:Null}" Grid.ColumnSpan="3" Foreground="White" BorderBrush="#FF5B5B5B" FontSize="10"/>
-                    <Label Tag="XIVLauncherPahInstruction" Content="Please select the folder where XIVlauncher is installed in. &#xA;It shlould contain XIVLauncher.exe" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="297" FontSize="10" FontFamily="Arial" Foreground="White" Height="31" FontWeight="Bold"/>
+                    <Label x:Name="XIVLauncherPahInstruction" Tag="XIVLauncherPahInstruction" Content="Please select the folder where XIVlauncher is installed in. &#xA;It shlould contain XIVLauncher.exe" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="454" FontSize="10" FontFamily="Arial" Foreground="White" Height="31" FontWeight="Bold"/>
                     <Button x:Name="BrowseForLauncherButton" Grid.Column="2" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Background="#FF2196F3" Foreground="White" BorderBrush="Black" Margin="95,38,0,0" FontSize="10"/>
                     <ComboBox x:Name="LangageLauncherComboBox" HorizontalAlignment="Left"
           Margin="10,96,0,0"
@@ -102,10 +103,10 @@
                         </ComboBox.Resources>
                         <ComboBoxItem IsSelected="True" Tag="en">English</ComboBoxItem>
                     </ComboBox>
-                    <Label Tag="LauncherLanguage" Content="MultiXIVLauncher Language" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="297" FontSize="10" FontFamily="Arial" Foreground="White" Height="23" FontWeight="Bold"/>
+                    <Label x:Name="LauncherLanguage" Tag="LauncherLanguage" Content="MultiXIVLauncher Language" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="297" FontSize="10" FontFamily="Arial" Foreground="White" Height="23" FontWeight="Bold"/>
                 </Grid>
             </TabItem>
-            <TabItem Tag="CharactersTab" Header="Characters" Background="#FF272727" Foreground="White" FontSize="10">
+            <TabItem x:Name="CharactersTab" Tag="CharactersTab" Header="Characters" Background="#FF272727" Foreground="White" FontSize="10" FontFamily="Arial">
                 <Grid Background="#FF272727">
                     <ListBox x:Name="CharacterListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,297,0" Background="#FF272727" Foreground="White" FontFamily="Arial" FontSize="10"/>
                     <Button Tag="CharacterAddButton" x:Name="CharacterAddButton" Content="Add a char" HorizontalAlignment="Left" Margin="187,348,0,0" VerticalAlignment="Top" Width="95" Background="#FF2196F3" Foreground="White"/>
@@ -147,7 +148,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Tag="Group" Header="Group" FontSize="10" HorizontalAlignment="Left" Width="49">
+            <TabItem x:Name="GroupTab" Tag="Group" Header="Group" FontSize="10" HorizontalAlignment="Left" Width="72" FontFamily="Arial">
                 <Grid>
                     <ListBox x:Name="GroupListbox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,297,0" Background="#FF272727" Foreground="White" FontFamily="Arial" FontSize="10"/>
                     <Button Tag="GroupAddButton" x:Name="GroupAddButton" Content="Add a group" HorizontalAlignment="Left" Margin="187,348,0,0" VerticalAlignment="Top" Width="56" Background="#FF2196F3" Foreground="White"/>
@@ -160,19 +161,23 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Tag="Preset" Header="Preset">
+            <TabItem x:Name="PresetTab" Tag="Preset" Header="Preset" Margin="0,0,-21,0" FontFamily="Arial" FontSize="10">
                 <Grid>
                     <ListBox x:Name="PresetListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,297,0" Background="#FF272727" Foreground="White" FontFamily="Arial" FontSize="10"/>
-                    <Button Tag="PresetAddButton" x:Name="PresetAddButton" Content="Add a preset" HorizontalAlignment="Left" Margin="187,348,0,0" VerticalAlignment="Top" Width="85" Background="#FF2196F3" Foreground="White"/>
-                    <Button Tag="PresetDownloadTitle" x:Name="PresetDownloadButton" Content="Download a preset" Margin="280,348,37,0" VerticalAlignment="Top" Background="#FF2196F3" Foreground="White"/>
+                    <Button Tag="PresetAddButton" x:Name="PresetAddButton" Content="Add a preset" HorizontalAlignment="Left" Margin="187,348,0,0" VerticalAlignment="Top" Width="85" Background="#FF2196F3" Foreground="White" FontSize="10" FontFamily="Arial" Height="28"/>
+                    <Button Tag="PresetDownloadTitle" x:Name="PresetDownloadButton" Content="Download a preset" Margin="280,348,37,0" VerticalAlignment="Top" Background="#FF2196F3" Foreground="White" FontSize="10" FontFamily="Arial" Height="28"/>
                     <Grid x:Name="PresetGrid">
-                        <Rectangle x:Name="RectangleEdit" HorizontalAlignment="Left" Height="333" Margin="187,10,0,0" Stroke="White" VerticalAlignment="Top" Width="250"/>
-                        <Button Tag="SaveButton" x:Name="PresetSaveButton" Content="Save" HorizontalAlignment="Left" Margin="367,168,0,0" VerticalAlignment="Top" Width="65" Background="#FF2196F3" Foreground="White"/>
-                        <TextBox x:Name="PresetNameTextBox" HorizontalAlignment="Left" Margin="287,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" Background="#FF2196F3" Foreground="White" FontFamily="Arial" FontSize="10" BorderBrush="#FF544848"/>
-                        <Label Tag="PresetName" x:Name="PresetNameLabel" Content="Preset name" HorizontalAlignment="Left" Margin="199,22,0,0" VerticalAlignment="Top" Width="88" FontSize="10" FontFamily="Arial" Foreground="White" FontWeight="Bold"/>
-                        <Button Tag="PresetExploreButton" x:Name="PresetExploreButton" Content="Explore folder" Margin="204,131,42,0" VerticalAlignment="Top" Background="#FF2196F3" Foreground="White" Width="228"/>
-                        <Button Tag="DeleteButton" x:Name="PresetDeleteButton" Content="Delete" Margin="0,167,0,0" VerticalAlignment="Top" Background="#FF2196F3" Foreground="White" Width="66"/>
-                        <Button Tag="PresetCopyCharacterButton" x:Name="PresetCopyCharacterButton" Content="Copy character content into this preset" Margin="204,106,42,0" VerticalAlignment="Top" Background="#FF2196F3" Foreground="White" Width="228"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="127*"/>
+                            <ColumnDefinition Width="347*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="RectangleEdit" HorizontalAlignment="Left" Height="333" Margin="60,10,0,0" Stroke="White" VerticalAlignment="Top" Width="250" Grid.Column="1"/>
+                        <Button Tag="SaveButton" x:Name="PresetSaveButton" Content="Save" HorizontalAlignment="Left" Margin="220,168,0,0" VerticalAlignment="Top" Width="85" Background="#FF2196F3" Foreground="White" Grid.Column="1" FontFamily="Arial" FontSize="10"/>
+                        <TextBox x:Name="PresetNameTextBox" HorizontalAlignment="Left" Margin="160,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" Background="#FF2196F3" Foreground="White" FontFamily="Arial" FontSize="10" BorderBrush="#FF544848" Grid.Column="1"/>
+                        <Label Tag="PresetName" x:Name="PresetNameLabel" Content="Preset name" HorizontalAlignment="Left" Margin="72,22,0,0" VerticalAlignment="Top" Width="88" FontSize="10" FontFamily="Arial" Foreground="White" FontWeight="Bold" Grid.Column="1"/>
+                        <Button Tag="PresetExploreButton" x:Name="PresetExploreButton" Content="Explore folder" Margin="77,131,42,0" VerticalAlignment="Top" Background="#FF2196F3" Foreground="White" Width="228" Grid.Column="1" FontSize="10" FontFamily="Arial"/>
+                        <Button Tag="DeleteButton" x:Name="PresetDeleteButton" Content="Delete" Margin="77,167,187,0" VerticalAlignment="Top" Background="#FF2196F3" Foreground="White" Grid.Column="1" FontSize="10" FontFamily="Arial" Width="85"/>
+                        <Button Tag="PresetCopyCharacterButton" x:Name="PresetCopyCharacterButton" Content="Copy character content into this preset" Margin="77,91,42,0" VerticalAlignment="Top" Background="#FF2196F3" Foreground="White" Width="228" Grid.Column="1" FontFamily="Arial" FontSize="10" Height="31"/>
                     </Grid>
                 </Grid>
             </TabItem>

@@ -296,7 +296,8 @@
     <value>Configuration</value>
   </data>
   <data name="XIVLauncherPahInstruction" xml:space="preserve">
-    <value>Please select the folder where XIVlauncher is installed in. It should contain XIVLauncher.exe</value>
+    <value>Please select the folder where XIVlauncher is installed in.
+It should contain XIVLauncher.exe</value>
   </data>
   <data name="LauncherLanguage" xml:space="preserve">
     <value>MultiXIVLauncher Language</value>

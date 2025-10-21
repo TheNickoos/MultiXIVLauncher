@@ -16,7 +16,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Texte de statut -->
         <TextBlock x:Name="StatusText"
                    Text="CopyFiles"
                    Margin="5"
@@ -25,7 +24,6 @@
                    TextAlignment="Center"
                    Grid.Row="0"/>
 
-        <!-- Barre de progression -->
         <ProgressBar x:Name="ProgressBar"
                      Height="25"
                      Margin="0,10,0,0"

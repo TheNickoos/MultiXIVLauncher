@@ -13,7 +13,7 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <!-- Liste des personnages -->
+        
         <ListBox x:Name="CharacterListBox"
                  Tag="CharacterListBox"
                  Background="#FF2C2C2C"

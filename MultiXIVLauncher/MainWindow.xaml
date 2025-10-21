@@ -10,7 +10,6 @@
           VerticalAlignment="Center" 
           HorizontalAlignment="Center">
 
-        <!-- Liste des groupes -->
         <ComboBox x:Name="GroupComboBox"
                   Tag="GroupComboBox"
                   HorizontalAlignment="Left"
@@ -22,14 +21,14 @@
                   Background="Black"
                   BorderBrush="#FFACACAC"/>
 
-        <!-- Bouton : Lancer le groupe -->
+        
         <Button x:Name="LaunchGroupButton"
                 Tag="LaunchGroupButton"
                 Content="Launch group"
                 HorizontalAlignment="Left"
-                Margin="317,377,0,0"
+                Margin="301,377,0,0"
                 VerticalAlignment="Top"
-                Width="85"
+                Width="101"
                 Height="24"
                 Background="Black"
                 Foreground="White"
@@ -48,7 +47,7 @@
             </Button.Template>
         </Button>
 
-        <!-- Bouton : Statut des serveurs -->
+        
         <Button x:Name="StatusButton"
                 Tag="StatusButton"
                 Width="32" Height="32"
@@ -78,7 +77,7 @@
             </Button.Template>
         </Button>
 
-        <!-- Bouton : Paramètres -->
+        
         <Button x:Name="SettingButton"
                 Tag="SettingsButton"
                 Width="32" Height="32"
@@ -108,7 +107,7 @@
             </Button.Template>
         </Button>
 
-        <!-- Liste de personnages -->
+        
         <GroupBox x:Name="CharacterGroupBox" 
                   Tag="CharacterGroupBox"
                   Header=""
@@ -138,7 +137,7 @@
             </Grid>
         </GroupBox>
 
-        <!-- Bouton : Mogstation -->
+       
         <Button x:Name="MogstationButton"
             Tag="MogstationButton"
             Width="32" Height="32"

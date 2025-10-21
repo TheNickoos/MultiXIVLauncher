@@ -11,14 +11,12 @@ namespace MultiXIVLauncher
         {
             InitializeComponent();
 
-            // Texte initial (depuis .resx)
             this.Title = MultiXIVLauncher.Properties.Resources.CopyFilesTitle;
             StatusText.Text = MultiXIVLauncher.Properties.Resources.CopyFiles;
         }
 
         public async Task CopyWithProgressAsync(string sourceDir, string destDir)
         {
-            // Remet le texte depuis .resx au démarrage de la copie
             StatusText.Text = MultiXIVLauncher.Properties.Resources.CopyFiles;
 
             var files = Directory.GetFiles(sourceDir, "*", SearchOption.AllDirectories);
