@@ -142,4 +142,202 @@
   <data name="SettingsIcon_Hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SettingsIcon_Hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="OkButton" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="SaveButton" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="Preset" xml:space="preserve">
+    <value>Preset</value>
+  </data>
+  <data name="DeleteButton" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="AllGroup" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="NoCharacter" xml:space="preserve">
+    <value>No characters to launch.</value>
+  </data>
+  <data name="NoCharacterAssigned" xml:space="preserve">
+    <value>No characters are assigned to group {0}</value>
+  </data>
+  <data name="ErrorLaunchingChar" xml:space="preserve">
+    <value>Error launching character: {0}</value>
+  </data>
+  <data name="NothingToLaunch" xml:space="preserve">
+    <value>Nothing to launch</value>
+  </data>
+  <data name="AllCharLaunched" xml:space="preserve">
+    <value>All characters launched!</value>
+  </data>
+  <data name="GroupLaunchedSuccessfully" xml:space="preserve">
+    <value>Group {0} launched successfully!</value>
+  </data>
+  <data name="ErrorLaunchingGroup" xml:space="preserve">
+    <value>Error while launching group: {0}</value>
+  </data>
+  <data name="XIVLauncherNotFoundException" xml:space="preserve">
+    <value>XIVLauncher.exe path is invalid or missing.</value>
+  </data>
+  <data name="GroupNotFound" xml:space="preserve">
+    <value>The selected group could not be found.</value>
+  </data>
+  <data name="CharLaunchTimeout" xml:space="preserve">
+    <value>Timeout: FFXIV did not start within the expected delay.</value>
+  </data>
+  <data name="Timeout" xml:space="preserve">
+    <value>Timeout</value>
+  </data>
+  <data name="MonitoringErrorMessage" xml:space="preserve">
+    <value>Monitoring error: {0}</value>
+  </data>
+  <data name="MonitoringError" xml:space="preserve">
+    <value>Monitoring error</value>
+  </data>
+  <data name="LaunchGroupName" xml:space="preserve">
+    <value>Launching group {0}</value>
+  </data>
+  <data name="NoCharactersAvailable" xml:space="preserve">
+    <value>No characters available.</value>
+  </data>
+  <data name="SelectAGroupFirst" xml:space="preserve">
+    <value>Please select a group first.</value>
+  </data>
+  <data name="NoGroupSelected" xml:space="preserve">
+    <value>No group selected</value>
+  </data>
+  <data name="LaunchGroupTitle" xml:space="preserve">
+    <value>Launching group</value>
+  </data>
+  <data name="LaunchGroup" xml:space="preserve">
+    <value>Launching group...</value>
+  </data>
+  <data name="CopyFilesTitle" xml:space="preserve">
+    <value>Copying files</value>
+  </data>
+  <data name="CopyFiles" xml:space="preserve">
+    <value>Copying files, please wait...</value>
+  </data>
+  <data name="LaunchGroupButton" xml:space="preserve">
+    <value>Launch group</value>
+  </data>
+  <data name="PresetDownloadTitle" xml:space="preserve">
+    <value>Download a Preset</value>
+  </data>
+  <data name="PresetInformation" xml:space="preserve">
+    <value>Preset Information</value>
+  </data>
+  <data name="PresetName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="PresetAuthor" xml:space="preserve">
+    <value>Author:</value>
+  </data>
+  <data name="PresetVersion" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="PresetDescription" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="PresetPlugins" xml:space="preserve">
+    <value>Plugins:</value>
+  </data>
+  <data name="PresetDownloadButton" xml:space="preserve">
+    <value>Download this preset</value>
+  </data>
+  <data name="LoadingPresets" xml:space="preserve">
+    <value>Loading presets...</value>
+  </data>
+  <data name="NoPresetAvailable" xml:space="preserve">
+    <value>No presets available.</value>
+  </data>
+  <data name="UnableToLoadPreset" xml:space="preserve">
+    <value>Unable to load presets: {0}</value>
+  </data>
+  <data name="NoPluginList" xml:space="preserve">
+    <value>No plugin list available.</value>
+  </data>
+  <data name="SelectPresetFirst" xml:space="preserve">
+    <value>Please select a preset first.</value>
+  </data>
+  <data name="NoPresetSelected" xml:space="preserve">
+    <value>No Preset Selected</value>
+  </data>
+  <data name="Downloading" xml:space="preserve">
+    <value>Downloading...</value>
+  </data>
+  <data name="PresetDownloaded" xml:space="preserve">
+    <value>Preset "{0}" successfully downloaded, extracted and added to your presets list.</value>
+  </data>
+  <data name="ErrorDownloadPreset" xml:space="preserve">
+    <value>Error while downloading preset: {0}</value>
+  </data>
+  <data name="SelectCharacterTitle" xml:space="preserve">
+    <value>Select a Character</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="ConfigurationTab" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="XIVLauncherPahInstruction" xml:space="preserve">
+    <value>Please select the folder where XIVlauncher is installed in. It should contain XIVLauncher.exe</value>
+  </data>
+  <data name="LauncherLanguage" xml:space="preserve">
+    <value>MultiXIVLauncher Language</value>
+  </data>
+  <data name="CharactersTab" xml:space="preserve">
+    <value>Characters</value>
+  </data>
+  <data name="CharacterAddButton" xml:space="preserve">
+    <value>Add a character</value>
+  </data>
+  <data name="CharacterName" xml:space="preserve">
+    <value>Character name</value>
+  </data>
+  <data name="GroupAddButton" xml:space="preserve">
+    <value>Add a group</value>
+  </data>
+  <data name="GroupName" xml:space="preserve">
+    <value>Group name</value>
+  </data>
+  <data name="PresetAddButton" xml:space="preserve">
+    <value>Add a preset</value>
+  </data>
+  <data name="PresetNameLabel" xml:space="preserve">
+    <value>Preset name</value>
+  </data>
+  <data name="PresetExploreButton" xml:space="preserve">
+    <value>Explore folder</value>
+  </data>
+  <data name="PresetCopyCharacterButton" xml:space="preserve">
+    <value>Copy character content into this preset</value>
+  </data>
+  <data name="LaunchCharacter" xml:space="preserve">
+    <value>Launching Character...</value>
+  </data>
+  <data name="Unabletoloadcharacters" xml:space="preserve">
+    <value>Unable to load characters</value>
+  </data>
+  <data name="RestartToApplyLanguage" xml:space="preserve">
+    <value>Please restart the launcher to apply the language change.</value>
+  </data>
+  <data name="LanguageChangeTitle" xml:space="preserve">
+    <value>Language changed</value>
+  </data>
 </root>

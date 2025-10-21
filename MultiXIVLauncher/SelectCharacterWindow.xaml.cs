@@ -59,8 +59,8 @@ namespace MultiXIVLauncher
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Unable to load characters:\n" + ex.Message,
-                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"{Properties.Resources.Unabletoloadcharacters}\n{ex.Message}",
+                    Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

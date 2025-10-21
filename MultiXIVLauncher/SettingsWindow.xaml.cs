@@ -60,8 +60,18 @@ namespace MultiXIVLauncher
             {
                 if (LangageLauncherComboBox.SelectedItem is ComboBoxItem sel)
                 {
-                    config.Launcher.Language = sel.Tag?.ToString() ?? "en";
-                    config.Save(configPath);
+                    string selectedLang = sel.Tag?.ToString() ?? "en";
+                    if (config.Launcher.Language != selectedLang)
+                    {
+                        config.Launcher.Language = selectedLang;
+                        config.Save(configPath);
+
+                        MessageBox.Show(
+                            Properties.Resources.RestartToApplyLanguage,
+                            Properties.Resources.LanguageChangeTitle,
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                    }
                 }
             };
 
@@ -111,6 +121,7 @@ namespace MultiXIVLauncher
             var langs = new List<(string Code, string Label)>
             {
                 ("en", "English"),
+                ("fr", "Français"),
                 // futurs langages : ("fr", "Français"), etc.
             };
 

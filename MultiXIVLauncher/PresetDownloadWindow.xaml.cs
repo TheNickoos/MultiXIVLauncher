@@ -20,6 +20,13 @@ namespace MultiXIVLauncher
         public PresetDownloadWindow(SettingsWindow parent)
         {
             InitializeComponent();
+            Title = Properties.Resources.PresetDownloadTitle;
+            PresetInformation.Header = Properties.Resources.PresetInformation;
+            PresetName.Text = Properties.Resources.PresetName;
+            PresetAuthor.Text = Properties.Resources.PresetAuthor;
+            PresetDescription.Text = Properties.Resources.PresetDescription;
+            DownloadButton.Content = Properties.Resources.PresetDownloadButton;
+
             parentWindow = parent;
             LoadPresetList();
         }
@@ -29,7 +36,7 @@ namespace MultiXIVLauncher
             try
             {
                 PresetListBox.Items.Clear();
-                PresetListBox.Items.Add("Loading presets...");
+                PresetListBox.Items.Add(Properties.Resources.LoadingPresets);
 
                 string json = await DownloadStringAsync(PresetRepoUrl);
                 presets = JsonConvert.DeserializeObject<List<PresetInfo>>(json);
@@ -38,7 +45,7 @@ namespace MultiXIVLauncher
 
                 if (presets == null || presets.Count == 0)
                 {
-                    PresetListBox.Items.Add("No presets available.");
+                    PresetListBox.Items.Add(Properties.Resources.NoPresetAvailable);
                     return;
                 }
 
@@ -47,7 +54,11 @@ namespace MultiXIVLauncher
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Unable to load presets: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    string.Format(Properties.Resources.UnableToLoadPreset, ex.Message),
+                    Properties.Resources.Error,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
@@ -81,7 +92,7 @@ namespace MultiXIVLauncher
             }
             else
             {
-                PresetPluginsList.Items.Add("No plugin list available.");
+                PresetPluginsList.Items.Add(Properties.Resources.NoPluginList);
             }
         }
 
@@ -89,14 +100,18 @@ namespace MultiXIVLauncher
         {
             if (selectedPreset == null)
             {
-                MessageBox.Show("Please select a preset first.", "No Preset Selected", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(
+                    Properties.Resources.SelectPresetFirst,
+                    Properties.Resources.NoPresetSelected,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
                 return;
             }
 
             try
             {
                 DownloadButton.IsEnabled = false;
-                DownloadButton.Content = "Downloading...";
+                DownloadButton.Content = Properties.Resources.Downloading;
                 DownloadProgress.Value = 0;
                 DownloadProgress.Visibility = Visibility.Visible;
 
@@ -140,7 +155,6 @@ namespace MultiXIVLauncher
                     ? config.Presets[config.Presets.Count - 1].Id + 1
                     : 1;
 
-                               
                 var newPreset = new Preset
                 {
                     Id = parentWindow.config.Presets.Count > 0
@@ -152,24 +166,26 @@ namespace MultiXIVLauncher
 
                 parentWindow.config.Presets.Add(newPreset);
                 parentWindow.config.Save(parentWindow.configPath);
-
-                
                 parentWindow.LoadPresets();
 
-
                 MessageBox.Show(
-                    "Preset \"" + selectedPreset.Name + "\" successfully downloaded, extracted and added to your presets list.",
-                    "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    string.Format(Properties.Resources.PresetDownloaded, selectedPreset.Name),
+                    Properties.Resources.Success,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error while downloading preset: " + ex.Message,
-                                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    string.Format(Properties.Resources.ErrorDownloadPreset, ex.Message),
+                    Properties.Resources.Error,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
             finally
             {
                 DownloadButton.IsEnabled = true;
-                DownloadButton.Content = "Download this preset";
+                DownloadButton.Content = Properties.Resources.PresetDownloadButton;
                 DownloadProgress.Visibility = Visibility.Collapsed;
             }
         }

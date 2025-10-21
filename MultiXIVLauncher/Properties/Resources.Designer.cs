@@ -61,6 +61,150 @@ namespace MultiXIVLauncher.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à All characters launched!.
+        /// </summary>
+        internal static string AllCharLaunched {
+            get {
+                return ResourceManager.GetString("AllCharLaunched", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à All.
+        /// </summary>
+        internal static string AllGroup {
+            get {
+                return ResourceManager.GetString("AllGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cancel.
+        /// </summary>
+        internal static string CancelButton {
+            get {
+                return ResourceManager.GetString("CancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add a character.
+        /// </summary>
+        internal static string CharacterAddButton {
+            get {
+                return ResourceManager.GetString("CharacterAddButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Character name.
+        /// </summary>
+        internal static string CharacterName {
+            get {
+                return ResourceManager.GetString("CharacterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Characters.
+        /// </summary>
+        internal static string CharactersTab {
+            get {
+                return ResourceManager.GetString("CharactersTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Timeout: FFXIV did not start within the expected delay..
+        /// </summary>
+        internal static string CharLaunchTimeout {
+            get {
+                return ResourceManager.GetString("CharLaunchTimeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Configuration.
+        /// </summary>
+        internal static string ConfigurationTab {
+            get {
+                return ResourceManager.GetString("ConfigurationTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Copying files, please wait....
+        /// </summary>
+        internal static string CopyFiles {
+            get {
+                return ResourceManager.GetString("CopyFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Copying files.
+        /// </summary>
+        internal static string CopyFilesTitle {
+            get {
+                return ResourceManager.GetString("CopyFilesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Delete.
+        /// </summary>
+        internal static string DeleteButton {
+            get {
+                return ResourceManager.GetString("DeleteButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Downloading....
+        /// </summary>
+        internal static string Downloading {
+            get {
+                return ResourceManager.GetString("Downloading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Error.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Error while downloading preset: {0}.
+        /// </summary>
+        internal static string ErrorDownloadPreset {
+            get {
+                return ResourceManager.GetString("ErrorDownloadPreset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Error launching character: {0}.
+        /// </summary>
+        internal static string ErrorLaunchingChar {
+            get {
+                return ResourceManager.GetString("ErrorLaunchingChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Error while launching group: {0}.
+        /// </summary>
+        internal static string ErrorLaunchingGroup {
+            get {
+                return ResourceManager.GetString("ErrorLaunchingGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap FFStatusIcon {
@@ -77,6 +221,123 @@ namespace MultiXIVLauncher.Properties {
             get {
                 object obj = ResourceManager.GetObject("FFStatusIcon_Hover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Group.
+        /// </summary>
+        internal static string Group {
+            get {
+                return ResourceManager.GetString("Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add a group.
+        /// </summary>
+        internal static string GroupAddButton {
+            get {
+                return ResourceManager.GetString("GroupAddButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Group {0} launched successfully!.
+        /// </summary>
+        internal static string GroupLaunchedSuccessfully {
+            get {
+                return ResourceManager.GetString("GroupLaunchedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Group name.
+        /// </summary>
+        internal static string GroupName {
+            get {
+                return ResourceManager.GetString("GroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The selected group could not be found..
+        /// </summary>
+        internal static string GroupNotFound {
+            get {
+                return ResourceManager.GetString("GroupNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Language changed.
+        /// </summary>
+        internal static string LanguageChangeTitle {
+            get {
+                return ResourceManager.GetString("LanguageChangeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Launching Character....
+        /// </summary>
+        internal static string LaunchCharacter {
+            get {
+                return ResourceManager.GetString("LaunchCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à MultiXIVLauncher Language.
+        /// </summary>
+        internal static string LauncherLanguage {
+            get {
+                return ResourceManager.GetString("LauncherLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Launching group....
+        /// </summary>
+        internal static string LaunchGroup {
+            get {
+                return ResourceManager.GetString("LaunchGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Launch group.
+        /// </summary>
+        internal static string LaunchGroupButton {
+            get {
+                return ResourceManager.GetString("LaunchGroupButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Launching group {0}.
+        /// </summary>
+        internal static string LaunchGroupName {
+            get {
+                return ResourceManager.GetString("LaunchGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Launching group.
+        /// </summary>
+        internal static string LaunchGroupTitle {
+            get {
+                return ResourceManager.GetString("LaunchGroupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Loading presets....
+        /// </summary>
+        internal static string LoadingPresets {
+            get {
+                return ResourceManager.GetString("LoadingPresets", resourceCulture);
             }
         }
         
@@ -121,6 +382,276 @@ namespace MultiXIVLauncher.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Monitoring error.
+        /// </summary>
+        internal static string MonitoringError {
+            get {
+                return ResourceManager.GetString("MonitoringError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Monitoring error: {0}.
+        /// </summary>
+        internal static string MonitoringErrorMessage {
+            get {
+                return ResourceManager.GetString("MonitoringErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à No characters to launch..
+        /// </summary>
+        internal static string NoCharacter {
+            get {
+                return ResourceManager.GetString("NoCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à No characters are assigned to group {0}.
+        /// </summary>
+        internal static string NoCharacterAssigned {
+            get {
+                return ResourceManager.GetString("NoCharacterAssigned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à No characters available..
+        /// </summary>
+        internal static string NoCharactersAvailable {
+            get {
+                return ResourceManager.GetString("NoCharactersAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à No group selected.
+        /// </summary>
+        internal static string NoGroupSelected {
+            get {
+                return ResourceManager.GetString("NoGroupSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à No plugin list available..
+        /// </summary>
+        internal static string NoPluginList {
+            get {
+                return ResourceManager.GetString("NoPluginList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à No presets available..
+        /// </summary>
+        internal static string NoPresetAvailable {
+            get {
+                return ResourceManager.GetString("NoPresetAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à No Preset Selected.
+        /// </summary>
+        internal static string NoPresetSelected {
+            get {
+                return ResourceManager.GetString("NoPresetSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nothing to launch.
+        /// </summary>
+        internal static string NothingToLaunch {
+            get {
+                return ResourceManager.GetString("NothingToLaunch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ok.
+        /// </summary>
+        internal static string OkButton {
+            get {
+                return ResourceManager.GetString("OkButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Preset.
+        /// </summary>
+        internal static string Preset {
+            get {
+                return ResourceManager.GetString("Preset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add a preset.
+        /// </summary>
+        internal static string PresetAddButton {
+            get {
+                return ResourceManager.GetString("PresetAddButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Author:.
+        /// </summary>
+        internal static string PresetAuthor {
+            get {
+                return ResourceManager.GetString("PresetAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Copy character content into this preset.
+        /// </summary>
+        internal static string PresetCopyCharacterButton {
+            get {
+                return ResourceManager.GetString("PresetCopyCharacterButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Description:.
+        /// </summary>
+        internal static string PresetDescription {
+            get {
+                return ResourceManager.GetString("PresetDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Download this preset.
+        /// </summary>
+        internal static string PresetDownloadButton {
+            get {
+                return ResourceManager.GetString("PresetDownloadButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Preset &quot;{0}&quot; successfully downloaded, extracted and added to your presets list..
+        /// </summary>
+        internal static string PresetDownloaded {
+            get {
+                return ResourceManager.GetString("PresetDownloaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Download a Preset.
+        /// </summary>
+        internal static string PresetDownloadTitle {
+            get {
+                return ResourceManager.GetString("PresetDownloadTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Explore folder.
+        /// </summary>
+        internal static string PresetExploreButton {
+            get {
+                return ResourceManager.GetString("PresetExploreButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Preset Information.
+        /// </summary>
+        internal static string PresetInformation {
+            get {
+                return ResourceManager.GetString("PresetInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Name:.
+        /// </summary>
+        internal static string PresetName {
+            get {
+                return ResourceManager.GetString("PresetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Preset name.
+        /// </summary>
+        internal static string PresetNameLabel {
+            get {
+                return ResourceManager.GetString("PresetNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Plugins:.
+        /// </summary>
+        internal static string PresetPlugins {
+            get {
+                return ResourceManager.GetString("PresetPlugins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Version:.
+        /// </summary>
+        internal static string PresetVersion {
+            get {
+                return ResourceManager.GetString("PresetVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Please restart the launcher to apply the language change..
+        /// </summary>
+        internal static string RestartToApplyLanguage {
+            get {
+                return ResourceManager.GetString("RestartToApplyLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Save.
+        /// </summary>
+        internal static string SaveButton {
+            get {
+                return ResourceManager.GetString("SaveButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Please select a group first..
+        /// </summary>
+        internal static string SelectAGroupFirst {
+            get {
+                return ResourceManager.GetString("SelectAGroupFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Select a Character.
+        /// </summary>
+        internal static string SelectCharacterTitle {
+            get {
+                return ResourceManager.GetString("SelectCharacterTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Please select a preset first..
+        /// </summary>
+        internal static string SelectPresetFirst {
+            get {
+                return ResourceManager.GetString("SelectPresetFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap SettingsIcon {
@@ -137,6 +668,69 @@ namespace MultiXIVLauncher.Properties {
             get {
                 object obj = ResourceManager.GetObject("SettingsIcon_Hover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Settings.
+        /// </summary>
+        internal static string SettingsTitle {
+            get {
+                return ResourceManager.GetString("SettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Success.
+        /// </summary>
+        internal static string Success {
+            get {
+                return ResourceManager.GetString("Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Timeout.
+        /// </summary>
+        internal static string Timeout {
+            get {
+                return ResourceManager.GetString("Timeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Unable to load characters.
+        /// </summary>
+        internal static string Unabletoloadcharacters {
+            get {
+                return ResourceManager.GetString("Unabletoloadcharacters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Unable to load presets: {0}.
+        /// </summary>
+        internal static string UnableToLoadPreset {
+            get {
+                return ResourceManager.GetString("UnableToLoadPreset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à XIVLauncher.exe path is invalid or missing..
+        /// </summary>
+        internal static string XIVLauncherNotFoundException {
+            get {
+                return ResourceManager.GetString("XIVLauncherNotFoundException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Please select the folder where XIVlauncher is installed in. It should contain XIVLauncher.exe.
+        /// </summary>
+        internal static string XIVLauncherPahInstruction {
+            get {
+                return ResourceManager.GetString("XIVLauncherPahInstruction", resourceCulture);
             }
         }
     }

@@ -10,7 +10,9 @@
           VerticalAlignment="Center" 
           HorizontalAlignment="Center">
 
+        <!-- Liste des groupes -->
         <ComboBox x:Name="GroupComboBox"
+                  Tag="GroupComboBox"
                   HorizontalAlignment="Left"
                   Margin="183,377,0,0"
                   VerticalAlignment="Top"
@@ -20,7 +22,9 @@
                   Background="Black"
                   BorderBrush="#FFACACAC"/>
 
+        <!-- Bouton : Lancer le groupe -->
         <Button x:Name="LaunchGroupButton"
+                Tag="LaunchGroupButton"
                 Content="Launch group"
                 HorizontalAlignment="Left"
                 Margin="317,377,0,0"
@@ -44,14 +48,18 @@
             </Button.Template>
         </Button>
 
+        <!-- Bouton : Statut des serveurs -->
         <Button x:Name="StatusButton"
+                Tag="StatusButton"
                 Width="32" Height="32"
                 HorizontalAlignment="Left"
                 Margin="425,327,0,0"
                 VerticalAlignment="Top"
                 BorderThickness="0"
                 Background="Transparent"
-                Cursor="Hand" Click="StatusButton_Click" ToolTip="Check if FF XIV servers are up">
+                Cursor="Hand" 
+                Click="StatusButton_Click" 
+                ToolTip="Check if FF XIV servers are up">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border BorderThickness="0">
@@ -70,14 +78,18 @@
             </Button.Template>
         </Button>
 
+        <!-- Bouton : Paramètres -->
         <Button x:Name="SettingButton"
+                Tag="SettingsButton"
                 Width="32" Height="32"
                 HorizontalAlignment="Left"
                 Margin="425,368,0,0"
                 VerticalAlignment="Top"
                 BorderThickness="0"
                 Background="Transparent"
-                Cursor="Hand" ToolTip="Settings" Click="SettingButton_Click">
+                Cursor="Hand" 
+                ToolTip="Settings"
+                Click="SettingButton_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border BorderThickness="0">
@@ -96,14 +108,17 @@
             </Button.Template>
         </Button>
 
-        <GroupBox x:Name="CharacterGroupBox" Header=""
-          HorizontalAlignment="Left"
-          Height="290"
-          Margin="185,72,0,0"
-          VerticalAlignment="Top"
-          Width="220"
-          BorderBrush="#FFACACAC"
-          Background="Transparent">
+        <!-- Liste de personnages -->
+        <GroupBox x:Name="CharacterGroupBox" 
+                  Tag="CharacterGroupBox"
+                  Header=""
+                  HorizontalAlignment="Left"
+                  Height="290"
+                  Margin="185,72,0,0"
+                  VerticalAlignment="Top"
+                  Width="220"
+                  BorderBrush="#FFACACAC"
+                  Background="Transparent">
             <GroupBox.Template>
                 <ControlTemplate TargetType="GroupBox">
                     <Border BorderBrush="{TemplateBinding BorderBrush}" 
@@ -122,14 +137,19 @@
                 </Grid.RowDefinitions>
             </Grid>
         </GroupBox>
+
+        <!-- Bouton : Mogstation -->
         <Button x:Name="MogstationButton"
+            Tag="MogstationButton"
             Width="32" Height="32"
             HorizontalAlignment="Left"
             Margin="425,284,0,0"
             VerticalAlignment="Top"
             BorderThickness="0"
             Background="Transparent"
-            Cursor="Hand" Click="MogstationButton_Click" ToolTip="Mogstation">
+            Cursor="Hand" 
+            Click="MogstationButton_Click" 
+            ToolTip="Mogstation">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border BorderThickness="0">
@@ -147,7 +167,6 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-
 
     </Grid>
 </Window>

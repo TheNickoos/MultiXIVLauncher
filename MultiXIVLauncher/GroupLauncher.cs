@@ -19,7 +19,7 @@ namespace MultiXIVLauncher
 
                 if (groupId == -1)
                 {
-                    groupName = "All";
+                    groupName = Properties.Resources.AllGroup;
                     characters = (config.Characters ?? new List<Character>()).ToList();
                 }
                 else
@@ -27,8 +27,11 @@ namespace MultiXIVLauncher
                     var group = config.Groups.FirstOrDefault(g => g.Id == groupId);
                     if (group == null)
                     {
-                        MessageBox.Show("The selected group could not be found.",
-                                        "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(
+                            Properties.Resources.GroupNotFound,
+                            Properties.Resources.Error,
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error);
                         return;
                     }
 
@@ -40,9 +43,13 @@ namespace MultiXIVLauncher
 
                 if (characters.Count == 0)
                 {
-                    MessageBox.Show(groupId == -1 ? "No characters to launch."
-                                                  : $"No characters are assigned to group '{groupName}'.",
-                                    "Nothing to launch", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(
+                        groupId == -1
+                            ? Properties.Resources.NoCharacter
+                            : string.Format(Properties.Resources.NoCharacterAssigned, groupName),
+                        Properties.Resources.NothingToLaunch, // ⚠ si ta clé est "Nothing to launch" dans le .resx, garde ce nom exact
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
                     return;
                 }
 
@@ -65,22 +72,27 @@ namespace MultiXIVLauncher
 
                 loadingWindow.Close();
 
-                MessageBox.Show(groupId == -1
-                    ? "All characters launched!"
-                    : $"Group '{groupName}' launched successfully!",
-                    "Group Launch", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(
+                    groupId == -1
+                        ? Properties.Resources.AllCharLaunched
+                        : string.Format(Properties.Resources.GroupLaunchedSuccessfully, groupName),
+                    Properties.Resources.LaunchGroupButton,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error while launching group: {ex.Message}",
-                                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    string.Format(Properties.Resources.ErrorLaunchingGroup, ex.Message),
+                    Properties.Resources.Error,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
             finally
             {
                 mainWindow.SetLauncherInteractivity(true);
             }
         }
-
 
         private static async Task WaitForFFXIVToStartAsync()
         {

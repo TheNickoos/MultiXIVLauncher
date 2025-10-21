@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="FFStatusIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FFStatusIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FFStatusIcon_Hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FFStatusIcon_Hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Logo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MogstationIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MogstationIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MogstationIcon_Hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MogstationIcon_Hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SettingsIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SettingsIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SettingsIcon_Hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SettingsIcon_Hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+
+  <data name="OkButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="SaveButton" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Groupe</value>
+  </data>
+  <data name="Preset" xml:space="preserve">
+    <value>Préréglage</value>
+  </data>
+  <data name="DeleteButton" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Succès</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="AllGroup" xml:space="preserve">
+    <value>Tous</value>
+  </data>
+  <data name="NoCharacter" xml:space="preserve">
+    <value>Aucun personnage à lancer.</value>
+  </data>
+  <data name="NoCharacterAssigned" xml:space="preserve">
+    <value>Aucun personnage n’est assigné au groupe {0}</value>
+  </data>
+  <data name="ErrorLaunchingChar" xml:space="preserve">
+    <value>Erreur lors du lancement du personnage : {0}</value>
+  </data>
+  <data name="NothingToLaunch" xml:space="preserve">
+    <value>Rien à lancer</value>
+  </data>
+  <data name="AllCharLaunched" xml:space="preserve">
+    <value>Tous les personnages ont été lancés !</value>
+  </data>
+  <data name="GroupLaunchedSuccessfully" xml:space="preserve">
+    <value>Le groupe {0} a été lancé avec succès !</value>
+  </data>
+  <data name="ErrorLaunchingGroup" xml:space="preserve">
+    <value>Erreur lors du lancement du groupe : {0}</value>
+  </data>
+  <data name="XIVLauncherNotFoundException" xml:space="preserve">
+    <value>Le chemin de XIVLauncher.exe est invalide ou manquant.</value>
+  </data>
+  <data name="GroupNotFound" xml:space="preserve">
+    <value>Le groupe sélectionné est introuvable.</value>
+  </data>
+  <data name="CharLaunchTimeout" xml:space="preserve">
+    <value>Délai dépassé : FFXIV ne s’est pas lancé dans le temps imparti.</value>
+  </data>
+  <data name="Timeout" xml:space="preserve">
+    <value>Délai dépassé</value>
+  </data>
+  <data name="MonitoringErrorMessage" xml:space="preserve">
+    <value>Erreur de surveillance : {0}</value>
+  </data>
+  <data name="MonitoringError" xml:space="preserve">
+    <value>Erreur de surveillance</value>
+  </data>
+  <data name="LaunchGroupName" xml:space="preserve">
+    <value>Lancement du groupe {0}</value>
+  </data>
+  <data name="NoCharactersAvailable" xml:space="preserve">
+    <value>Aucun personnage disponible.</value>
+  </data>
+  <data name="SelectAGroupFirst" xml:space="preserve">
+    <value>Veuillez d’abord sélectionner un groupe.</value>
+  </data>
+  <data name="NoGroupSelected" xml:space="preserve">
+    <value>Aucun groupe sélectionné</value>
+  </data>
+  <data name="LaunchGroupTitle" xml:space="preserve">
+    <value>Lancement du groupe</value>
+  </data>
+  <data name="LaunchGroup" xml:space="preserve">
+    <value>Lancement du groupe...</value>
+  </data>
+  <data name="CopyFilesTitle" xml:space="preserve">
+    <value>Copie des fichiers</value>
+  </data>
+  <data name="CopyFiles" xml:space="preserve">
+    <value>Copie des fichiers en cours, veuillez patienter...</value>
+  </data>
+  <data name="LaunchGroupButton" xml:space="preserve">
+    <value>Lancer le groupe</value>
+  </data>
+  <data name="PresetDownloadTitle" xml:space="preserve">
+    <value>Télécharger un préréglage</value>
+  </data>
+  <data name="PresetInformation" xml:space="preserve">
+    <value>Informations du préréglage</value>
+  </data>
+  <data name="PresetName" xml:space="preserve">
+    <value>Nom :</value>
+  </data>
+  <data name="PresetAuthor" xml:space="preserve">
+    <value>Auteur :</value>
+  </data>
+  <data name="PresetVersion" xml:space="preserve">
+    <value>Version :</value>
+  </data>
+  <data name="PresetDescription" xml:space="preserve">
+    <value>Description :</value>
+  </data>
+  <data name="PresetPlugins" xml:space="preserve">
+    <value>Plugins :</value>
+  </data>
+  <data name="PresetDownloadButton" xml:space="preserve">
+    <value>Télécharger ce préréglage</value>
+  </data>
+  <data name="LoadingPresets" xml:space="preserve">
+    <value>Chargement des préréglages...</value>
+  </data>
+  <data name="NoPresetAvailable" xml:space="preserve">
+    <value>Aucun préréglage disponible.</value>
+  </data>
+  <data name="UnableToLoadPreset" xml:space="preserve">
+    <value>Impossible de charger les préréglages : {0}</value>
+  </data>
+  <data name="NoPluginList" xml:space="preserve">
+    <value>Aucune liste de plugins disponible.</value>
+  </data>
+  <data name="SelectPresetFirst" xml:space="preserve">
+    <value>Veuillez d’abord sélectionner un préréglage.</value>
+  </data>
+  <data name="NoPresetSelected" xml:space="preserve">
+    <value>Aucun préréglage sélectionné</value>
+  </data>
+  <data name="Downloading" xml:space="preserve">
+    <value>Téléchargement...</value>
+  </data>
+  <data name="PresetDownloaded" xml:space="preserve">
+    <value>Le préréglage "{0}" a été téléchargé, extrait et ajouté à votre liste avec succès.</value>
+  </data>
+  <data name="ErrorDownloadPreset" xml:space="preserve">
+    <value>Erreur lors du téléchargement du préréglage : {0}</value>
+  </data>
+  <data name="SelectCharacterTitle" xml:space="preserve">
+    <value>Sélectionnez un personnage</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="ConfigurationTab" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="XIVLauncherPahInstruction" xml:space="preserve">
+    <value>Veuillez sélectionner le dossier dans lequel XIVLauncher est installé. Il doit contenir XIVLauncher.exe</value>
+  </data>
+  <data name="LauncherLanguage" xml:space="preserve">
+    <value>Langue de MultiXIVLauncher</value>
+  </data>
+  <data name="CharactersTab" xml:space="preserve">
+    <value>Personnages</value>
+  </data>
+  <data name="CharacterAddButton" xml:space="preserve">
+    <value>Ajouter un personnage</value>
+  </data>
+  <data name="CharacterName" xml:space="preserve">
+    <value>Nom du personnage</value>
+  </data>
+  <data name="GroupAddButton" xml:space="preserve">
+    <value>Ajouter un groupe</value>
+  </data>
+  <data name="GroupName" xml:space="preserve">
+    <value>Nom du groupe</value>
+  </data>
+  <data name="PresetAddButton" xml:space="preserve">
+    <value>Ajouter un préréglage</value>
+  </data>
+  <data name="PresetNameLabel" xml:space="preserve">
+    <value>Nom du préréglage</value>
+  </data>
+  <data name="PresetExploreButton" xml:space="preserve">
+    <value>Ouvrir le dossier</value>
+  </data>
+  <data name="PresetCopyCharacterButton" xml:space="preserve">
+    <value>Copier le contenu du personnage dans ce préréglage</value>
+  </data>
+  <data name="LaunchCharacter" xml:space="preserve">
+    <value>Lancement du personnage...</value>
+  </data>
+  <data name="Unabletoloadcharacters" xml:space="preserve">
+    <value>Impossible de charger les personnages</value>
+  </data>
+  <data name="RestartToApplyLanguage" xml:space="preserve">
+    <value>Veuillez redémarrer le launcher pour appliquer le changement de langue.</value>
+  </data>
+  <data name="LanguageChangeTitle" xml:space="preserve">
+    <value>Langue modifiée</value>
+  </data>
+</root>

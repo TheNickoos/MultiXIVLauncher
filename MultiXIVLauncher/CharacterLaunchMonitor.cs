@@ -37,10 +37,12 @@ namespace MultiXIVLauncher
 
                     if ((DateTime.Now - start).TotalSeconds > timeoutSec)
                     {
-                        MessageBox.Show("Timeout: FFXIV did not start within the expected delay.",
-                                        "Timeout",
-                                        MessageBoxButton.OK,
-                                        MessageBoxImage.Warning);
+                        MessageBox.Show(
+                            Properties.Resources.CharLaunchTimeout,
+                            Properties.Resources.Timeout,
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+
                         loadingWindow.Dispatcher.Invoke(() => loadingWindow.Close());
                         return;
                     }
@@ -50,10 +52,12 @@ namespace MultiXIVLauncher
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Monitoring error: {ex.Message}",
-                                "Monitor Error",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
+                MessageBox.Show(
+                    string.Format(Properties.Resources.MonitoringErrorMessage, ex.Message),
+                    Properties.Resources.MonitoringError,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+
                 loadingWindow.Dispatcher.Invoke(() => loadingWindow.Close());
             }
         }

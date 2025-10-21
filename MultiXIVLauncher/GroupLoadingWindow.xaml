@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Launching Group..."
+        Tag="LaunchGroupTitle"
         Height="160" Width="380"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
@@ -10,20 +11,30 @@
         Foreground="White"
         ShowInTaskbar="False"
         Topmost="True">
+
     <Grid Margin="15">
         <StackPanel VerticalAlignment="Center">
+
+            <!-- Nom du groupe -->
             <TextBlock x:Name="GroupNameText"
+                       Tag="LaunchGroup"
                        FontSize="14"
                        FontWeight="Bold"
                        Text="Launching group..."
                        Margin="0,0,0,10"
                        HorizontalAlignment="Center"/>
+
+            <!-- Texte de progression -->
             <TextBlock x:Name="CharacterProgressText"
+                       Tag="CharacterProgressText"
                        FontSize="12"
                        Text="Character 0/0"
                        Margin="0,0,0,10"
                        HorizontalAlignment="Center"/>
+
+            <!-- Barre de progression -->
             <ProgressBar x:Name="ProgressBarLaunch"
+                         Tag="GroupLaunchProgressBar"
                          Height="22"
                          Minimum="0"
                          Maximum="100"

@@ -13,7 +13,7 @@ namespace MultiXIVLauncher
         {
             Dispatcher.Invoke(() =>
             {
-                GroupNameText.Text = $"Launching group \"{groupName}\"";
+                GroupNameText.Text = string.Format(Properties.Resources.LaunchGroupName, groupName);
                 CharacterProgressText.Text = $"({current}/{total}) {characterName}";
                 ProgressBarLaunch.Value = ((double)current / total) * 100;
             });

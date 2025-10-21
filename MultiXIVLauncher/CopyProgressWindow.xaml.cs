@@ -10,11 +10,17 @@ namespace MultiXIVLauncher
         public CopyProgressWindow()
         {
             InitializeComponent();
+
+            // Texte initial (depuis .resx)
+            this.Title = MultiXIVLauncher.Properties.Resources.CopyFilesTitle;
+            StatusText.Text = MultiXIVLauncher.Properties.Resources.CopyFiles;
         }
 
         public async Task CopyWithProgressAsync(string sourceDir, string destDir)
         {
-            StatusText.Text = "Copying files...";
+            // Remet le texte depuis .resx au démarrage de la copie
+            StatusText.Text = MultiXIVLauncher.Properties.Resources.CopyFiles;
+
             var files = Directory.GetFiles(sourceDir, "*", SearchOption.AllDirectories);
             int total = files.Length;
             int copied = 0;
@@ -36,7 +42,7 @@ namespace MultiXIVLauncher
                 File.Copy(file, destFile, true);
 
                 copied++;
-                double progress = ((double)copied / total) * 100;
+                double progress = total > 0 ? ((double)copied / total) * 100 : 100;
                 Dispatcher.Invoke(() => ProgressBar.Value = progress);
             }
 

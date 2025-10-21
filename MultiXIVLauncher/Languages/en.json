@@ -1,0 +1,84 @@
+{
+	// General
+	"OkButton": "Ok",
+	"CancelButton": "Cancel",
+	"SaveButton": "Save",
+	"Group": "Group",
+	"Preset": "Preset",
+	"DeleteButton": "Delete",
+	"Success": "Success",
+	"Error": "Error",
+	"AllGroup": "All",
+	"NoCharacter": "No characters to launch.",
+	"NoCharacterAssigned": "No characters are assigned to group {0}",
+	"ErrorLaunchingChar": "Error launching character: {0}",
+	"Nothing to launch": "Nothing to launch",
+	"AllCharLaunched": "All characters launched!",
+	"GroupLaunchedSuccessfully": "Group {0} launched successfully!",
+	"ErrorLaunchingGroup": "Error while launching group: {0}",
+	"XIVLauncherNotFoundException": "XIVLauncher.exe path is invalid or missing.",
+	"GroupNotFound": "The selected group could not be found.",
+	"CharLaunchTimeout": "Timeout: FFXIV did not start within the expected delay.",
+	"Timeout": "Timeout",
+	"MonitoringErrorMessage": "Monitoring error: {0}",
+	"MonitoringError": "Monitoring error",
+	"LaunchGroupName": "Launching group {0}",
+	"NoCharactersAvailable": "No characters available.",
+	"SelectAGroupFirst": "Please select a group first.",
+	"NoGroupSelected": "No group selected",
+
+	// Loading Window
+	"LaunchCharacter": "Launching Character...",
+
+	// GroupLauncher
+	"LaunchGroupTitle": "Launching group",
+	"LaunchGroup": "Launching group...",
+
+	// CopyProgress
+	"CopyFilesTitle": "Copying files",
+	"CopyFiles": "Copying files, please wait...",
+	
+	// MainWindow
+	"LaunchGroupButton": "Launch group",
+
+	// PresetDownload
+	"PresetDownloadTitle": "Download a Preset",
+	"PresetInformation": "Preset Information",
+	"PresetName": "Name:",
+	"PresetAuthor": "Author:",
+	"PresetVersion": "Version:",
+	"PresetDescription": "Description:",
+	"PresetPlugins": "Plugins:",
+	"PresetDownloadButton": "Download this preset",
+	"LoadingPresets": "Loading presets...",
+	"NoPresetAvailable": "No presets available.",
+	"UnableToLoadPreset": "Unable to load presets: {0}",
+	"NoPluginList": "No plugin list available.",
+	"SelectPresetFirst": "Please select a preset first.",
+	"NoPresetSelected": "No Preset Selected",
+	"Downloading": "Downloading...",
+	"PresetDownloaded": "Preset \" {0} \" successfully downloaded, extracted and added to your presets list.",
+	"ErrorDownloadPreset": "Error while downloading preset: {0}",
+
+	// SelectCharacter
+	"SelectCharacterTitle": "Select a Character",
+
+	// SettingsWindow
+	"SettingsTitle": "Settings",
+	"ConfigurationTab": "Configuration",
+	"XIVLauncherPahInstruction": "Please select the folder where XIVlauncher is installed in. &#xA;It shlould contain XIVLauncher.exe",
+	"LauncherLanguage": "MultiXIVLauncher Language",
+	"CharactersTab": "Characters",
+	"CharacterAddButton": "Add a character",
+	"CharacterName": "Character name",
+	"GroupAddButton": "Add a group",
+	"GroupName": "Group name",
+	"PresetAddButton": "Add a preset",
+	"PresetName": "Preset name",
+	"PresetExploreButton": "Explore folder",
+	"PresetCopyCharacterButton": "Copy character content into this preset",
+	
+
+
+
+}

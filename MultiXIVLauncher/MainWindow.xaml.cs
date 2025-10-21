@@ -53,7 +53,7 @@ namespace MultiXIVLauncher
 
             GroupComboBox.Items.Clear();
 
-            var allItem = new ComboBoxItem { Content = "All groups", Tag = -1 };
+            var allItem = new ComboBoxItem { Content = Properties.Resources.AllGroup, Tag = -1 };
             GroupComboBox.Items.Add(allItem);
 
             if (config.Groups != null)
@@ -107,7 +107,7 @@ namespace MultiXIVLauncher
             {
                 var tb = new TextBlock
                 {
-                    Text = "No characters available.",
+                    Text = Properties.Resources.NoCharactersAvailable,
                     Foreground = Brushes.White,
                     Margin = new Thickness(10)
                 };
@@ -307,8 +307,11 @@ namespace MultiXIVLauncher
             }
             else
             {
-                MessageBox.Show("Please select a group first.",
-                    "No group selected", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(
+                    Properties.Resources.SelectAGroupFirst,
+                    Properties.Resources.NoGroupSelected,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
             }
         }
     }
