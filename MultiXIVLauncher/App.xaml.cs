@@ -28,9 +28,6 @@ namespace MultiXIVLauncher
                 ApplyLanguage("en");
 
             base.OnStartup(e);
-
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
         }
 
         private static void ApplyLanguage(string langCode)
@@ -43,7 +40,6 @@ namespace MultiXIVLauncher
 
                 MultiXIVLauncher.Properties.Resources.Culture = culture;
 
-                // Empty cache of ResourceManager
                 var field = typeof(Properties.Resources)
                     .GetField("resourceMan", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
                 field?.SetValue(null, null);

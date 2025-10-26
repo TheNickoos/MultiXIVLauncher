@@ -74,39 +74,82 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CharacterLauncher.cs" />
-    <Compile Include="CharacterLaunchMonitor.cs" />
-    <Compile Include="Config.cs" />
-    <Compile Include="CopyProgressWindow.xaml.cs">
+    <Compile Include="Models\PresetItem.cs" />
+    <Compile Include="Old\CharacterLauncher.cs" />
+    <Compile Include="Old\CharacterLaunchMonitor.cs" />
+    <Compile Include="Old\Config.cs" />
+    <Compile Include="Old\CopyProgressWindow.xaml.cs">
       <DependentUpon>CopyProgressWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GroupLauncher.cs" />
-    <Compile Include="GroupLoadingWindow.xaml.cs">
+    <Compile Include="Old\GroupLauncher.cs" />
+    <Compile Include="Old\GroupLoadingWindow.xaml.cs">
       <DependentUpon>GroupLoadingWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LoadingWindow.xaml.cs">
+    <Compile Include="Old\LoadingWindow.xaml.cs">
       <DependentUpon>LoadingWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PresetDownloadWindow.xaml.cs">
+    <Compile Include="Old\PresetDownloadWindow.xaml.cs">
       <DependentUpon>PresetDownloadWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PresetInfo.cs" />
-    <Compile Include="SelectCharacterWindow.xaml.cs">
+    <Compile Include="Old\PresetInfo.cs" />
+    <Compile Include="Old\SelectCharacterWindow.xaml.cs">
       <DependentUpon>SelectCharacterWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsWindow.xaml.cs">
+    <Compile Include="Old\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="CopyProgressWindow.xaml">
+    <Compile Include="LauncherWindow.xaml.cs">
+      <DependentUpon>LauncherWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Utils\UIAnimationHelper.cs" />
+    <Compile Include="View\AddMemberWindow.xaml.cs">
+      <DependentUpon>AddMemberWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddPresetItemWindow.xaml.cs" />
+    <Compile Include="View\CharacterEditView.xaml.cs">
+      <DependentUpon>CharacterEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CharactersView.xaml.cs">
+      <DependentUpon>CharactersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GroupEditView.xaml.cs">
+      <DependentUpon>GroupEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GroupsView.xaml.cs">
+      <DependentUpon>GroupsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Headers\MainHeader.xaml.cs">
+      <DependentUpon>MainHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Headers\PresetsHeader.xaml.cs">
+      <DependentUpon>PresetsHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Headers\SettingsHeader.xaml.cs">
+      <DependentUpon>SettingsHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PresetEditView.xaml.cs">
+      <DependentUpon>PresetEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PresetsView.xaml.cs">
+      <DependentUpon>PresetsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Old\CopyProgressWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GroupLoadingWindow.xaml">
+    <Page Include="Old\GroupLoadingWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoadingWindow.xaml">
+    <Page Include="Old\LoadingWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Old\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -114,17 +157,63 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Old\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PresetDownloadWindow.xaml">
+    <Page Include="Old\PresetDownloadWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SelectCharacterWindow.xaml">
+    <Page Include="Old\SelectCharacterWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsWindow.xaml">
+    <Page Include="Themes\LauncherStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddMemberWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddPresetItemWindows.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CharacterEditView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CharactersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GroupEditView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GroupsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Headers\MainHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Headers\PresetsHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Headers\SettingsHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PresetEditView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PresetsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Old\SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LauncherWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,7 +242,7 @@
       <SubType>Designer</SubType>
       <CustomToolNamespace>MultiXIVLauncher.Properties</CustomToolNamespace>
     </EmbeddedResource>
-    <None Include="packages.config" />
+    <None Include="Old\packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -163,10 +252,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="FFStatusIcon.png" />
+    <Resource Include="Old\FFStatusIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="SettingsIcon.png" />
+    <Resource Include="Old\SettingsIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\FFStatusIcon.png" />
@@ -193,7 +282,12 @@
     <None Include="Resources\Logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Logo.ico" />
+    <Resource Include="Old\Logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\portrait1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
