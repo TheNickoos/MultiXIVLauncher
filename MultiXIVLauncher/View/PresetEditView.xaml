@@ -1,0 +1,83 @@
+<UserControl x:Class="MultiXIVLauncher.Views.PresetEditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:services="clr-namespace:MultiXIVLauncher.Services"
+             Background="Transparent">
+
+    <Grid Background="{StaticResource BgGradient}" Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" Margin="0,0,0,16">
+            <TextBlock services:LanguageBehavior.Key="Preset_View_Edit_Label_Title"
+                       Style="{StaticResource TitleText}"
+                       Margin="0,0,0,8"/>
+
+            <TextBox x:Name="TxtPresetName"
+                     Width="300"
+                     Height="34"
+                     Background="#1E1E2A"
+                     Foreground="{StaticResource ClrTextPrimary}"
+                     BorderBrush="{StaticResource ClrAccent}"
+                     BorderThickness="1"
+                     Padding="6,2"
+                     Text="Ultimate Bard Preset"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Top">
+            <Border Style="{StaticResource CardBorder}" Padding="16" Margin="0,0,0,12">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock services:LanguageBehavior.Key="Preset_View_Edit_Label_CopyChar"
+                               FontWeight="SemiBold" FontSize="16"
+                               Foreground="{StaticResource ClrTextPrimary}" Margin="0,0,0,8"/>
+
+                    <TextBlock services:LanguageBehavior.Key="Preset_View_Edit_Label_CopyChar2"
+                               Style="{StaticResource BodyText}" Opacity="0.8"
+                               TextWrapping="Wrap" Margin="0,0,0,12"/>
+                    <Button services:LanguageBehavior.Key="Preset_View_Edit_Button_Copy"
+                            Height="36" Width="260"
+                            Style="{StaticResource RoundedButton}"
+                            Click="CopyFromCharacter_Click"/>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource CardBorder}" Padding="16">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock services:LanguageBehavior.Key="Preset_View_Edit_Label_OpenFolder"
+                               FontWeight="SemiBold" FontSize="16"
+                               Foreground="{StaticResource ClrTextPrimary}" Margin="0,0,0,8"/>
+
+                    <TextBlock services:LanguageBehavior.Key="Preset_View_Edit_Label_OpenFolder2"
+                               Style="{StaticResource BodyText}" Opacity="0.8"
+                               TextWrapping="Wrap" Margin="0,0,0,12"/>
+
+                    <Button services:LanguageBehavior.Key="Preset_View_Edit_Button_OpenFolder"
+                            Height="36" Width="260"
+                            Style="{StaticResource RoundedButton}"
+                            Click="OpenPresetFolder_Click"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,12,0,0">
+
+            <Button services:LanguageBehavior.Key="Preset_View_Edit_Button_Save"
+                    Width="160"
+                    Height="34"
+                    Margin="0,0,8,0"
+                    Style="{StaticResource RoundedButton}"
+                    Click="SavePreset_Click"/>
+
+            <Button services:LanguageBehavior.Key="Preset_View_Edit_Button_Back"
+                    Width="120"
+                    Height="34"
+                    Style="{StaticResource OutlineButton}"
+                    Click="GoBack_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

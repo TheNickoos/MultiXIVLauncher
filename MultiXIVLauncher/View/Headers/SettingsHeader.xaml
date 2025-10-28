@@ -1,0 +1,26 @@
+<UserControl x:Class="MultiXIVLauncher.Views.Headers.SettingsHeader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:services="clr-namespace:MultiXIVLauncher.Services"
+             Background="Transparent">
+
+    <StackPanel Orientation="Horizontal"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left">
+
+        <Button services:LanguageBehavior.Key="Settings_Header_Button_Save"
+                Width="140"
+                Height="32"
+                Style="{StaticResource RoundedButton}"
+                Margin="0,0,8,0"
+                services:LanguageBehavior.ToolTipKey="Settings_Header_Tooltip_Save"
+                Click="Save_Click"/>
+        <Button services:LanguageBehavior.Key="Settings_Header_Button_Back"
+                Width="100"
+                Height="32"
+                Style="{StaticResource OutlineButton}"
+                services:LanguageBehavior.ToolTipKey="Settings_Header_Tooltip_Back"
+                Click="ReturnToMain"/>
+
+    </StackPanel>
+</UserControl>

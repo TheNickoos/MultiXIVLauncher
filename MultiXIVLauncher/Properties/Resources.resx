@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Main_Header_Text_Group" xml:space="preserve">
+    <value>Group:</value>
+  </data>
+  <data name="Main_Header_Button_LaunchGroup" xml:space="preserve">
+    <value>Launch Group</value>
+  </data>
+  <data name="Main_Header_Button_LaunchGroup_Tooltip" xml:space="preserve">
+    <value>Launch all characters in this group</value>
+  </data>
+  <data name="Main_View_Button_Run" xml:space="preserve">
+    <value>Launch</value>
+  </data>
+  <data name="Main_View_Button_AddCharacter" xml:space="preserve">
+    <value>Add a new character</value>
+  </data>
+  <data name="Main_Tooltip_Close" xml:space="preserve">
+    <value>Close the application</value>
+  </data>
+  <data name="Main_Button_Mogstation" xml:space="preserve">
+    <value>Mog Station</value>
+  </data>
+  <data name="Main_Button_XIVISUP" xml:space="preserve">
+    <value>XIVISUP</value>
+  </data>
+  <data name="Main_Button_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Main_Button_Characters" xml:space="preserve">
+    <value>Characters</value>
+  </data>
+  <data name="Main_Button_Presets" xml:space="preserve">
+    <value>Presets</value>
+  </data>
+  <data name="Main_Button_Group" xml:space="preserve">
+    <value>Groups</value>
+  </data>
+  <data name="Settings_Header_Button_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Settings_Header_Tooltip_Save" xml:space="preserve">
+    <value>Save your settings</value>
+  </data>
+  <data name="Settings_Header_Button_Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Settings_Header_Tooltip_Back" xml:space="preserve">
+    <value>Return to the main launcher</value>
+  </data>
+  <data name="Parameter_View_Label_Title" xml:space="preserve">
+    <value>Launcher Settings</value>
+  </data>
+  <data name="Parameter_View_Label_XIVLauncherPath" xml:space="preserve">
+    <value>XIVLauncher Path</value>
+  </data>
+  <data name="Parameter_View_Label_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Parameter_View_Label_BetaKind" xml:space="preserve">
+    <value>Dalamud Beta Kind</value>
+  </data>
+  <data name="Character_View_Title" xml:space="preserve">
+    <value>Characters</value>
+  </data>
+  <data name="Character_View_Button_Add" xml:space="preserve">
+    <value>Add Character</value>
+  </data>
+  <data name="Character_View_Button_Validate" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Character_View_Button_Modify" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Character_View_Button_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Character_Edit_Label_Title" xml:space="preserve">
+    <value>Edit Character</value>
+  </data>
+  <data name="Character_Edit_Label_LodestoneID" xml:space="preserve">
+    <value>Lodestone ID:</value>
+  </data>
+  <data name="Character_Edit_Label_Preset" xml:space="preserve">
+    <value>Preset:</value>
+  </data>
+  <data name="Character_Edit_Label_Folder" xml:space="preserve">
+    <value>Character Folder</value>
+  </data>
+  <data name="Character_Edit_Label_Folder2" xml:space="preserve">
+    <value>This folder stores all configuration files related to this character.</value>
+  </data>
+  <data name="Character_Edit_Button_OpenFolder" xml:space="preserve">
+    <value>Open Folder</value>
+  </data>
+  <data name="Character_Edit_Button_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Character_Edit_Button_Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Group_View_Label_Title" xml:space="preserve">
+    <value>Groups</value>
+  </data>
+  <data name="Group_View_Button_Add" xml:space="preserve">
+    <value>Add Group</value>
+  </data>
+  <data name="Group_View_Button_Validate" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Group_View_Button_Modify" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Group_View_Edit_Label_Title" xml:space="preserve">
+    <value>Edit Group</value>
+  </data>
+  <data name="Group_View_Edit_Label_Member" xml:space="preserve">
+    <value>Members</value>
+  </data>
+  <data name="Group_View_Edit_Button_Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Group_View_Edit_Button_AddMember" xml:space="preserve">
+    <value>Add Member</value>
+  </data>
+  <data name="Group_View_Edit_Button_Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Window_Member_Add_Title" xml:space="preserve">
+    <value>Add Member</value>
+  </data>
+  <data name="Window_Member_Add_Text" xml:space="preserve">
+    <value>Select a character to add to this group:</value>
+  </data>
+  <data name="Window_Member_Add_Button_Validate" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Window_Member_Add_MessageBox_SelectChar" xml:space="preserve">
+    <value>Please select a character before confirming.</value>
+  </data>
+  <data name="Preset_Header_Button_Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="Preset_Header_Tooltip_Import" xml:space="preserve">
+    <value>Import an existing preset from file</value>
+  </data>
+  <data name="Preset_Header_Button_NewPreset" xml:space="preserve">
+    <value>New Preset</value>
+  </data>
+  <data name="Preset_Header_Tooltip_NewPreset" xml:space="preserve">
+    <value>Create a new preset</value>
+  </data>
+  <data name="Preset_View_Label_Title" xml:space="preserve">
+    <value>Presets</value>
+  </data>
+  <data name="Preset_View_Button_Download" xml:space="preserve">
+    <value>Download Preset</value>
+  </data>
+  <data name="Preset_View_Button_AddPreset" xml:space="preserve">
+    <value>Add Preset</value>
+  </data>
+  <data name="Preset_View_Button_Validate" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Preset_View_Button_Modify" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Preset_View_Button_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Preset_View_Edit_Label_Title" xml:space="preserve">
+    <value>Edit Preset</value>
+  </data>
+  <data name="Preset_View_Edit_Label_CopyChar" xml:space="preserve">
+    <value>Copy Configuration</value>
+  </data>
+  <data name="Preset_View_Edit_Label_CopyChar2" xml:space="preserve">
+    <value>You can copy configuration files from an existing character setup.</value>
+  </data>
+  <data name="Preset_View_Edit_Button_Copy" xml:space="preserve">
+    <value>Copy from Character</value>
+  </data>
+  <data name="Preset_View_Edit_Label_OpenFolder" xml:space="preserve">
+    <value>Preset Folder</value>
+  </data>
+  <data name="Preset_View_Edit_Label_OpenFolder2" xml:space="preserve">
+    <value>Open the preset folder to manually edit configuration files.</value>
+  </data>
+  <data name="Preset_View_Edit_Button_OpenFolder" xml:space="preserve">
+    <value>Open Folder</value>
+  </data>
+  <data name="Preset_View_Edit_Button_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Preset_View_Edit_Button_Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Window_Preset_Add_Item" xml:space="preserve">
+    <value>Add Preset Item</value>
+  </data>
+  <data name="Window_Preset_Add_Button_Validate" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="Parameter_View_Label_BetaKey" xml:space="preserve">
+    <value>Dalamud Beta Key</value>
+  </data>
+  <data name="Group_View_Button_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+</root>

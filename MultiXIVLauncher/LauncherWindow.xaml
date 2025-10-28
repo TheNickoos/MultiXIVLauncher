@@ -1,0 +1,109 @@
+﻿<Window x:Class="MultiXIVLauncher.LauncherWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="clr-namespace:MultiXIVLauncher.Views"
+        xmlns:services="clr-namespace:MultiXIVLauncher.Services"
+        Title="MultiXIVLauncher"
+        Width="960" Height="640"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen">
+
+    <Border CornerRadius="12"
+            Background="{StaticResource BgGradient}"
+            BorderBrush="#1F2235"
+            BorderThickness="1">
+
+        <Grid Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Border Background="#141622"
+                    Padding="12,8"
+                    BorderBrush="#1F2235"
+                    BorderThickness="0,0,0,1"
+                    CornerRadius="8,8,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="MultiXIVLauncher"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource ClrAccent2}"
+                               Effect="{StaticResource GlowEffect}"
+                               VerticalAlignment="Center"
+                               Margin="4,0,16,0"/>
+
+                    <ContentControl x:Name="HeaderDynamicArea"
+                                    Grid.Column="2"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Right"
+                                    Margin="0,0,12,0"/>
+
+                    <Button Grid.Column="3"
+                            Content="✕"
+                            Width="36"
+                            Height="32"
+                            Background="Transparent"
+                            Foreground="{StaticResource ClrAccent2}"
+                            BorderBrush="{x:Null}"
+                            FontSize="16"
+                            FontWeight="Bold"
+                            services:LanguageBehavior.ToolTipKey="Main_Tooltip_Close"
+                            Click="CloseApp"
+                            HorizontalAlignment="Right"/>
+                </Grid>
+            </Border>
+
+            <ContentControl x:Name="MainContent"
+                            Grid.Row="1"
+                            Margin="0,8,0,8"/>
+
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,12,0,0"
+                        VerticalAlignment="Bottom">
+                <Button services:LanguageBehavior.Key="Main_Button_Mogstation"
+                        Width="130" Height="36"
+                        Margin="6,0"
+                        Style="{StaticResource RoundedButton}"
+                        Click="OpenMogStation"/>
+                <Button services:LanguageBehavior.Key="Main_Button_XIVISUP"
+                        Width="130" Height="36"
+                        Margin="6,0"
+                        Style="{StaticResource RoundedButton}"
+                        Click="OpenXIVISUP"/>
+                <Button services:LanguageBehavior.Key="Main_Button_Settings"
+                        Width="130" Height="36"
+                        Margin="6,0"
+                        Style="{StaticResource OutlineButton}"
+                        Click="ShowSettings"/>
+                <Button services:LanguageBehavior.Key="Main_Button_Characters"
+                        Width="130" Height="36"
+                        Margin="6,0"
+                        Style="{StaticResource OutlineButton}"
+                        Click="ShowCharacters"/>
+                <Button services:LanguageBehavior.Key="Main_Button_Presets"
+                        Width="130" Height="36"
+                        Margin="6,0"
+                        Style="{StaticResource OutlineButton}"
+                        Click="ShowPresets"/>
+                <Button services:LanguageBehavior.Key="Main_Button_Group"
+                        Width="130" Height="36"
+                        Margin="6,0"
+                        Style="{StaticResource OutlineButton}"
+                        Click="ShowGroups"/>
+            </StackPanel>
+        </Grid>                              
+    </Border>
+</Window>

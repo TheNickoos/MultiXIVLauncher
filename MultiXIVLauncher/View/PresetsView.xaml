@@ -1,0 +1,91 @@
+<UserControl x:Class="MultiXIVLauncher.Views.PresetsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:services="clr-namespace:MultiXIVLauncher.Services"
+             Background="Transparent">
+
+    <Grid Background="{StaticResource BgGradient}" Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    Margin="0,0,0,12">
+            <TextBlock services:LanguageBehavior.Key="Preset_View_Label_Title"
+                       Style="{StaticResource TitleText}"
+                       VerticalAlignment="Center"
+                       Margin="0,0,12,0"/>
+
+            <Button services:LanguageBehavior.Key="Preset_View_Button_Download"
+                    x:Name="BtnDownloadPreset"
+                    Height="34"
+                    Margin="0,0,8,0"
+                    Style="{StaticResource OutlineButton}"/>
+
+            <Button services:LanguageBehavior.Key="Preset_View_Button_AddPreset"
+                    x:Name="BtnAddPreset"
+                    Height="34"
+                    Margin="0,0,8,0"
+                    Style="{StaticResource RoundedButton}"
+                    Click="BtnAddPreset_Click"/>
+
+            <Button services:LanguageBehavior.Key="Preset_View_Button_Validate"
+                    x:Name="BtnValidate"
+                    Height="34"
+                    Visibility="Collapsed"
+                    Margin="0,0,8,0"
+                    Style="{StaticResource RoundedButton}"
+                    Click="BtnValidate_Click"/>
+
+            <TextBox x:Name="TxtPresetName"
+                     Width="200"
+                     Height="32"
+                     Visibility="Collapsed"
+                     VerticalAlignment="Center"
+                     Background="#1E1E2A"
+                     Foreground="{StaticResource ClrTextPrimary}"
+                     BorderBrush="{StaticResource ClrAccent}"
+                     BorderThickness="1"
+                     Padding="6,2"
+                     Margin="0,0,8,0"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1"
+                  VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="PresetListPanel">
+
+                <Border Style="{StaticResource CardBorder}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                       Text="Ultimate Bard Preset"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Foreground="{StaticResource ClrTextPrimary}"
+                       VerticalAlignment="Center"/>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Right">
+                            <Button services:LanguageBehavior.Key="Preset_View_Button_Modify"
+                                    Height="30"
+                                    Margin="0,0,8,0"
+                                    Style="{StaticResource OutlineButton}"/>
+
+                            <Button services:LanguageBehavior.Key="Preset_View_Button_Delete"
+                                    Height="30"
+                                    Style="{StaticResource OutlineButton}"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

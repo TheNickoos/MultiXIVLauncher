@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="MultiXIVLauncher.Views.Headers.MainHeader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:services="clr-namespace:MultiXIVLauncher.Services"
+             Background="Transparent">
+
+    <StackPanel Orientation="Horizontal"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right">
+
+        <TextBlock services:LanguageBehavior.Key="Main_Header_Text_Group"
+                   Style="{StaticResource BodyText}"
+                   VerticalAlignment="Center"
+                   Margin="0,0,8,0"/>
+
+        <ComboBox Width="220"
+                  Height="32"
+                  VerticalAlignment="Center"
+                  Margin="0,0,8,0">
+            <ComboBoxItem Content="Tous les personnages"/>
+            <ComboBoxItem Content="Raids — Dimanche"/>
+            <ComboBoxItem Content="Crafter/Gatherer"/>
+        </ComboBox>
+
+        <Button services:LanguageBehavior.Key="Main_Header_Button_LaunchGroup"
+                Width="200"
+                Height="32"
+                FontWeight="Bold"
+                Style="{StaticResource RoundedButton}"
+                Margin="0,0,8,0"/>
+
+        <Button Content="⚙"
+                Width="36"
+                Height="32"
+                Style="{StaticResource OutlineButton}"
+                ToolTip="Paramètres"/>
+    </StackPanel>
+</UserControl>

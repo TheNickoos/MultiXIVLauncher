@@ -1,0 +1,120 @@
+<UserControl x:Class="MultiXIVLauncher.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:services="clr-namespace:MultiXIVLauncher.Services"
+             Background="Transparent">
+
+    <Grid Background="Transparent" Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock services:LanguageBehavior.Key="Parameter_View_Label_Title"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   Foreground="{StaticResource ClrAccent2}"
+                   Margin="0,0,0,12"/>
+
+        <Border Grid.Row="1"
+                Background="{StaticResource ClrBgCard}"
+                CornerRadius="10"
+                Padding="20"
+                Effect="{StaticResource GlowEffect}">
+
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical" Margin="0,0,0,16">
+                    <TextBlock services:LanguageBehavior.Key="Parameter_View_Label_XIVLauncherPath"
+                               Style="{StaticResource BodyText}"
+                               Margin="0,0,0,6"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0"
+                                CornerRadius="6"
+                                BorderBrush="{StaticResource ClrAccent}"
+                                BorderThickness="1"
+                                Background="#191B2A"
+                                Margin="0,0,8,0">
+                            <TextBox x:Name="XIVLauncherPath"
+                                     Height="32"
+                                     VerticalContentAlignment="Center"
+                                     Padding="6,0"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     Foreground="{StaticResource ClrTextPrimary}"/>
+                        </Border>
+
+                        <Button Grid.Column="1"
+                                Content="..."
+                                Width="36"
+                                Height="32"
+                                Style="{StaticResource RoundedButton}"
+                                ToolTip="Parcourir"
+                                Click="BrowseXIVLauncher"/>
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,16">
+                    <TextBlock services:LanguageBehavior.Key="Parameter_View_Label_Language"
+                               Style="{StaticResource BodyText}"
+                               Margin="0,0,0,6"/>
+                    <ComboBox x:Name="LanguageSelect"
+                              Width="200"
+                              Height="32"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center">
+                        <ComboBoxItem Content="Francais" Tag="fr"/>
+                        <ComboBoxItem Content="English" Tag="en"/>
+                        <ComboBoxItem Content="Deutsch" Tag="de"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,8">
+                    <TextBlock services:LanguageBehavior.Key="Parameter_View_Label_BetaKey"
+                               Style="{StaticResource BodyText}"
+                               Margin="0,0,0,6"/>
+                    <Border CornerRadius="6"
+                            BorderBrush="{StaticResource ClrAccent}"
+                            BorderThickness="1"
+                            Background="#191B2A"
+                            Margin="0,0,0,8">
+                        <TextBox x:Name="DalamudBetaKey"
+                                 Height="32"
+                                 VerticalContentAlignment="Center"
+                                 Padding="6,0"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 Foreground="{StaticResource ClrTextPrimary}"
+                                 IsReadOnly="False"
+                                 Text=""/>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical">
+                    <TextBlock services:LanguageBehavior.Key="Parameter_View_Label_BetaKind"
+                               Style="{StaticResource BodyText}"
+                               Margin="0,0,0,6"/>
+                    <Border CornerRadius="6"
+                            BorderBrush="{StaticResource ClrAccent}"
+                            BorderThickness="1"
+                            Background="#191B2A">
+                        <TextBox x:Name="DalamudBetaKind"
+                                 Height="32"
+                                 VerticalContentAlignment="Center"
+                                 Padding="6,0"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 Foreground="{StaticResource ClrTextPrimary}"
+                                 IsReadOnly="False"
+                                 Text=""/>
+                    </Border>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
