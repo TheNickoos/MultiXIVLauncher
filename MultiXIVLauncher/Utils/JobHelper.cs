@@ -5,8 +5,14 @@ using System.IO;
 
 namespace MultiXIVLauncher.Utils
 {
+    /// <summary>
+    /// Provides helper methods related to character jobs and class icon mapping from the Lodestone API.
+    /// </summary>
     public static class JobHelper
     {
+        /// <summary>
+        /// Contains a mapping between Lodestone job icon filenames and their corresponding internal job names.
+        /// </summary>
         public static readonly Dictionary<string, string> JobIconMap = new(StringComparer.OrdinalIgnoreCase)
         {
             // --- Base Classes ---
@@ -53,23 +59,64 @@ namespace MultiXIVLauncher.Utils
         };
 
         /// <summary>
-        /// Renvoie le nom traduit du job à partir de l'URL de l'icône Lodestone.
+        /// Retrieves the localized job name based on the Lodestone job icon URL.
+        /// If the icon is unknown but not null, the event is logged for diagnostic purposes.
         /// </summary>
+        /// <param name="iconUrl">The full URL of the job icon retrieved from the Lodestone API.</param>
+        /// <returns>
+        /// The localized job name if recognized, or a translated "Unknown" string if not found.
+        /// </returns>
         public static string GetJobFromIconUrl(string? iconUrl)
         {
+            // If no icon is provided, return a localized "Unknown" string without logging.
             if (string.IsNullOrWhiteSpace(iconUrl))
                 return LanguageManager.T("Job_Unknown");
 
             string fileName = Path.GetFileName(iconUrl);
 
+            // Try to match the icon filename to a known job.
             if (!JobIconMap.TryGetValue(fileName, out var jobKey))
+            {
+                // Log when a new or unexpected job icon is encountered.
+                Logger.Warn($"[JobHelper] Unknown job icon detected: {fileName} (URL: {iconUrl})");
                 return LanguageManager.T("Job_Unknown");
+            }
 
-            // Recherche traduction dans Resources (clé "Job_Bard", "Job_Warrior", etc.)
+            // Try to get the localized job name using LanguageManager.
             string localized = LanguageManager.T($"Job_{jobKey}");
+
+            // Return the localized name if available, otherwise fall back to the English job key.
             return string.IsNullOrWhiteSpace(localized)
                 ? jobKey
                 : localized;
+        }
+
+        /// <summary>
+        /// Determines whether the provided icon URL corresponds to a recognized job.
+        /// </summary>
+        /// <param name="iconUrl">The Lodestone job icon URL.</param>
+        /// <returns><c>true</c> if the job is recognized, otherwise <c>false</c>.</returns>
+        public static bool IsKnownJob(string? iconUrl)
+        {
+            if (string.IsNullOrWhiteSpace(iconUrl))
+                return false;
+
+            string fileName = Path.GetFileName(iconUrl);
+            return JobIconMap.ContainsKey(fileName);
+        }
+
+        /// <summary>
+        /// Retrieves the internal (non-localized) job key from an icon URL.
+        /// </summary>
+        /// <param name="iconUrl">The Lodestone job icon URL.</param>
+        /// <returns>The English job key if found, or "Unknown" if not recognized.</returns>
+        public static string GetJobKey(string? iconUrl)
+        {
+            if (string.IsNullOrWhiteSpace(iconUrl))
+                return "Unknown";
+
+            string fileName = Path.GetFileName(iconUrl);
+            return JobIconMap.TryGetValue(fileName, out var jobKey) ? jobKey : "Unknown";
         }
     }
 }
