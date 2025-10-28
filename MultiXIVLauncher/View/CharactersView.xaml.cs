@@ -38,8 +38,9 @@ namespace MultiXIVLauncher.Views
             CharacterListPanel.Children.Clear();
 
             foreach (var character in ConfigManager.Current.Characters)
-                AddCharacterCard(character.Name, false);
+                AddCharacterCard(character);
         }
+
 
         /// <summary>
         /// Displays the input field to add a new character.
@@ -65,9 +66,10 @@ namespace MultiXIVLauncher.Views
                 string name = TxtCharacterName.Text.Trim();
                 if (!string.IsNullOrEmpty(name))
                 {
-                    AddCharacterCard(name);
                     var newCharacter = Character.Create(name);
                     ConfigManager.Current.Characters.Add(newCharacter);
+                    AddCharacterCard(newCharacter);
+
                 }
 
                 isAddingCharacter = false;
@@ -81,7 +83,7 @@ namespace MultiXIVLauncher.Views
         /// <summary>
         /// Creates and adds a new character card to the list with animation.
         /// </summary>
-        private void AddCharacterCard(string name, bool animate = true)
+        private void AddCharacterCard(Character character, bool animate = true)
         {
             Border card = new Border
             {
@@ -90,7 +92,7 @@ namespace MultiXIVLauncher.Views
                 RenderTransform = new TranslateTransform(0, animate ? 30 : 0),
                 Effect = new System.Windows.Media.Effects.DropShadowEffect
                 {
-                    Color = System.Windows.Media.Color.FromRgb(185, 147, 255),
+                    Color = Color.FromRgb(185, 147, 255),
                     BlurRadius = 25,
                     ShadowDepth = 0,
                     Opacity = 0.9
@@ -101,21 +103,23 @@ namespace MultiXIVLauncher.Views
             content.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             content.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
 
+            // 🧩 Infos du personnage
             StackPanel info = new StackPanel { Orientation = Orientation.Vertical };
             info.Children.Add(new TextBlock
             {
-                Text = name,
+                Text = character.Name,
                 FontSize = 16,
                 FontWeight = FontWeights.Bold,
                 Foreground = (Brush)FindResource("ClrTextPrimary")
             });
             info.Children.Add(new TextBlock
             {
-                Text = "Unknown server — Unknown class",
+                Text = $"{character.Server ?? "Unknown server"} — {character.Class ?? "Unknown class"}",
                 Style = (Style)FindResource("BodyText"),
                 Opacity = 0.8
             });
 
+            // 🧩 Actions
             StackPanel actions = new StackPanel
             {
                 Orientation = Orientation.Horizontal,
@@ -133,6 +137,7 @@ namespace MultiXIVLauncher.Views
             editButton.Click += (s, e) =>
             {
                 var editView = new CharacterEditView();
+                editView.LoadCharacter(character);
                 ((LauncherWindow)Application.Current.MainWindow).SetPage(editView);
             };
             actions.Children.Add(editButton);
@@ -146,9 +151,8 @@ namespace MultiXIVLauncher.Views
             deleteButton.Click += (s, e) =>
             {
                 RemoveCharacterCard(card);
-                var character = ConfigManager.Current.Characters.Find(c => c.Name == name);
-                if (character != null)
-                    ConfigManager.Current.Characters.Remove(character);
+                ConfigManager.Current.Characters.Remove(character);
+                ConfigManager.Save();
             };
             actions.Children.Add(deleteButton);
 
@@ -162,6 +166,7 @@ namespace MultiXIVLauncher.Views
             if (animate)
                 AnimateCardAppearance(card);
         }
+
 
         /// <summary>
         /// Removes a character card from the list with fade and slide animations.

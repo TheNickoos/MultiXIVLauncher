@@ -15,6 +15,15 @@ namespace MultiXIVLauncher.Views
             InitializeComponent();
         }
 
+        private Character? editingCharacter;
+
+        public void LoadCharacter(Character character)
+        {
+            editingCharacter = character;
+            TxtCharacterName.Text = character.Name;
+            TxtLodestoneId.Text = character.LodestoneId.ToString();
+        }
+
         private void OpenCharacterFolder_Click(object sender, RoutedEventArgs e)
         {
             Process.Start("explorer.exe", @"C:\Users\Public\Documents\MultiXIVLauncher\Characters");
@@ -23,8 +32,7 @@ namespace MultiXIVLauncher.Views
         private async void SaveCharacter_Click(object sender, RoutedEventArgs e)
         {
             string name = TxtCharacterName.Text.Trim();
-            int lodestoneId = 0;
-            int.TryParse(TxtLodestoneId.Text.Trim(), out lodestoneId);
+            int.TryParse(TxtLodestoneId.Text.Trim(), out int lodestoneId);
 
             if (string.IsNullOrEmpty(name))
             {
@@ -32,21 +40,28 @@ namespace MultiXIVLauncher.Views
                 return;
             }
 
-            // Crée ou met à jour le personnage
-            var character = Character.Create(name);
-            character.LodestoneId = lodestoneId;
+            Character character;
 
-            // Téléchargement Lodestone
-            //bool success = await LodestoneFetcher.UpdateCharacterFromLodestoneAsync(character);
-            bool success = true;
+            // 🔹 Si on édite un personnage existant
+            if (editingCharacter != null)
+            {
+                character = editingCharacter;
+                character.Name = name;
+                character.LodestoneId = lodestoneId;
+            }
+            else
+            {
+                // 🔹 Sinon, création d'un nouveau personnage
+                character = Character.Create(name);
+                character.LodestoneId = lodestoneId;
+                ConfigManager.Current.Characters.Add(character);
+            }
 
-            // Ajoute à la configuration
-            ConfigManager.Current.Characters.Add(character);
+            // --- Téléchargement Lodestone ---
+            bool success = await LodestoneFetcher.UpdateCharacterFromLodestoneAsync(character);
+
+            // --- Sauvegarde config ---
             ConfigManager.Save();
-
-            MessageBox.Show(success
-                ? $"Character '{name}' saved and Lodestone data fetched successfully!"
-                : $"Character '{name}' saved, but Lodestone data could not be fetched.");
 
             ((LauncherWindow)Application.Current.MainWindow).SetPage(new CharactersView());
         }
