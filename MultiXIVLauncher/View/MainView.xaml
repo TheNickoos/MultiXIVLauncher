@@ -8,65 +8,16 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-
+        <!-- Conteneur dynamique -->
         <ScrollViewer Grid.Row="1"
-                  VerticalScrollBarVisibility="Auto"
-                  Margin="0,10,0,0">
-            <StackPanel>
-
-                <Border Style="{StaticResource CardBorder}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Image Source="/Assets/portrait1.png"
-                       Width="72"
-                       Height="72"
-                       Stretch="UniformToFill"
-                       Margin="0,0,12,0"
-                       ClipToBounds="True">
-                            <Image.Clip>
-                                <RectangleGeometry Rect="0,0,72,72"
-                                       RadiusX="8"
-                                       RadiusY="8"/>
-                            </Image.Clip>
-                        </Image>
-
-                        <StackPanel Grid.Column="1"
-                            VerticalAlignment="Center">
-                            <TextBlock Text="Lyna Jade"
-                             FontSize="18"
-                             Foreground="{StaticResource ClrTextPrimary}"
-                             FontWeight="SemiBold"/>
-                            <TextBlock Text="Moogle - Bard 100"
-                             Style="{StaticResource BodyText}"
-                             Opacity="0.8"/>
-                        </StackPanel>
-
-                        <Button services:LanguageBehavior.Key="Main_View_Button_Run"
-                        Grid.Column="2"
-                        Width="120"
-                        Height="36"
-                        Style="{StaticResource RoundedButton}"
-                        VerticalAlignment="Center"/>
-                    </Grid>
-                </Border>
-
-
-                <Button services:LanguageBehavior.Key="Main_View_Button_AddCharacter"
-                    Height="36"
-                    Margin="0,8,0,0"
-                    Style="{StaticResource OutlineButton}"/>
-
-            </StackPanel>
+                      VerticalScrollBarVisibility="Auto"
+                      Margin="0,10,0,0">
+            <StackPanel x:Name="CharacterContainer"/>
         </ScrollViewer>
+
+
     </Grid>
 </UserControl>
-
-
-
