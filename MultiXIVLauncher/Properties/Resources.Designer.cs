@@ -59,5 +59,879 @@ namespace MultiXIVLauncher.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Back.
+        /// </summary>
+        internal static string Character_Edit_Button_Back {
+            get {
+                return ResourceManager.GetString("Character_Edit_Button_Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Open Folder.
+        /// </summary>
+        internal static string Character_Edit_Button_OpenFolder {
+            get {
+                return ResourceManager.GetString("Character_Edit_Button_OpenFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Save.
+        /// </summary>
+        internal static string Character_Edit_Button_Save {
+            get {
+                return ResourceManager.GetString("Character_Edit_Button_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Character Folder.
+        /// </summary>
+        internal static string Character_Edit_Label_Folder {
+            get {
+                return ResourceManager.GetString("Character_Edit_Label_Folder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à This folder stores all configuration files related to this character..
+        /// </summary>
+        internal static string Character_Edit_Label_Folder2 {
+            get {
+                return ResourceManager.GetString("Character_Edit_Label_Folder2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Lodestone ID:.
+        /// </summary>
+        internal static string Character_Edit_Label_LodestoneID {
+            get {
+                return ResourceManager.GetString("Character_Edit_Label_LodestoneID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Preset:.
+        /// </summary>
+        internal static string Character_Edit_Label_Preset {
+            get {
+                return ResourceManager.GetString("Character_Edit_Label_Preset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Edit Character.
+        /// </summary>
+        internal static string Character_Edit_Label_Title {
+            get {
+                return ResourceManager.GetString("Character_Edit_Label_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add Character.
+        /// </summary>
+        internal static string Character_View_Button_Add {
+            get {
+                return ResourceManager.GetString("Character_View_Button_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Delete.
+        /// </summary>
+        internal static string Character_View_Button_Delete {
+            get {
+                return ResourceManager.GetString("Character_View_Button_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Edit.
+        /// </summary>
+        internal static string Character_View_Button_Modify {
+            get {
+                return ResourceManager.GetString("Character_View_Button_Modify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Confirm.
+        /// </summary>
+        internal static string Character_View_Button_Validate {
+            get {
+                return ResourceManager.GetString("Character_View_Button_Validate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Characters.
+        /// </summary>
+        internal static string Character_View_Title {
+            get {
+                return ResourceManager.GetString("Character_View_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add Group.
+        /// </summary>
+        internal static string Group_View_Button_Add {
+            get {
+                return ResourceManager.GetString("Group_View_Button_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Delete.
+        /// </summary>
+        internal static string Group_View_Button_Delete {
+            get {
+                return ResourceManager.GetString("Group_View_Button_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Edit.
+        /// </summary>
+        internal static string Group_View_Button_Modify {
+            get {
+                return ResourceManager.GetString("Group_View_Button_Modify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Confirm.
+        /// </summary>
+        internal static string Group_View_Button_Validate {
+            get {
+                return ResourceManager.GetString("Group_View_Button_Validate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add Member.
+        /// </summary>
+        internal static string Group_View_Edit_Button_AddMember {
+            get {
+                return ResourceManager.GetString("Group_View_Edit_Button_AddMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Back.
+        /// </summary>
+        internal static string Group_View_Edit_Button_Back {
+            get {
+                return ResourceManager.GetString("Group_View_Edit_Button_Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Remove.
+        /// </summary>
+        internal static string Group_View_Edit_Button_Remove {
+            get {
+                return ResourceManager.GetString("Group_View_Edit_Button_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Members.
+        /// </summary>
+        internal static string Group_View_Edit_Label_Member {
+            get {
+                return ResourceManager.GetString("Group_View_Edit_Label_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Edit Group.
+        /// </summary>
+        internal static string Group_View_Edit_Label_Title {
+            get {
+                return ResourceManager.GetString("Group_View_Edit_Label_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Groups.
+        /// </summary>
+        internal static string Group_View_Label_Title {
+            get {
+                return ResourceManager.GetString("Group_View_Label_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Alchemist.
+        /// </summary>
+        internal static string Job_Alchemist {
+            get {
+                return ResourceManager.GetString("Job_Alchemist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Arcanist.
+        /// </summary>
+        internal static string Job_Arcanist {
+            get {
+                return ResourceManager.GetString("Job_Arcanist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Archer.
+        /// </summary>
+        internal static string Job_Archer {
+            get {
+                return ResourceManager.GetString("Job_Archer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Armorer.
+        /// </summary>
+        internal static string Job_Armorer {
+            get {
+                return ResourceManager.GetString("Job_Armorer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Bard.
+        /// </summary>
+        internal static string Job_Bard {
+            get {
+                return ResourceManager.GetString("Job_Bard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Blacksmith.
+        /// </summary>
+        internal static string Job_Blacksmith {
+            get {
+                return ResourceManager.GetString("Job_Blacksmith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Botanist.
+        /// </summary>
+        internal static string Job_Botanist {
+            get {
+                return ResourceManager.GetString("Job_Botanist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Carpenter.
+        /// </summary>
+        internal static string Job_Carpenter {
+            get {
+                return ResourceManager.GetString("Job_Carpenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Conjurer.
+        /// </summary>
+        internal static string Job_Conjurer {
+            get {
+                return ResourceManager.GetString("Job_Conjurer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Culinarian.
+        /// </summary>
+        internal static string Job_Culinarian {
+            get {
+                return ResourceManager.GetString("Job_Culinarian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Dragoon.
+        /// </summary>
+        internal static string Job_Dragoon {
+            get {
+                return ResourceManager.GetString("Job_Dragoon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Fisher.
+        /// </summary>
+        internal static string Job_Fisher {
+            get {
+                return ResourceManager.GetString("Job_Fisher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Goldsmith.
+        /// </summary>
+        internal static string Job_Goldsmith {
+            get {
+                return ResourceManager.GetString("Job_Goldsmith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Leatherworker.
+        /// </summary>
+        internal static string Job_Leatherworker {
+            get {
+                return ResourceManager.GetString("Job_Leatherworker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Machinist.
+        /// </summary>
+        internal static string Job_Machinist {
+            get {
+                return ResourceManager.GetString("Job_Machinist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Miner.
+        /// </summary>
+        internal static string Job_Miner {
+            get {
+                return ResourceManager.GetString("Job_Miner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ninja.
+        /// </summary>
+        internal static string Job_Ninja {
+            get {
+                return ResourceManager.GetString("Job_Ninja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Paladin.
+        /// </summary>
+        internal static string Job_Paladin {
+            get {
+                return ResourceManager.GetString("Job_Paladin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Red Mage.
+        /// </summary>
+        internal static string Job_RedMage {
+            get {
+                return ResourceManager.GetString("Job_RedMage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Samurai.
+        /// </summary>
+        internal static string Job_Samurai {
+            get {
+                return ResourceManager.GetString("Job_Samurai", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Scholar.
+        /// </summary>
+        internal static string Job_Scholar {
+            get {
+                return ResourceManager.GetString("Job_Scholar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Summoner.
+        /// </summary>
+        internal static string Job_Summoner {
+            get {
+                return ResourceManager.GetString("Job_Summoner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Unknown.
+        /// </summary>
+        internal static string Job_Unknown {
+            get {
+                return ResourceManager.GetString("Job_Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Warrior.
+        /// </summary>
+        internal static string Job_Warrior {
+            get {
+                return ResourceManager.GetString("Job_Warrior", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Weaver.
+        /// </summary>
+        internal static string Job_Weaver {
+            get {
+                return ResourceManager.GetString("Job_Weaver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à White Mahe.
+        /// </summary>
+        internal static string Job_WhiteMage {
+            get {
+                return ResourceManager.GetString("Job_WhiteMage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Characters.
+        /// </summary>
+        internal static string Main_Button_Characters {
+            get {
+                return ResourceManager.GetString("Main_Button_Characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Groups.
+        /// </summary>
+        internal static string Main_Button_Group {
+            get {
+                return ResourceManager.GetString("Main_Button_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Mog Station.
+        /// </summary>
+        internal static string Main_Button_Mogstation {
+            get {
+                return ResourceManager.GetString("Main_Button_Mogstation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Presets.
+        /// </summary>
+        internal static string Main_Button_Presets {
+            get {
+                return ResourceManager.GetString("Main_Button_Presets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Settings.
+        /// </summary>
+        internal static string Main_Button_Settings {
+            get {
+                return ResourceManager.GetString("Main_Button_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à XIVISUP.
+        /// </summary>
+        internal static string Main_Button_XIVISUP {
+            get {
+                return ResourceManager.GetString("Main_Button_XIVISUP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Launch Group.
+        /// </summary>
+        internal static string Main_Header_Button_LaunchGroup {
+            get {
+                return ResourceManager.GetString("Main_Header_Button_LaunchGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Launch all characters in this group.
+        /// </summary>
+        internal static string Main_Header_Button_LaunchGroup_Tooltip {
+            get {
+                return ResourceManager.GetString("Main_Header_Button_LaunchGroup_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Group:.
+        /// </summary>
+        internal static string Main_Header_Text_Group {
+            get {
+                return ResourceManager.GetString("Main_Header_Text_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Close the application.
+        /// </summary>
+        internal static string Main_Tooltip_Close {
+            get {
+                return ResourceManager.GetString("Main_Tooltip_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add a new character.
+        /// </summary>
+        internal static string Main_View_Button_AddCharacter {
+            get {
+                return ResourceManager.GetString("Main_View_Button_AddCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Launch.
+        /// </summary>
+        internal static string Main_View_Button_Run {
+            get {
+                return ResourceManager.GetString("Main_View_Button_Run", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Dalamud Beta Key.
+        /// </summary>
+        internal static string Parameter_View_Label_BetaKey {
+            get {
+                return ResourceManager.GetString("Parameter_View_Label_BetaKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Dalamud Beta Kind.
+        /// </summary>
+        internal static string Parameter_View_Label_BetaKind {
+            get {
+                return ResourceManager.GetString("Parameter_View_Label_BetaKind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Language.
+        /// </summary>
+        internal static string Parameter_View_Label_Language {
+            get {
+                return ResourceManager.GetString("Parameter_View_Label_Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Launcher Settings.
+        /// </summary>
+        internal static string Parameter_View_Label_Title {
+            get {
+                return ResourceManager.GetString("Parameter_View_Label_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à XIVLauncher Path.
+        /// </summary>
+        internal static string Parameter_View_Label_XIVLauncherPath {
+            get {
+                return ResourceManager.GetString("Parameter_View_Label_XIVLauncherPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap portrait_default {
+            get {
+                object obj = ResourceManager.GetObject("portrait_default", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Import.
+        /// </summary>
+        internal static string Preset_Header_Button_Import {
+            get {
+                return ResourceManager.GetString("Preset_Header_Button_Import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à New Preset.
+        /// </summary>
+        internal static string Preset_Header_Button_NewPreset {
+            get {
+                return ResourceManager.GetString("Preset_Header_Button_NewPreset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Import an existing preset from file.
+        /// </summary>
+        internal static string Preset_Header_Tooltip_Import {
+            get {
+                return ResourceManager.GetString("Preset_Header_Tooltip_Import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Create a new preset.
+        /// </summary>
+        internal static string Preset_Header_Tooltip_NewPreset {
+            get {
+                return ResourceManager.GetString("Preset_Header_Tooltip_NewPreset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add Preset.
+        /// </summary>
+        internal static string Preset_View_Button_AddPreset {
+            get {
+                return ResourceManager.GetString("Preset_View_Button_AddPreset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Delete.
+        /// </summary>
+        internal static string Preset_View_Button_Delete {
+            get {
+                return ResourceManager.GetString("Preset_View_Button_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Download Preset.
+        /// </summary>
+        internal static string Preset_View_Button_Download {
+            get {
+                return ResourceManager.GetString("Preset_View_Button_Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Edit.
+        /// </summary>
+        internal static string Preset_View_Button_Modify {
+            get {
+                return ResourceManager.GetString("Preset_View_Button_Modify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Confirm.
+        /// </summary>
+        internal static string Preset_View_Button_Validate {
+            get {
+                return ResourceManager.GetString("Preset_View_Button_Validate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Back.
+        /// </summary>
+        internal static string Preset_View_Edit_Button_Back {
+            get {
+                return ResourceManager.GetString("Preset_View_Edit_Button_Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Copy from Character.
+        /// </summary>
+        internal static string Preset_View_Edit_Button_Copy {
+            get {
+                return ResourceManager.GetString("Preset_View_Edit_Button_Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Open Folder.
+        /// </summary>
+        internal static string Preset_View_Edit_Button_OpenFolder {
+            get {
+                return ResourceManager.GetString("Preset_View_Edit_Button_OpenFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Save.
+        /// </summary>
+        internal static string Preset_View_Edit_Button_Save {
+            get {
+                return ResourceManager.GetString("Preset_View_Edit_Button_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Copy Configuration.
+        /// </summary>
+        internal static string Preset_View_Edit_Label_CopyChar {
+            get {
+                return ResourceManager.GetString("Preset_View_Edit_Label_CopyChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You can copy configuration files from an existing character setup..
+        /// </summary>
+        internal static string Preset_View_Edit_Label_CopyChar2 {
+            get {
+                return ResourceManager.GetString("Preset_View_Edit_Label_CopyChar2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Preset Folder.
+        /// </summary>
+        internal static string Preset_View_Edit_Label_OpenFolder {
+            get {
+                return ResourceManager.GetString("Preset_View_Edit_Label_OpenFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Open the preset folder to manually edit configuration files..
+        /// </summary>
+        internal static string Preset_View_Edit_Label_OpenFolder2 {
+            get {
+                return ResourceManager.GetString("Preset_View_Edit_Label_OpenFolder2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Edit Preset.
+        /// </summary>
+        internal static string Preset_View_Edit_Label_Title {
+            get {
+                return ResourceManager.GetString("Preset_View_Edit_Label_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Presets.
+        /// </summary>
+        internal static string Preset_View_Label_Title {
+            get {
+                return ResourceManager.GetString("Preset_View_Label_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Back.
+        /// </summary>
+        internal static string Settings_Header_Button_Back {
+            get {
+                return ResourceManager.GetString("Settings_Header_Button_Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Save.
+        /// </summary>
+        internal static string Settings_Header_Button_Save {
+            get {
+                return ResourceManager.GetString("Settings_Header_Button_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Return to the main launcher.
+        /// </summary>
+        internal static string Settings_Header_Tooltip_Back {
+            get {
+                return ResourceManager.GetString("Settings_Header_Tooltip_Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Save your settings.
+        /// </summary>
+        internal static string Settings_Header_Tooltip_Save {
+            get {
+                return ResourceManager.GetString("Settings_Header_Tooltip_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Warning.
+        /// </summary>
+        internal static string Warning {
+            get {
+                return ResourceManager.GetString("Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add.
+        /// </summary>
+        internal static string Window_Member_Add_Button_Validate {
+            get {
+                return ResourceManager.GetString("Window_Member_Add_Button_Validate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Please select a character before confirming..
+        /// </summary>
+        internal static string Window_Member_Add_MessageBox_SelectChar {
+            get {
+                return ResourceManager.GetString("Window_Member_Add_MessageBox_SelectChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Select a character to add to this group:.
+        /// </summary>
+        internal static string Window_Member_Add_Text {
+            get {
+                return ResourceManager.GetString("Window_Member_Add_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add Member.
+        /// </summary>
+        internal static string Window_Member_Add_Title {
+            get {
+                return ResourceManager.GetString("Window_Member_Add_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Confirm.
+        /// </summary>
+        internal static string Window_Preset_Add_Button_Validate {
+            get {
+                return ResourceManager.GetString("Window_Preset_Add_Button_Validate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add Preset Item.
+        /// </summary>
+        internal static string Window_Preset_Add_Item {
+            get {
+                return ResourceManager.GetString("Window_Preset_Add_Item", resourceCulture);
+            }
+        }
     }
 }

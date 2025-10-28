@@ -327,4 +327,86 @@
   <data name="Group_View_Button_Delete" xml:space="preserve">
     <value>Supprimer</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="portrait_default" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Job_Warrior" xml:space="preserve">
+    <value>Guerrier</value>
+  </data>
+  <data name="Job_Paladin" xml:space="preserve">
+    <value>Paladin</value>
+  </data>
+  <data name="Job_Scholar" xml:space="preserve">
+    <value>Erudit</value>
+  </data>
+  <data name="Job_Summoner" xml:space="preserve">
+    <value>Invocateur</value>
+  </data>
+  <data name="Job_WhiteMage" xml:space="preserve">
+    <value>Mage Blanc</value>
+  </data>
+  <data name="Job_Bard" xml:space="preserve">
+    <value>Barde</value>
+  </data>
+  <data name="Job_RedMage" xml:space="preserve">
+    <value>Mage Rouge</value>
+  </data>
+  <data name="Job_Samurai" xml:space="preserve">
+    <value>Samurai</value>
+  </data>
+  <data name="Job_Ninja" xml:space="preserve">
+    <value>Ninja</value>
+  </data>
+  <data name="Job_Machinist" xml:space="preserve">
+    <value>Machiniste</value>
+  </data>
+  <data name="Job_Dragoon" xml:space="preserve">
+    <value>Chevalier Dragon</value>
+  </data>
+  <data name="Job_Arcanist" xml:space="preserve">
+    <value>Arcaniste</value>
+  </data>
+  <data name="Job_Conjurer" xml:space="preserve">
+    <value>Élémentaliste</value>
+  </data>
+  <data name="Job_Archer" xml:space="preserve">
+    <value>Archer</value>
+  </data>
+  <data name="Job_Carpenter" xml:space="preserve">
+    <value>Menuisier</value>
+  </data>
+  <data name="Job_Miner" xml:space="preserve">
+    <value>Mineur</value>
+  </data>
+  <data name="Job_Botanist" xml:space="preserve">
+    <value>Botaniste</value>
+  </data>
+  <data name="Job_Fisher" xml:space="preserve">
+    <value>Pêcheur</value>
+  </data>
+  <data name="Job_Leatherworker" xml:space="preserve">
+    <value>Tanneur</value>
+  </data>
+  <data name="Job_Culinarian" xml:space="preserve">
+    <value>Cuisinier</value>
+  </data>
+  <data name="Job_Goldsmith" xml:space="preserve">
+    <value>Orfèvre</value>
+  </data>
+  <data name="Job_Weaver" xml:space="preserve">
+    <value>Couturier</value>
+  </data>
+  <data name="Job_Blacksmith" xml:space="preserve">
+    <value>Forgeron</value>
+  </data>
+  <data name="Job_Armorer" xml:space="preserve">
+    <value>Armurier</value>
+  </data>
+  <data name="Job_Alchemist" xml:space="preserve">
+    <value>Alchimiste</value>
+  </data>
+  <data name="Job_Unknown" xml:space="preserve">
+    <value>Inconnu</value>
+  </data>
 </root>
