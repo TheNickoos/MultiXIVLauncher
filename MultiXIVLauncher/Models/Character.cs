@@ -42,7 +42,14 @@ namespace MultiXIVLauncher.Models
         /// </summary>
         public string Server { get; set; }
 
+        /// <summary>
+        /// Current character level.
+        /// </summary>
+        public int Level { get; set; }
+
+#pragma warning disable CS8618
         public Character()
+#pragma warning restore CS8618
         {
             Name = "";
             GroupIds = new List<int>();
