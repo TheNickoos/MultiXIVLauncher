@@ -14,6 +14,10 @@ namespace MultiXIVLauncher
     /// </summary>
     public partial class App : Application
     {
+#if DEBUG
+        [System.Runtime.InteropServices.DllImport("kernel32.dll")]
+        private static extern bool AllocConsole();
+#endif
         /// <summary>
         /// Invoked when the application starts.
         /// Initializes error handling, loads user configuration, applies localization settings,
@@ -23,7 +27,9 @@ namespace MultiXIVLauncher
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
+#if DEBUG
+            AllocConsole();
+#endif
             ErrorManager.Initialize();
             ConfigManager.Load();
             LanguageManager.Initialize(ConfigManager.Current.Launcher.Language);
