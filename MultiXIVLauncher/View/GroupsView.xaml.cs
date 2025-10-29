@@ -78,19 +78,18 @@ namespace MultiXIVLauncher.Views
             );
 
             // Clone characters with their current group assignments
-            TemporaryCharacters = ConfigManager.Current.Characters
+            TemporaryCharacters = [.. ConfigManager.Current.Characters
                 .Select(c => new Character
                 {
                     Id = c.Id,
                     Name = c.Name,
                     LodestoneId = c.LodestoneId,
                     PresetId = c.PresetId,
-                    GroupIds = new List<int>(c.GroupIds),
+                    GroupIds = [.. c.GroupIds],
                     Class = c.Class,
                     Server = c.Server,
                     Level = c.Level
-                })
-                .ToList();
+                })];
         }
 
         /// <summary>
@@ -176,7 +175,7 @@ namespace MultiXIVLauncher.Views
         /// <param name="group">The group to visually represent.</param>
         private void AddGroupCard(Group group)
         {
-            Border card = new Border
+            Border card = new()
             {
                 Style = (Style)FindResource("CardBorder"),
                 Opacity = 0,
@@ -190,12 +189,12 @@ namespace MultiXIVLauncher.Views
                 }
             };
 
-            Grid content = new Grid();
+            Grid content = new();
             content.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             content.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
 
             // === LEFT PANEL ===
-            StackPanel info = new StackPanel { Orientation = Orientation.Vertical };
+            StackPanel info = new() { Orientation = Orientation.Vertical };
 
             var nameText = new TextBlock
             {
@@ -213,11 +212,10 @@ namespace MultiXIVLauncher.Views
             var membersCount = new TextBlock
             {
                 Style = (Style)FindResource("BodyText"),
-                Opacity = 0.8
+                Opacity = 0.8,
+                // Update member count text
+                Text = $"{GetCharacterCount(group.Id)} characters"
             };
-
-            // Update member count text
-            membersCount.Text = $"{GetCharacterCount(group.Id)} characters";
 
             // Store a tag for later reference
             card.Tag = new Tuple<Group, TextBlock>(group, membersCount);
@@ -226,7 +224,7 @@ namespace MultiXIVLauncher.Views
             info.Children.Add(membersCount);
 
             // === RIGHT PANEL (ACTIONS) ===
-            StackPanel actions = new StackPanel
+            StackPanel actions = new()
             {
                 Orientation = Orientation.Horizontal,
                 VerticalAlignment = VerticalAlignment.Center,

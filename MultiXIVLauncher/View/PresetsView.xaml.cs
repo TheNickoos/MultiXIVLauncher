@@ -24,7 +24,7 @@ namespace MultiXIVLauncher.Views
         /// <summary>
         /// Temporary copy of presets to edit safely before saving.
         /// </summary>
-        private readonly List<Preset> tempPresets = new List<Preset>();
+        private readonly List<Preset> tempPresets = [];
 
         public PresetsView()
         {
@@ -102,7 +102,7 @@ namespace MultiXIVLauncher.Views
         /// </summary>
         private void AddPresetCard(Preset preset, bool animate = true)
         {
-            Border card = new Border
+            Border card = new()
             {
                 Style = (Style)FindResource("CardBorder"),
                 Opacity = 0,
@@ -116,7 +116,7 @@ namespace MultiXIVLauncher.Views
                 }
             };
 
-            Grid content = new Grid();
+            Grid content = new();
             content.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             content.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
 
@@ -129,7 +129,7 @@ namespace MultiXIVLauncher.Views
                 VerticalAlignment = VerticalAlignment.Center
             };
 
-            StackPanel actions = new StackPanel
+            StackPanel actions = new()
             {
                 Orientation = Orientation.Horizontal,
                 VerticalAlignment = VerticalAlignment.Center,
