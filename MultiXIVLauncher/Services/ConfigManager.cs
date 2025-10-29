@@ -9,20 +9,12 @@ namespace MultiXIVLauncher.Services
     public static class ConfigManager
     {
         private static readonly string ConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
-        private static readonly object _lock = new object();
-        private static Config _config;
+        private static readonly object _lock = new();
+        private static Config? _config;
 
         private const int CURRENT_VERSION = 2;
 
-        public static Config Current
-        {
-            get
-            {
-                if (_config == null)
-                    Load();
-                return _config;
-            }
-        }
+        public static Config Current => _config ?? throw new InvalidOperationException("Configuration not loaded.");
 
         /// <summary>
         /// Loads the configuration file from disk and applies upgrades if necessary.
@@ -164,21 +156,21 @@ namespace MultiXIVLauncher.Services
 
                 if (_config.Presets == null)
                 {
-                    _config.Presets = new System.Collections.Generic.List<Preset>();
+                    _config.Presets = [];
                     Logger.Warn("Presets list missing. Created empty list.");
                     changed = true;
                 }
 
                 if (_config.Groups == null)
                 {
-                    _config.Groups = new System.Collections.Generic.List<Group>();
+                    _config.Groups = [];
                     Logger.Warn("Groups list missing. Created empty list.");
                     changed = true;
                 }
 
                 if (_config.Characters == null)
                 {
-                    _config.Characters = new System.Collections.Generic.List<Character>();
+                    _config.Characters = [];
                     Logger.Warn("Characters list missing. Created empty list.");
                     changed = true;
                 }
@@ -211,9 +203,9 @@ namespace MultiXIVLauncher.Services
                     Language = "en",
                     Path = ""
                 },
-                Presets = new System.Collections.Generic.List<Preset>(),
-                Groups = new System.Collections.Generic.List<Group>(),
-                Characters = new System.Collections.Generic.List<Character>()
+                Presets = [],
+                Groups = [],
+                Characters = []
             };
         }
 

@@ -15,10 +15,12 @@ namespace MultiXIVLauncher.Services
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null)
-                return "";
+                return string.Empty;
 
-            return LanguageManager.T(value.ToString());
+            var key = value.ToString() ?? string.Empty;
+            return LanguageManager.T(key);
         }
+
 
         /// <summary>
         /// Conversion back is not supported for language bindings.

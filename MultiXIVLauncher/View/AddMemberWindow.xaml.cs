@@ -15,7 +15,7 @@ namespace MultiXIVLauncher.Views
         /// <summary>
         /// Gets the character selected by the user.
         /// </summary>
-        public Character SelectedCharacter { get; private set; }
+        public Character? SelectedCharacter { get; private set; }
 
         private readonly List<string> AvailableCharacterNames;
 
@@ -28,7 +28,7 @@ namespace MultiXIVLauncher.Views
         {
             InitializeComponent();
 
-            AvailableCharacterNames = availableCharacterNames ?? new List<string>();
+            AvailableCharacterNames = availableCharacterNames ?? [];
 
             foreach (var name in AvailableCharacterNames)
                 CharacterList.Items.Add(name);

@@ -12,7 +12,7 @@ namespace MultiXIVLauncher.Views
         /// <summary>
         /// Gets the preset item selected by the user.
         /// </summary>
-        public PresetItem SelectedItem { get; private set; }
+        public PresetItem? SelectedItem { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AddPresetItemWindow"/> class.
@@ -29,7 +29,7 @@ namespace MultiXIVLauncher.Views
         {
             if (ItemList.SelectedItem is ListBoxItem item)
             {
-                SelectedItem = new PresetItem { Name = item.Content.ToString() };
+                SelectedItem = new PresetItem { Name = item.Content?.ToString() ?? string.Empty };
                 DialogResult = true;
             }
         }

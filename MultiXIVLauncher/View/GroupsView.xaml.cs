@@ -25,12 +25,12 @@ namespace MultiXIVLauncher.Views
         /// <summary>
         /// Temporary in-memory list of groups being edited.
         /// </summary>
-        private ObservableCollection<Group> TemporaryGroups { get; set; }
+        private ObservableCollection<Group>? TemporaryGroups { get; set; }
 
         /// <summary>
         /// Temporary in-memory list of characters reflecting live group membership edits.
         /// </summary>
-        private List<Character> TemporaryCharacters { get; set; }
+        private List<Character>? TemporaryCharacters { get; set; }
 
         private bool isAddingGroup = false;
 

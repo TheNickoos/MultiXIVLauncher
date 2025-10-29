@@ -39,17 +39,17 @@ namespace MultiXIVLauncher.Services
         /// </summary>
         private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            var ex = e.ExceptionObject as Exception;
-            if (ex != null)
+            if (e.ExceptionObject is Exception ex)
                 LogException("Non-UI Thread crash", ex);
             else
                 Logger.Fatal("Unknown non-UI error occurred.");
         }
 
+
         /// <summary>
         /// Handles unobserved task exceptions (e.g. from async tasks).
         /// </summary>
-        private static void OnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        private static void OnUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs e)
         {
             LogException("Unobserved Task Exception", e.Exception);
             e.SetObserved();

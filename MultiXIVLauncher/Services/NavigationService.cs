@@ -8,7 +8,7 @@ namespace MultiXIVLauncher.Services
     /// </summary>
     public static class NavigationService
     {
-        private static ContentControl _contentHost;
+        private static ContentControl? _contentHost;
 
         /// <summary>
         /// Initializes the navigation service with a target <see cref="ContentControl"/> that hosts pages or views.
