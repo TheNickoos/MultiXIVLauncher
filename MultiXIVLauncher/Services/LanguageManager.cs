@@ -43,8 +43,7 @@ namespace MultiXIVLauncher.Services
             Apply(langCode);
             Logger.Info("Language changed to: " + langCode);
 
-            if (LanguageChanged != null)
-                LanguageChanged.Invoke();
+            LanguageChanged?.Invoke();
         }
 
         /// <summary>
@@ -81,8 +80,7 @@ namespace MultiXIVLauncher.Services
         {
             try
             {
-                if (_resourceManager == null)
-                    _resourceManager = new ResourceManager("MultiXIVLauncher.Properties.Resources", Assembly.GetExecutingAssembly());
+                _resourceManager ??= new ResourceManager("MultiXIVLauncher.Properties.Resources", Assembly.GetExecutingAssembly());
 
                 string? value = _resourceManager.GetString(key, _currentCulture);
                 if (!string.IsNullOrEmpty(value))
