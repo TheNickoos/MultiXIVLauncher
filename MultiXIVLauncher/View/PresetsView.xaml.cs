@@ -1,6 +1,10 @@
-﻿using MultiXIVLauncher.Utils;
+﻿using MultiXIVLauncher.Models;
+using MultiXIVLauncher.Services;
+using MultiXIVLauncher.Utils;
+using MultiXIVLauncher.Utils.Interfaces;
 using MultiXIVLauncher.Views.Headers;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -11,23 +15,51 @@ namespace MultiXIVLauncher.Views
     /// <summary>
     /// Interaction logic for the presets management view.
     /// Allows the user to create, edit, and delete presets dynamically with animations.
+    /// Changes are applied only to a temporary list until saved.
     /// </summary>
-    public partial class PresetsView : UserControl
+    public partial class PresetsView : UserControl, ISavableView
     {
         private bool isAddingPreset = false;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PresetsView"/> class.
+        /// Temporary copy of presets to edit safely before saving.
         /// </summary>
+        private readonly List<Preset> tempPresets = new List<Preset>();
+
         public PresetsView()
         {
             InitializeComponent();
             ((LauncherWindow)Application.Current.MainWindow).SetHeaderContent(new SettingsHeader());
+
+            // Copy presets from config to temporary list
+            foreach (var preset in ConfigManager.Current.Presets)
+                tempPresets.Add(new Preset
+                {
+                    Id = preset.Id,
+                    Name = preset.Name,
+                    FolderPath = preset.FolderPath
+                });
+
+            // Display all presets
+            LoadPresets();
         }
 
         /// <summary>
-        /// Displays input controls to add a new preset when the Add button is clicked.
+        /// Reloads the UI from the temporary list (public so child views can trigger it).
         /// </summary>
+        public void RefreshList() => LoadPresets();
+
+        /// <summary>
+        /// Loads all presets from the temporary list into the UI.
+        /// </summary>
+        private void LoadPresets()
+        {
+            PresetListPanel.Children.Clear();
+
+            foreach (var preset in tempPresets)
+                AddPresetCard(preset, false);
+        }
+
         private void BtnAddPreset_Click(object sender, RoutedEventArgs e)
         {
             if (!isAddingPreset)
@@ -39,9 +71,6 @@ namespace MultiXIVLauncher.Views
             }
         }
 
-        /// <summary>
-        /// Validates and adds a new preset card to the list.
-        /// </summary>
         private void BtnValidate_Click(object sender, RoutedEventArgs e)
         {
             if (isAddingPreset)
@@ -49,7 +78,15 @@ namespace MultiXIVLauncher.Views
                 string newPresetName = TxtPresetName.Text.Trim();
                 if (!string.IsNullOrEmpty(newPresetName))
                 {
-                    AddPresetCard(newPresetName);
+                    var newPreset = new Preset
+                    {
+                        Id = tempPresets.Count + 1,
+                        Name = newPresetName,
+                        FolderPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Presets", newPresetName)
+                    };
+
+                    tempPresets.Add(newPreset);
+                    AddPresetCard(newPreset);
                 }
 
                 isAddingPreset = false;
@@ -63,7 +100,7 @@ namespace MultiXIVLauncher.Views
         /// <summary>
         /// Creates and adds a visual card representing a preset with action buttons.
         /// </summary>
-        private void AddPresetCard(string presetName)
+        private void AddPresetCard(Preset preset, bool animate = true)
         {
             Border card = new Border
             {
@@ -85,7 +122,7 @@ namespace MultiXIVLauncher.Views
 
             var nameText = new TextBlock
             {
-                Text = presetName,
+                Text = preset.Name,
                 FontSize = 16,
                 FontWeight = FontWeights.Bold,
                 Foreground = (Brush)FindResource("ClrTextPrimary"),
@@ -108,7 +145,8 @@ namespace MultiXIVLauncher.Views
             };
             editButton.Click += (s, e) =>
             {
-                var editView = new PresetEditView();
+                // Open editor with reference to THIS view so we can refresh on return
+                var editView = new PresetEditView(preset, this);
                 ((LauncherWindow)Application.Current.MainWindow).SetPage(editView);
             };
 
@@ -119,7 +157,10 @@ namespace MultiXIVLauncher.Views
                 Style = (Style)FindResource("OutlineButton")
             };
             deleteButton.Click += (s, e) =>
+            {
+                tempPresets.Remove(preset);
                 UIAnimationHelper.AnimateRemoval(card, () => PresetListPanel.Children.Remove(card));
+            };
 
             actions.Children.Add(editButton);
             actions.Children.Add(deleteButton);
@@ -131,12 +172,19 @@ namespace MultiXIVLauncher.Views
 
             PresetListPanel.Children.Add(card);
 
-            UIAnimationHelper.AnimateAppearance(card);
+            if (animate)
+                UIAnimationHelper.AnimateAppearance(card);
+            else
+                card.Opacity = 1;
         }
 
-        /// <summary>
-        /// Displays a UI element with a short fade-in animation.
-        /// </summary>
+        public void Save()
+        {
+            ConfigManager.Current.Presets.Clear();
+            ConfigManager.Current.Presets.AddRange(tempPresets);
+            ConfigManager.Save();
+        }
+
         private void ShowElement(UIElement element)
         {
             element.Visibility = Visibility.Visible;
@@ -144,9 +192,6 @@ namespace MultiXIVLauncher.Views
             element.BeginAnimation(OpacityProperty, fadeIn);
         }
 
-        /// <summary>
-        /// Hides a UI element with a short fade-out animation.
-        /// </summary>
         private void HideElement(UIElement element)
         {
             var fadeOut = new System.Windows.Media.Animation.DoubleAnimation(1, 0, new Duration(TimeSpan.FromMilliseconds(150)));

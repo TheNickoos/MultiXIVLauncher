@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MultiXIVLauncher.Models;
+using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -7,36 +9,37 @@ namespace MultiXIVLauncher.Views
 {
     /// <summary>
     /// Interaction logic for the preset editor view.
-    /// Allows the user to copy, open, and save presets for different configurations.
+    /// Allows the user to modify a preset temporarily before final save.
     /// </summary>
     public partial class PresetEditView : UserControl
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PresetEditView"/> class.
-        /// </summary>
-        public PresetEditView()
-        {
-            InitializeComponent();
-        }
+        private readonly Preset currentPreset;
+        private readonly PresetsView parentView;
 
         /// <summary>
-        /// Displays a placeholder message for the upcoming feature:
-        /// copying settings from an existing character configuration.
+        /// Initializes a new instance of the <see cref="PresetEditView"/> class for editing an existing preset.
         /// </summary>
+        /// <param name="preset">The preset to edit (from the temporary list).</param>
+        /// <param name="parent">The parent PresetsView instance to refresh on return.</param>
+        public PresetEditView(Preset preset, PresetsView parent)
+        {
+            InitializeComponent();
+            currentPreset = preset ?? throw new ArgumentNullException(nameof(preset));
+            parentView = parent ?? throw new ArgumentNullException(nameof(parent));
+
+            TxtPresetName.Text = currentPreset.Name;
+        }
+
         private void CopyFromCharacter_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Feature coming soon: copy settings from an existing character!");
         }
 
-        /// <summary>
-        /// Opens the preset folder in Windows Explorer if it exists.
-        /// Displays an informational message if the folder is missing.
-        /// </summary>
         private void OpenPresetFolder_Click(object sender, RoutedEventArgs e)
         {
-            string presetPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Presets", TxtPresetName.Text);
+            string presetPath = currentPreset.FolderPath;
 
-            if (System.IO.Directory.Exists(presetPath))
+            if (Directory.Exists(presetPath))
             {
                 Process.Start("explorer.exe", presetPath);
             }
@@ -52,19 +55,27 @@ namespace MultiXIVLauncher.Views
         }
 
         /// <summary>
-        /// Displays a confirmation message when the preset is saved.
+        /// Applies changes made in the UI to the current preset object (in-memory only).
         /// </summary>
-        private void SavePreset_Click(object sender, RoutedEventArgs e)
+        private void ApplyChanges()
         {
-            MessageBox.Show($"Preset \"{TxtPresetName.Text}\" saved successfully!");
+            string newName = TxtPresetName.Text.Trim();
+
+            if (!string.IsNullOrEmpty(newName))
+            {
+                currentPreset.Name = newName;
+                currentPreset.FolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Presets", newName);
+            }
         }
 
         /// <summary>
-        /// Returns to the presets list view.
+        /// Returns to the presets list view and refreshes its display.
         /// </summary>
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            ((LauncherWindow)Application.Current.MainWindow).SetPage(new PresetsView());
+            ApplyChanges();                 // Update in-memory preset
+            parentView.RefreshList();       // Refresh existing list UI
+            ((LauncherWindow)Application.Current.MainWindow).SetPage(parentView); // Navigate back to the SAME instance
         }
     }
 }
