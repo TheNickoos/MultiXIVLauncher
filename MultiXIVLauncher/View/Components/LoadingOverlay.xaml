@@ -1,0 +1,35 @@
+<UserControl x:Class="MultiXIVLauncher.View.Components.LoadingOverlay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#80000000">
+    <!-- semi-transparent black -->
+
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Border Background="#1E1E2A"
+        CornerRadius="12"
+        Padding="30">
+            <Border.Effect>
+                <DropShadowEffect Color="#B993FF"
+                          BlurRadius="25"
+                          ShadowDepth="0"
+                          Opacity="0.8"/>
+            </Border.Effect>
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock x:Name="LblStatus"
+                   Text="Updating characters..."
+                   FontSize="16"
+                   Foreground="{StaticResource ClrTextPrimary}"
+                   Margin="0,0,0,12"
+                   HorizontalAlignment="Center"/>
+
+                <ProgressBar x:Name="Progress"
+                     Width="240"
+                     Height="16"
+                     IsIndeterminate="True"
+                     Foreground="{StaticResource ClrAccent}"
+                     Background="#333"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

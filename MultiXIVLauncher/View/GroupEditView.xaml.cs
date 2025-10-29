@@ -10,7 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace MultiXIVLauncher.Views
+namespace MultiXIVLauncher.View
 {
     /// <summary>
     /// View that allows editing a specific group's information and members.

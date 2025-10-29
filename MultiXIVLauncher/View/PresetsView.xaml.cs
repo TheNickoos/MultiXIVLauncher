@@ -2,7 +2,7 @@
 using MultiXIVLauncher.Services;
 using MultiXIVLauncher.Utils;
 using MultiXIVLauncher.Utils.Interfaces;
-using MultiXIVLauncher.Views.Headers;
+using MultiXIVLauncher.View.Headers;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -10,7 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 
-namespace MultiXIVLauncher.Views
+namespace MultiXIVLauncher.View
 {
     /// <summary>
     /// Interaction logic for the presets management view.

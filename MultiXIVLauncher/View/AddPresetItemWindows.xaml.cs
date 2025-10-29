@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace MultiXIVLauncher.Views
+namespace MultiXIVLauncher.View
 {
     /// <summary>
     /// Interaction logic for the window that allows users to select and add a new preset item.

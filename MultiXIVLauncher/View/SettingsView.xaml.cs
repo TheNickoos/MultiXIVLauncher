@@ -1,11 +1,11 @@
 ﻿using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Controls;
-using MultiXIVLauncher.Views.Headers;
+using MultiXIVLauncher.View.Headers;
 using MultiXIVLauncher.Utils.Interfaces;
 using MultiXIVLauncher.Services;
 
-namespace MultiXIVLauncher.Views
+namespace MultiXIVLauncher.View
 {
     /// <summary>
     /// Interaction logic for the settings view.

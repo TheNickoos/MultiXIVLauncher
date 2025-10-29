@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 
-namespace MultiXIVLauncher.Views
+namespace MultiXIVLauncher.View
 {
     /// <summary>
     /// Window that allows the user to select a character to add to a group.

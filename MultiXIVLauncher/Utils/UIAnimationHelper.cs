@@ -42,7 +42,7 @@ namespace MultiXIVLauncher.Utils
         /// <summary>
         /// Animates the disappearance of an element with slide down + fade.
         /// </summary>
-        public static void AnimateRemoval(FrameworkElement element, Action onComplete = null)
+        public static void AnimateRemoval(FrameworkElement element, Action? onComplete = null)
         {
             var fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(250))
             {

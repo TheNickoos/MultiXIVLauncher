@@ -25,6 +25,8 @@
         {
             Path = "";
             Language = "en";
+            DalamudBetaKey = "";
+            DalamudBetaKind = "";
         }
     }
 }

@@ -2,7 +2,7 @@
 using MultiXIVLauncher.Services;
 using MultiXIVLauncher.Utils;
 using MultiXIVLauncher.Utils.Interfaces;
-using MultiXIVLauncher.Views.Headers;
+using MultiXIVLauncher.View.Headers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 
-namespace MultiXIVLauncher.Views
+namespace MultiXIVLauncher.View
 {
     /// <summary>
     /// View responsible for displaying and managing user groups.

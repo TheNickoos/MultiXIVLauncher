@@ -1,4 +1,4 @@
-<Window x:Class="MultiXIVLauncher.Views.AddMemberWindow"
+<Window x:Class="MultiXIVLauncher.View.AddMemberWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:services="clr-namespace:MultiXIVLauncher.Services"

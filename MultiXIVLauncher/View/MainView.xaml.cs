@@ -1,6 +1,6 @@
 ﻿using MultiXIVLauncher.Models;
 using MultiXIVLauncher.Services;
-using MultiXIVLauncher.Views.Headers;
+using MultiXIVLauncher.View.Headers;
 using System;
 using System.IO;
 using System.Windows;
@@ -11,7 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 
-namespace MultiXIVLauncher.Views
+namespace MultiXIVLauncher.View
 {
     public partial class MainView : UserControl
     {
@@ -203,11 +203,6 @@ namespace MultiXIVLauncher.Views
 
             card.BeginAnimation(OpacityProperty, fadeIn);
             card.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideUp);
-        }
-
-        private void AddCharacter_Click(object sender, RoutedEventArgs e)
-        {
-            ((LauncherWindow)Application.Current.MainWindow).SetPage(new CharacterEditView());
         }
 
         private void LaunchCharacter(Character character)

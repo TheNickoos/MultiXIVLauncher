@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace MultiXIVLauncher.Views.Headers
+namespace MultiXIVLauncher.View.Headers
 {
     public partial class MainHeader : UserControl
     {

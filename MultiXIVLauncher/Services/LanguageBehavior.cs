@@ -105,7 +105,7 @@ namespace MultiXIVLauncher.Services
             if (string.IsNullOrEmpty(key))
                 return;
 
-            (d as FrameworkElement).ToolTip = LanguageManager.T(key);
+            ((FrameworkElement)d).ToolTip = LanguageManager.T(key);
         }
 
         /// <summary>

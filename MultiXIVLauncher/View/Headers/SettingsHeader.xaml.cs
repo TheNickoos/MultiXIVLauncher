@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using MultiXIVLauncher.Utils.Interfaces;
 
-namespace MultiXIVLauncher.Views.Headers
+namespace MultiXIVLauncher.View.Headers
 {
     /// <summary>
     /// Header displayed at the top of the Settings view.
@@ -25,11 +25,6 @@ namespace MultiXIVLauncher.Views.Headers
             if (mainWindow.MainContent.Content is ISavableView savableView)
             {
                 savableView.Save();
-                MessageBox.Show("Changes saved successfully!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                MessageBox.Show("This view does not support saving.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -38,7 +33,7 @@ namespace MultiXIVLauncher.Views.Headers
         /// </summary>
         private void ReturnToMain(object sender, RoutedEventArgs e)
         {
-            ((LauncherWindow)Application.Current.MainWindow).MainContent.Content = new Views.MainView();
+            ((LauncherWindow)Application.Current.MainWindow).MainContent.Content = new View.MainView();
         }
     }
 }
