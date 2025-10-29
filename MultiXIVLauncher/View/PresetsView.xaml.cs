@@ -185,14 +185,14 @@ namespace MultiXIVLauncher.Views
             ConfigManager.Save();
         }
 
-        private void ShowElement(UIElement element)
+        private static void ShowElement(UIElement element)
         {
             element.Visibility = Visibility.Visible;
             var fadeIn = new System.Windows.Media.Animation.DoubleAnimation(0, 1, new Duration(TimeSpan.FromMilliseconds(150)));
             element.BeginAnimation(OpacityProperty, fadeIn);
         }
 
-        private void HideElement(UIElement element)
+        private static void HideElement(UIElement element)
         {
             var fadeOut = new System.Windows.Media.Animation.DoubleAnimation(1, 0, new Duration(TimeSpan.FromMilliseconds(150)));
             fadeOut.Completed += (s, _) => element.Visibility = Visibility.Collapsed;
