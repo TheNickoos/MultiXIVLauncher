@@ -98,13 +98,15 @@ namespace MultiXIVLauncher.Views
         /// </summary>
         private void RefreshGroupList()
         {
+            if (GroupListPanel == null || TemporaryGroups == null)
+                return;
+
             GroupListPanel.Children.Clear();
 
             foreach (var group in TemporaryGroups)
-            {
                 AddGroupCard(group);
-            }
         }
+
 
         /// <summary>
         /// Handles the "Add Group" button click.
@@ -125,30 +127,31 @@ namespace MultiXIVLauncher.Views
         /// Handles the "Validate" button click.
         /// Adds a new group to the temporary collection.
         /// </summary>
-        private void BtnValidate_Click(object sender, RoutedEventArgs e)
+        private void BtnValidate_Click(object? sender, RoutedEventArgs e)
         {
-            if (isAddingGroup)
+            if (!isAddingGroup)
+                return;
+
+            string newGroupName = TxtGroupName.Text?.Trim() ?? string.Empty;
+            if (!string.IsNullOrEmpty(newGroupName))
             {
-                string newGroupName = TxtGroupName.Text.Trim();
-                if (!string.IsNullOrEmpty(newGroupName))
+                var newGroup = new Group
                 {
-                    var newGroup = new Group
-                    {
-                        Id = GenerateNextGroupId(),
-                        Name = newGroupName
-                    };
+                    Id = GenerateNextGroupId(),
+                    Name = newGroupName
+                };
 
-                    TemporaryGroups.Add(newGroup);
-                    AddGroupCard(newGroup);
-                }
-
-                isAddingGroup = false;
-                HideElement(TxtGroupName);
-                HideElement(BtnValidate);
-                TxtGroupName.Text = string.Empty;
-                BtnAddGroup.Visibility = Visibility.Visible;
+                TemporaryGroups?.Add(newGroup);
+                AddGroupCard(newGroup);
             }
+
+            isAddingGroup = false;
+            HideElement(TxtGroupName);
+            HideElement(BtnValidate);
+            TxtGroupName.Text = string.Empty;
+            BtnAddGroup.Visibility = Visibility.Visible;
         }
+
 
         /// <summary>
         /// Updates the member count display for all visible group cards.
@@ -207,19 +210,17 @@ namespace MultiXIVLauncher.Views
                 Mode = BindingMode.OneWay
             });
 
-
             var membersCount = new TextBlock
             {
                 Style = (Style)FindResource("BodyText"),
                 Opacity = 0.8
             };
 
-            // we’ll update it manually when returning from edit
+            // Update member count text
             membersCount.Text = $"{GetCharacterCount(group.Id)} characters";
 
-            // store a tag for easier updates later
+            // Store a tag for later reference
             card.Tag = new Tuple<Group, TextBlock>(group, membersCount);
-
 
             info.Children.Add(nameText);
             info.Children.Add(membersCount);
@@ -239,10 +240,11 @@ namespace MultiXIVLauncher.Views
                 Margin = new Thickness(0, 0, 8, 0),
                 Style = (Style)FindResource("OutlineButton")
             };
+
             editButton.Click += (s, e) =>
             {
-                var editView = new GroupEditView(group, TemporaryCharacters, this);
-                ((LauncherWindow)Application.Current.MainWindow).SetPage(editView);
+                var editView = new GroupEditView(group, TemporaryCharacters!, this);
+                ((LauncherWindow)Application.Current.MainWindow!).SetPage(editView);
             };
 
             actions.Children.Add(editButton);
@@ -253,19 +255,24 @@ namespace MultiXIVLauncher.Views
                 Height = 30,
                 Style = (Style)FindResource("OutlineButton")
             };
+
             deleteButton.Click += (s, e) =>
             {
                 UIAnimationHelper.AnimateRemoval(card, () =>
                 {
-                    TemporaryGroups.Remove(group);
+                    TemporaryGroups?.Remove(group);
 
                     // Also remove group from all characters
-                    foreach (var c in TemporaryCharacters)
-                        c.GroupIds.Remove(group.Id);
+                    if (TemporaryCharacters != null)
+                    {
+                        foreach (var c in TemporaryCharacters)
+                            c.GroupIds.Remove(group.Id);
+                    }
 
-                    GroupListPanel.Children.Remove(card);
+                    GroupListPanel?.Children.Remove(card);
                 });
             };
+
             actions.Children.Add(deleteButton);
 
             content.Children.Add(info);
@@ -273,19 +280,22 @@ namespace MultiXIVLauncher.Views
             Grid.SetColumn(actions, 1);
             card.Child = content;
 
-            GroupListPanel.Children.Add(card);
+            GroupListPanel?.Children.Add(card);
             UIAnimationHelper.AnimateAppearance(card);
         }
+
 
         /// <summary>
         /// Generates a new unique group ID based on the temporary collection.
         /// </summary>
         private int GenerateNextGroupId()
         {
-            if (TemporaryGroups.Count == 0)
+            if (TemporaryGroups == null || TemporaryGroups.Count == 0)
                 return 1;
+
             return TemporaryGroups.Max(g => g.Id) + 1;
         }
+
 
         /// <summary>
         /// Counts how many characters currently belong to a given group.
@@ -294,8 +304,9 @@ namespace MultiXIVLauncher.Views
         /// <returns>The number of characters in this group.</returns>
         private int GetCharacterCount(int groupId)
         {
-            return TemporaryCharacters.Count(c => c.GroupIds.Contains(groupId));
+            return TemporaryCharacters?.Count(c => c.GroupIds.Contains(groupId)) ?? 0;
         }
+
 
         /// <summary>
         /// Smoothly displays a UI element using a fade-in animation.
@@ -323,13 +334,22 @@ namespace MultiXIVLauncher.Views
         /// </summary>
         public void Save()
         {
+            // Ensure configuration is loaded
+            if (ConfigManager.Current == null)
+            {
+                Logger.Error("Cannot save: ConfigManager.Current is null.");
+                return;
+            }
+
             // Apply groups
-            ConfigManager.Current.Groups.Clear();
-            ConfigManager.Current.Groups.AddRange(TemporaryGroups);
+            ConfigManager.Current.Groups?.Clear();
+            if (TemporaryGroups != null)
+                ConfigManager.Current.Groups?.AddRange(TemporaryGroups);
 
             // Apply characters
-            ConfigManager.Current.Characters.Clear();
-            ConfigManager.Current.Characters.AddRange(TemporaryCharacters);
+            ConfigManager.Current.Characters?.Clear();
+            if (TemporaryCharacters != null)
+                ConfigManager.Current.Characters?.AddRange(TemporaryCharacters);
 
             // Persist configuration
             ConfigManager.Save();

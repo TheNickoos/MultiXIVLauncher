@@ -13,8 +13,8 @@ namespace MultiXIVLauncher.Services
     /// </summary>
     public static class LanguageManager
     {
-        private static ResourceManager _resourceManager;
-        private static CultureInfo _currentCulture;
+        private static ResourceManager? _resourceManager;
+        private static CultureInfo? _currentCulture;
 
         /// <summary>
         /// Gets the current language code (e.g. "en", "fr", "de").
@@ -24,7 +24,7 @@ namespace MultiXIVLauncher.Services
         /// <summary>
         /// Triggered when the active language changes.
         /// </summary>
-        public static event Action LanguageChanged;
+        public static event Action? LanguageChanged;
 
         /// <summary>
         /// Initializes the language system and applies the specified language.
@@ -84,7 +84,7 @@ namespace MultiXIVLauncher.Services
                 if (_resourceManager == null)
                     _resourceManager = new ResourceManager("MultiXIVLauncher.Properties.Resources", Assembly.GetExecutingAssembly());
 
-                string value = _resourceManager.GetString(key, _currentCulture);
+                string? value = _resourceManager.GetString(key, _currentCulture);
                 if (!string.IsNullOrEmpty(value))
                     return value;
 
