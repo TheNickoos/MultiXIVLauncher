@@ -1,4 +1,5 @@
 ﻿using MultiXIVLauncher.Utils;
+using MultiXIVLauncher.Views.Headers;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +22,7 @@ namespace MultiXIVLauncher.Views
         public PresetsView()
         {
             InitializeComponent();
+            ((LauncherWindow)Application.Current.MainWindow).SetHeaderContent(new SettingsHeader());
         }
 
         /// <summary>

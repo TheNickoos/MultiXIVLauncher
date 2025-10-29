@@ -1,13 +1,15 @@
-﻿using MultiXIVLauncher.Views.Headers;
-using MultiXIVLauncher.Utils.Interfaces;
+﻿using MultiXIVLauncher.Models;
 using MultiXIVLauncher.Services;
-using MultiXIVLauncher.Models;
+using MultiXIVLauncher.Utils.Interfaces;
+using MultiXIVLauncher.Views.Headers;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace MultiXIVLauncher.Views
 {
@@ -38,7 +40,8 @@ namespace MultiXIVLauncher.Views
             CharacterListPanel.Children.Clear();
 
             foreach (var character in ConfigManager.Current.Characters)
-                AddCharacterCard(character);
+                AddCharacterCard(character, false);
+
         }
 
 
@@ -69,8 +72,8 @@ namespace MultiXIVLauncher.Views
                     var newCharacter = Character.Create(name);
                     ConfigManager.Current.Characters.Add(newCharacter);
                     AddCharacterCard(newCharacter);
-
                 }
+
 
                 isAddingCharacter = false;
                 HideElement(TxtCharacterName);
@@ -98,6 +101,8 @@ namespace MultiXIVLauncher.Views
                     Opacity = 0.9
                 }
             };
+            card.Tag = character.Id;
+
 
             Grid content = new Grid();
             content.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
@@ -150,10 +155,30 @@ namespace MultiXIVLauncher.Views
             };
             deleteButton.Click += (s, e) =>
             {
+                var character = ConfigManager.Current.Characters.Find(c => c.Id == (int)card.Tag);
+                if (character != null)
+                {
+                    ConfigManager.Current.Characters.Remove(character);
+
+                    try
+                    {
+                        string cacheDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cache", character.Id.ToString());
+                        if (Directory.Exists(cacheDir))
+                        {
+                            Directory.Delete(cacheDir, true);
+                            Logger.Info($"Deleted cache for character '{character.Name}' (ID: {character.Id})");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Warn($"Failed to delete cache for character '{character.Name}': {ex.Message}");
+                    }
+                }
+
                 RemoveCharacterCard(card);
-                ConfigManager.Current.Characters.Remove(character);
-                ConfigManager.Save();
             };
+
+
             actions.Children.Add(deleteButton);
 
             content.Children.Add(info);

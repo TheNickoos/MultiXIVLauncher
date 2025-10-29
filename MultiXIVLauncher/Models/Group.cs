@@ -1,20 +1,30 @@
-﻿namespace MultiXIVLauncher.Models
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+namespace MultiXIVLauncher.Models
 {
-    public class Group
+    public class Group : INotifyPropertyChanged
     {
-        /// <summary>
-        /// Internal unique identifier of the group in the configuration.
-        /// </summary>
-        public int Id { get; set; }
+        private int _id;
+        private string _name = "";
 
-        /// <summary>
-        /// Display name of the group.
-        /// </summary>
-        public string Name { get; set; }
-
-        public Group()
+        public int Id
         {
-            Name = "";
+            get => _id;
+            set { _id = value; OnPropertyChanged(); }
+        }
+
+        public string Name
+        {
+            get => _name;
+            set { _name = value; OnPropertyChanged(); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

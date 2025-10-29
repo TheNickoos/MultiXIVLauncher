@@ -16,14 +16,16 @@
                        Style="{StaticResource TitleText}" 
                        Margin="0,0,0,8"/>
             <TextBox x:Name="TxtGroupName"
-                     Width="300"
-                     Height="34"
-                     Background="#1E1E2A"
-                     Foreground="{StaticResource ClrTextPrimary}"
-                     BorderBrush="{StaticResource ClrAccent}"
-                     BorderThickness="1"
-                     Padding="6,2"
-                     Text=""/>
+                 Width="300"
+                 Height="34"
+                 Background="#1E1E2A"
+                 Foreground="{StaticResource ClrTextPrimary}"
+                 BorderBrush="{StaticResource ClrAccent}"
+                 BorderThickness="1"
+                 Padding="6,2"
+                 Text=""
+                 TextChanged="TxtGroupName_TextChanged"/>
+
         </StackPanel>
 
         <StackPanel Grid.Row="1">

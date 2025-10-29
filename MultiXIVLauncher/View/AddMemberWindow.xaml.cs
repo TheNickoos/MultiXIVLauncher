@@ -1,11 +1,14 @@
 ﻿using MultiXIVLauncher.Models;
 using MultiXIVLauncher.Services;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 
 namespace MultiXIVLauncher.Views
 {
     /// <summary>
-    /// Interaction logic for the window that allows users to add a character to a group.
+    /// Window that allows the user to select a character to add to a group.
+    /// Displays only characters not already part of the group.
     /// </summary>
     public partial class AddMemberWindow : Window
     {
@@ -14,29 +17,37 @@ namespace MultiXIVLauncher.Views
         /// </summary>
         public Character SelectedCharacter { get; private set; }
 
+        private readonly List<string> AvailableCharacterNames;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="AddMemberWindow"/> class
-        /// and populates the character selection list.
+        /// Initializes a new instance of the <see cref="AddMemberWindow"/> class,
+        /// populating the character list dynamically from the provided names.
         /// </summary>
-        public AddMemberWindow()
+        /// <param name="availableCharacterNames">List of character names available for selection.</param>
+        public AddMemberWindow(List<string> availableCharacterNames)
         {
             InitializeComponent();
 
-            CharacterList.Items.Add("Lyna Jade");
-            CharacterList.Items.Add("Miles Brenner");
-            CharacterList.Items.Add("Tigris Paw");
-            CharacterList.Items.Add("Rikku Akane");
+            AvailableCharacterNames = availableCharacterNames ?? new List<string>();
+
+            foreach (var name in AvailableCharacterNames)
+                CharacterList.Items.Add(name);
         }
 
         /// <summary>
-        /// Validates the user’s selection and closes the window with a positive result.
-        /// Displays a warning message if no character is selected.
+        /// Validates the user's selection and closes the window with a positive result.
+        /// Shows a warning message if no character is selected.
         /// </summary>
         private void Validate_Click(object sender, RoutedEventArgs e)
         {
             if (CharacterList.SelectedItem is string name)
             {
-                SelectedCharacter = new Character { Name = name };
+                // Retrieve full character from ConfigManager (only for reference)
+                var existingChar = ConfigManager.Current.Characters.FirstOrDefault(c => c.Name == name);
+
+                // Create a simplified character if not found (shouldn't happen with proper sync)
+                SelectedCharacter = existingChar ?? new Character { Name = name };
+
                 DialogResult = true;
             }
             else

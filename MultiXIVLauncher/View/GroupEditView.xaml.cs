@@ -1,100 +1,155 @@
-﻿using System;
+﻿using MultiXIVLauncher.Models;
+using MultiXIVLauncher.Services;
+using MultiXIVLauncher.Utils;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using MultiXIVLauncher.Models;
 
 namespace MultiXIVLauncher.Views
 {
     /// <summary>
-    /// Interaction logic for the group editor view.
-    /// Allows managing the members of a specific group (adding, removing, and displaying characters).
+    /// View that allows editing a specific group's information and members.
+    /// All modifications are stored temporarily and not saved until the user clicks "Save" in the header.
     /// </summary>
     public partial class GroupEditView : UserControl
     {
         /// <summary>
-        /// Collection of characters that belong to the current group.
+        /// The group currently being edited.
         /// </summary>
-        public ObservableCollection<Character> Members { get; set; }
+        private readonly Group CurrentGroup;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GroupEditView"/> class
-        /// and populates the group with sample members.
+        /// Temporary list of all characters (copied from GroupsView).
+        /// Used to manage membership assignment.
         /// </summary>
-        public GroupEditView()
+        private readonly List<Character> TemporaryCharacters;
+
+        /// <summary>
+        /// List of members currently in the group, bound to the ListBox.
+        /// </summary>
+        public ObservableCollection<Character> Members { get; private set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GroupEditView"/> class.
+        /// </summary>
+        /// <param name="group">The group being edited.</param>
+        /// <param name="temporaryCharacters">A reference to the temporary character list.</param>
+        private readonly GroupsView ParentView;
+
+        public GroupEditView(Group group, List<Character> temporaryCharacters, GroupsView parentView)
         {
             InitializeComponent();
 
-            Members = new ObservableCollection<Character>
-            {
-                new Character { Name = "Lyna Jade" },
-                new Character { Name = "Miles Brenner" },
-                new Character { Name = "Tigris Paw" }
-            };
+            CurrentGroup = group;
+            TemporaryCharacters = temporaryCharacters;
+            ParentView = parentView;
 
+            TxtGroupName.Text = group.Name;
+
+            var groupMembers = TemporaryCharacters
+                .Where(c => c.GroupIds.Contains(group.Id))
+                .ToList();
+
+            Members = new ObservableCollection<Character>(groupMembers);
             MembersList.ItemsSource = Members;
         }
-
         /// <summary>
-        /// Opens the "Add Member" window, allowing the user to select a new character to add to the group.
+        /// Opens the "Add Member" window to add a new character to the group.
+        /// Displays only characters that are not already members.
         /// </summary>
         private void OpenAddMemberWindow(object sender, RoutedEventArgs e)
         {
-            var addWindow = new AddMemberWindow();
+            var availableCharacters = TemporaryCharacters
+                .Where(c => !c.GroupIds.Contains(CurrentGroup.Id))
+                .Select(c => c.Name)
+                .ToList();
+
+            if (availableCharacters.Count == 0)
+            {
+                MessageBox.Show(
+                    "All available characters are already part of this group.",
+                    "Information",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                return;
+            }
+
+            var addWindow = new AddMemberWindow(availableCharacters);
             addWindow.Owner = Application.Current.MainWindow;
 
-            if (addWindow.ShowDialog() == true)
+            if (addWindow.ShowDialog() == true && addWindow.SelectedCharacter != null)
             {
-                if (addWindow.SelectedCharacter != null)
+                var selected = TemporaryCharacters.FirstOrDefault(c => c.Name == addWindow.SelectedCharacter.Name);
+                if (selected != null)
                 {
-                    Members.Add(addWindow.SelectedCharacter);
+                    selected.GroupIds.Add(CurrentGroup.Id);
+                    Members.Add(selected);
 
-                    // Attempt to retrieve the newly added item from the ListBox
-                    var listBoxItem = (ListBoxItem)MembersList.ItemContainerGenerator.ContainerFromItem(addWindow.SelectedCharacter);
+                    // Play appearance animation
+                    var listBoxItem = (ListBoxItem)MembersList.ItemContainerGenerator.ContainerFromItem(selected);
                     if (listBoxItem != null)
-                    {
                         AnimateListItemAppearance(listBoxItem);
-                    }
                     else
-                    {
-                        // If the item container is not yet generated, retry asynchronously
                         MembersList.Dispatcher.InvokeAsync(() =>
                         {
-                            var newItem = (ListBoxItem)MembersList.ItemContainerGenerator.ContainerFromItem(addWindow.SelectedCharacter);
+                            var newItem = (ListBoxItem)MembersList.ItemContainerGenerator.ContainerFromItem(selected);
                             if (newItem != null)
                                 AnimateListItemAppearance(newItem);
                         }, System.Windows.Threading.DispatcherPriority.Background);
-                    }
                 }
             }
+            ParentView?.RefreshGroupCounts();
         }
 
         /// <summary>
         /// Removes a member from the group when the "Remove" button is clicked.
+        /// Updates both the temporary group and character data.
         /// </summary>
         private void RemoveMember_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button btn && btn.DataContext is Character character)
             {
+                // Remove from local observable collection
                 Members.Remove(character);
+
+                // Remove group from the character in the temp collection
+                var tempChar = TemporaryCharacters.FirstOrDefault(c => c.Id == character.Id);
+                tempChar?.GroupIds.Remove(CurrentGroup.Id);
+                ParentView?.RefreshGroupCounts();
+
             }
         }
 
         /// <summary>
-        /// Returns to the groups list view.
+        /// Handles text changes in the group name TextBox.
+        /// Updates the temporary group instance in real-time.
         /// </summary>
-        private void GoBackToGroups(object sender, RoutedEventArgs e)
+        private void TxtGroupName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var groupsView = new GroupsView();
-            ((LauncherWindow)Application.Current.MainWindow).SetPage(groupsView);
+            CurrentGroup.Name = TxtGroupName.Text.Trim();
         }
 
         /// <summary>
-        /// Applies fade and slide-up animations when a new member appears in the list.
+        /// Returns to the Groups view when the user clicks the "Back" button.
         /// </summary>
-        private void AnimateListItemAppearance(ListBoxItem item)
+        private void GoBackToGroups(object sender, RoutedEventArgs e)
+        {
+            ((LauncherWindow)Application.Current.MainWindow).SetPage(ParentView);
+        }
+
+
+
+
+        /// <summary>
+        /// Animates the appearance of a ListBox item (fade-in and slide-up effect).
+        /// </summary>
+        /// <param name="item">The ListBoxItem to animate.</param>
+        private static void AnimateListItemAppearance(ListBoxItem item)
         {
             item.Opacity = 0;
             item.RenderTransform = new TranslateTransform(0, 25);
