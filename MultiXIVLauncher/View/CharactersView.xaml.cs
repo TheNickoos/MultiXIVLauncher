@@ -14,7 +14,6 @@ using System.Windows.Media.Animation;
 using MultiXIVLauncher.View.Components;
 using System.Threading.Tasks;
 
-
 namespace MultiXIVLauncher.View
 {
     /// <summary>
@@ -23,25 +22,17 @@ namespace MultiXIVLauncher.View
     /// </summary>
     public partial class CharactersView : UserControl, ISavableView
     {
-        /// <summary>
-        /// Temporary in-memory list of characters (independent from ConfigManager until Save()).
-        /// </summary>
         private List<Character>? TemporaryCharacters { get; set; }
-
         private bool isAddingCharacter = false;
 
         public CharactersView()
         {
             InitializeComponent();
             ((LauncherWindow)Application.Current.MainWindow).SetHeaderContent(new SettingsHeader());
-
             LoadTemporaryData();
             RefreshCharacterList();
         }
 
-        /// <summary>
-        /// Clones the current configuration characters into a temporary in-memory list.
-        /// </summary>
         private void LoadTemporaryData()
         {
             TemporaryCharacters = ConfigManager.Current.Characters
@@ -59,21 +50,14 @@ namespace MultiXIVLauncher.View
                 .ToList();
         }
 
-        /// <summary>
-        /// Rebuilds the visual list of character cards from TemporaryCharacters.
-        /// </summary>
         public void RefreshCharacterList()
         {
             CharacterListPanel.Children.Clear();
             if (TemporaryCharacters == null) return;
-
             foreach (var ch in TemporaryCharacters)
                 AddCharacterCard(ch, animate: false);
         }
 
-        /// <summary>
-        /// Handles the "Add Character" button: reveals inline editor.
-        /// </summary>
         private void BtnAddCharacter_Click(object sender, RoutedEventArgs e)
         {
             if (!isAddingCharacter)
@@ -85,9 +69,6 @@ namespace MultiXIVLauncher.View
             }
         }
 
-        /// <summary>
-        /// Validates creation and adds a new character to the temporary list.
-        /// </summary>
         private void BtnValidate_Click(object sender, RoutedEventArgs e)
         {
             if (!isAddingCharacter) return;
@@ -118,9 +99,6 @@ namespace MultiXIVLauncher.View
             BtnAddCharacter.Visibility = Visibility.Visible;
         }
 
-        /// <summary>
-        /// Creates and adds one character card with hover animations & actions.
-        /// </summary>
         private void AddCharacterCard(Character character, bool animate = true)
         {
             var transformGroup = new TransformGroup();
@@ -140,7 +118,6 @@ namespace MultiXIVLauncher.View
             content.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             content.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
 
-            // INFO (left)
             StackPanel info = new StackPanel { Orientation = Orientation.Vertical };
             info.Children.Add(new TextBlock
             {
@@ -156,7 +133,6 @@ namespace MultiXIVLauncher.View
                 Opacity = 0.8
             });
 
-            // ACTIONS (right)
             StackPanel actions = new StackPanel
             {
                 Orientation = Orientation.Horizontal,
@@ -216,10 +192,8 @@ namespace MultiXIVLauncher.View
             content.Children.Add(actions);
             Grid.SetColumn(actions, 1);
             card.Child = content;
-
             CharacterListPanel.Children.Add(card);
 
-            // === Animation au survol ===
             var hoverShadow = new System.Windows.Media.Effects.DropShadowEffect
             {
                 Color = Color.FromRgb(185, 147, 255),
@@ -234,7 +208,6 @@ namespace MultiXIVLauncher.View
                 {
                     EasingFunction = new QuadraticEase()
                 };
-
                 card.Effect = hoverShadow;
                 ((ScaleTransform)transformGroup.Children[0]).BeginAnimation(ScaleTransform.ScaleXProperty, hoverAnim);
                 ((ScaleTransform)transformGroup.Children[0]).BeginAnimation(ScaleTransform.ScaleYProperty, hoverAnim);
@@ -246,7 +219,6 @@ namespace MultiXIVLauncher.View
                 {
                     EasingFunction = new QuadraticEase()
                 };
-
                 card.Effect = null;
                 ((ScaleTransform)transformGroup.Children[0]).BeginAnimation(ScaleTransform.ScaleXProperty, leaveAnim);
                 ((ScaleTransform)transformGroup.Children[0]).BeginAnimation(ScaleTransform.ScaleYProperty, leaveAnim);
@@ -256,38 +228,16 @@ namespace MultiXIVLauncher.View
                 AnimateCardAppearance(card);
         }
 
-
-        /// <summary>
-        /// Generates a new unique character ID based on the temporary list.
-        /// </summary>
         private int GenerateNextCharacterId()
         {
             if (TemporaryCharacters == null || TemporaryCharacters.Count == 0)
                 return 1;
-
             return TemporaryCharacters.Max(c => c.Id) + 1;
         }
 
-        /// <summary>
-        /// Fade + slide-out, then remove the card from the panel.
-        /// </summary>
-        private void RemoveCharacterCard(Border card)
-        {
-            var fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(250)) { EasingFunction = new QuadraticEase() };
-            var slideDown = new DoubleAnimation(0, 30, TimeSpan.FromMilliseconds(250)) { EasingFunction = new QuadraticEase() };
-            card.BeginAnimation(OpacityProperty, fadeOut);
-            card.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideDown);
-            fadeOut.Completed += (s, _) => CharacterListPanel.Children.Remove(card);
-        }
-
-        /// <summary>
-        /// Called by the header Save button. Writes temporary characters to config and persists.
-        /// </summary>
         public async void Save()
         {
             var mainWindow = (LauncherWindow)Application.Current.MainWindow;
-
-            // --- Overlay ---
             var overlay = new LoadingOverlay();
             Panel.SetZIndex(overlay, 9999);
             mainWindow.OverlayContainer.Children.Add(overlay);
@@ -311,6 +261,10 @@ namespace MultiXIVLauncher.View
                 overlay.Progress.IsIndeterminate = false;
                 overlay.Progress.Maximum = total;
 
+                // ✅ Correction : base sur le dossier racine de l’application
+                string charactersRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Characters");
+                Directory.CreateDirectory(charactersRoot);
+
                 foreach (var character in ConfigManager.Current.Characters)
                 {
                     index++;
@@ -329,14 +283,45 @@ namespace MultiXIVLauncher.View
                     {
                         Logger.Error($"Error updating Lodestone for '{character.Name}': {ex.Message}");
                     }
+
+                    try
+                    {
+                        if (character.PresetId > 0)
+                        {
+                            var preset = ConfigManager.Current.Presets.FirstOrDefault(p => p.Id == character.PresetId);
+                            if (preset != null)
+                            {
+                                string presetDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Presets", preset.Name);
+                                if (Directory.Exists(presetDir))
+                                {
+                                    string characterDir = Path.Combine(charactersRoot, character.Id.ToString());
+                                    Directory.CreateDirectory(characterDir);
+                                    overlay.UpdateStatus($"Applying preset '{preset.Name}' to {character.Name}...");
+                                    await CopyDirectoryAsync(presetDir, characterDir, overwrite: true);
+                                }
+                                else
+                                {
+                                    Logger.Warn($"Preset directory not found for '{preset.Name}' at '{presetDir}'.");
+                                }
+                            }
+                            else
+                            {
+                                Logger.Warn($"No preset found for ID {character.PresetId} (Character '{character.Name}').");
+                            }
+                        }
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Error($"Failed to copy preset (Id={character.PresetId}) for '{character.Name}': {ex.Message}");
+                    }
                 }
 
                 overlay.UpdateStatus("Saving configuration...");
                 ConfigManager.Save();
-
                 overlay.UpdateStatus("Done!");
-                Logger.Info("All characters saved and Lodestone data updated successfully.");
-                await Task.Delay(600); // petit délai visuel avant fermeture
+                await Task.Delay(600);
             }
             finally
             {
@@ -344,11 +329,23 @@ namespace MultiXIVLauncher.View
             }
         }
 
+        private static Task CopyDirectoryAsync(string sourceDir, string destDir, bool overwrite)
+        {
+            return Task.Run(() =>
+            {
+                foreach (var dir in Directory.GetDirectories(sourceDir, "*", SearchOption.AllDirectories))
+                    Directory.CreateDirectory(Path.Combine(destDir, Path.GetRelativePath(sourceDir, dir)));
 
+                foreach (var file in Directory.GetFiles(sourceDir, "*", SearchOption.AllDirectories))
+                {
+                    var relative = Path.GetRelativePath(sourceDir, file);
+                    var destFile = Path.Combine(destDir, relative);
+                    Directory.CreateDirectory(Path.GetDirectoryName(destFile)!);
+                    File.Copy(file, destFile, overwrite);
+                }
+            });
+        }
 
-        /// <summary>
-        /// Entry animation for a card.
-        /// </summary>
         private void AnimateCardAppearance(Border card)
         {
             var fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(250)) { EasingFunction = new QuadraticEase() };
@@ -360,15 +357,23 @@ namespace MultiXIVLauncher.View
         private void ShowElement(UIElement element)
         {
             element.Visibility = Visibility.Visible;
-            DoubleAnimation fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(150));
-            element.BeginAnimation(OpacityProperty, fadeIn);
+            element.BeginAnimation(OpacityProperty, new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(150)));
         }
 
         private void HideElement(UIElement element)
         {
-            DoubleAnimation fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(150));
+            var fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(150));
             fadeOut.Completed += (s, _) => element.Visibility = Visibility.Collapsed;
             element.BeginAnimation(OpacityProperty, fadeOut);
+        }
+
+        private void RemoveCharacterCard(Border card)
+        {
+            var fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(250)) { EasingFunction = new QuadraticEase() };
+            var slideDown = new DoubleAnimation(0, 30, TimeSpan.FromMilliseconds(250)) { EasingFunction = new QuadraticEase() };
+            card.BeginAnimation(OpacityProperty, fadeOut);
+            card.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideDown);
+            fadeOut.Completed += (s, _) => CharacterListPanel.Children.Remove(card);
         }
     }
 }

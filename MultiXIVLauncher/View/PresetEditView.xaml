@@ -67,6 +67,12 @@
                     Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     Margin="0,12,0,0">
+            
+            <Button Content="Download Preset"
+                    Width="120"
+                    Height="34"
+                    Style="{StaticResource RoundedButton}"
+                    Click="DownloadPreset_Click"/>
 
             <Button services:LanguageBehavior.Key="Preset_View_Edit_Button_Back"
                     Width="120"

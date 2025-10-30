@@ -5,6 +5,8 @@ using MultiXIVLauncher.Utils.Interfaces;
 using MultiXIVLauncher.View.Headers;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -44,18 +46,11 @@ namespace MultiXIVLauncher.View
             LoadPresets();
         }
 
-        /// <summary>
-        /// Reloads the UI from the temporary list (public so child views can trigger it).
-        /// </summary>
         public void RefreshList() => LoadPresets();
 
-        /// <summary>
-        /// Loads all presets from the temporary list into the UI.
-        /// </summary>
         private void LoadPresets()
         {
             PresetListPanel.Children.Clear();
-
             foreach (var preset in tempPresets)
                 AddPresetCard(preset, false);
         }
@@ -73,33 +68,62 @@ namespace MultiXIVLauncher.View
 
         private void BtnValidate_Click(object sender, RoutedEventArgs e)
         {
-            if (isAddingPreset)
+            if (!isAddingPreset) return;
+
+            string newPresetName = TxtPresetName.Text.Trim();
+            if (!string.IsNullOrEmpty(newPresetName))
             {
-                string newPresetName = TxtPresetName.Text.Trim();
-                if (!string.IsNullOrEmpty(newPresetName))
+                string presetsBase = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Presets");
+                if (!Directory.Exists(presetsBase))
+                    Directory.CreateDirectory(presetsBase);
+
+                string normalized = SanitizeFolderName(newPresetName);
+                string presetDir = Path.Combine(presetsBase, normalized);
+
+                var newPreset = new Preset
                 {
-                    var newPreset = new Preset
-                    {
-                        Id = tempPresets.Count + 1,
-                        Name = newPresetName,
-                        FolderPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Presets", newPresetName)
-                    };
+                    Id = NextPresetId(),
+                    Name = newPresetName,
+                    FolderPath = presetDir
+                };
 
-                    tempPresets.Add(newPreset);
-                    AddPresetCard(newPreset);
-                }
+                // Add to temporary + UI
+                tempPresets.Add(newPreset);
+                AddPresetCard(newPreset);
 
-                isAddingPreset = false;
-                HideElement(TxtPresetName);
-                HideElement(BtnValidate);
-                TxtPresetName.Text = string.Empty;
-                BtnAddPreset.Visibility = Visibility.Visible;
+                // Add to global config (keep in sync)
+                ConfigManager.Current.Presets.Add(newPreset);
+
+                // Ensure folder exists
+                if (!Directory.Exists(presetDir))
+                    Directory.CreateDirectory(presetDir);
+
+                ConfigManager.Save();
             }
+
+            isAddingPreset = false;
+            HideElement(TxtPresetName);
+            HideElement(BtnValidate);
+            TxtPresetName.Text = string.Empty;
+            BtnAddPreset.Visibility = Visibility.Visible;
         }
 
-        /// <summary>
-        /// Creates and adds a visual card representing a preset with action buttons.
-        /// </summary>
+        private int NextPresetId()
+        {
+            int max1 = tempPresets.Count == 0 ? 0 : tempPresets.Max(p => p.Id);
+            int max2 = ConfigManager.Current.Presets.Count == 0 ? 0 : ConfigManager.Current.Presets.Max(p => p.Id);
+            return Math.Max(max1, max2) + 1;
+        }
+
+        private static string SanitizeFolderName(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input)) return "Preset";
+            string s = input.Replace(' ', '_').Trim();
+            var invalid = Path.GetInvalidFileNameChars();
+            s = new string(s.Select(ch => invalid.Contains(ch) ? '_' : ch).ToArray());
+            return string.IsNullOrWhiteSpace(s) ? "Preset" : s;
+        }
+
         private void AddPresetCard(Preset preset, bool animate = true)
         {
             Border card = new()
@@ -145,7 +169,6 @@ namespace MultiXIVLauncher.View
             };
             editButton.Click += (s, e) =>
             {
-                // Open editor with reference to THIS view so we can refresh on return
                 var editView = new PresetEditView(preset, this);
                 ((LauncherWindow)Application.Current.MainWindow).SetPage(editView);
             };
@@ -158,8 +181,31 @@ namespace MultiXIVLauncher.View
             };
             deleteButton.Click += (s, e) =>
             {
+                var result = MessageBox.Show(
+                    $"Are you sure you want to delete the preset \"{preset.Name}\" and its folder?",
+                    "Confirm Deletion",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
+
+                if (result != MessageBoxResult.Yes)
+                    return;
+
+                try
+                {
+                    if (!string.IsNullOrWhiteSpace(preset.FolderPath) && Directory.Exists(preset.FolderPath))
+                        Directory.Delete(preset.FolderPath, true);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error($"Failed to delete preset folder: {ex.Message}");
+                    MessageBox.Show($"An error occurred while deleting the preset folder:\n{ex.Message}",
+                        "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
                 tempPresets.Remove(preset);
+                ConfigManager.Current.Presets.RemoveAll(p => p.Id == preset.Id);
                 UIAnimationHelper.AnimateRemoval(card, () => PresetListPanel.Children.Remove(card));
+                ConfigManager.Save();
             };
 
             actions.Children.Add(editButton);
@@ -172,17 +218,99 @@ namespace MultiXIVLauncher.View
 
             PresetListPanel.Children.Add(card);
 
-            if (animate)
-                UIAnimationHelper.AnimateAppearance(card);
-            else
-                card.Opacity = 1;
+            if (animate) UIAnimationHelper.AnimateAppearance(card);
+            else card.Opacity = 1;
         }
 
+        /// <summary>
+        /// Saves all temporary presets to the configuration and ensures their directories exist (normalized).
+        /// </summary>
         public void Save()
         {
-            ConfigManager.Current.Presets.Clear();
-            ConfigManager.Current.Presets.AddRange(tempPresets);
-            ConfigManager.Save();
+            try
+            {
+                string presetsBasePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Presets");
+                if (!Directory.Exists(presetsBasePath))
+                    Directory.CreateDirectory(presetsBasePath);
+
+                // Sync config with temp + ensure normalized paths
+                ConfigManager.Current.Presets.Clear();
+
+                foreach (var p in tempPresets)
+                {
+                    string normalized = SanitizeFolderName(p.Name ?? "Preset");
+                    string desiredPath = Path.Combine(presetsBasePath, normalized);
+
+                    // Rename/move folder if necessary
+                    if (!string.Equals(p.FolderPath, desiredPath, StringComparison.OrdinalIgnoreCase))
+                    {
+                        try
+                        {
+                            bool oldExists = !string.IsNullOrWhiteSpace(p.FolderPath) && Directory.Exists(p.FolderPath);
+                            bool newExists = Directory.Exists(desiredPath);
+
+                            if (oldExists && !newExists)
+                                Directory.Move(p.FolderPath, desiredPath);
+                            else if (!oldExists && !newExists)
+                                Directory.CreateDirectory(desiredPath);
+                            else if (oldExists && newExists)
+                            {
+                                // Merge then delete old
+                                CopyDirectory(p.FolderPath!, desiredPath, overwrite: true);
+                                TryDeleteDirectorySafe(p.FolderPath!);
+                            }
+
+                            p.FolderPath = desiredPath;
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Error("Error renaming preset folder: " + ex.Message);
+                            if (!Directory.Exists(desiredPath))
+                                Directory.CreateDirectory(desiredPath);
+                            p.FolderPath = desiredPath;
+                        }
+                    }
+                    else
+                    {
+                        if (!Directory.Exists(desiredPath))
+                            Directory.CreateDirectory(desiredPath);
+                    }
+
+                    ConfigManager.Current.Presets.Add(p);
+                }
+
+                ConfigManager.Save();
+                Logger.Info("Presets saved and directories normalized successfully.");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error while saving presets: " + ex.Message);
+                MessageBox.Show("An error occurred while saving preset folders.\n\n" + ex.Message,
+                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private static void CopyDirectory(string sourceDir, string destDir, bool overwrite)
+        {
+            Directory.CreateDirectory(destDir);
+
+            foreach (string file in Directory.GetFiles(sourceDir))
+            {
+                string targetFile = Path.Combine(destDir, Path.GetFileName(file));
+                File.Copy(file, targetFile, overwrite);
+            }
+
+            foreach (string folder in Directory.GetDirectories(sourceDir))
+            {
+                string targetFolder = Path.Combine(destDir, Path.GetFileName(folder));
+                CopyDirectory(folder, targetFolder, overwrite);
+            }
+        }
+
+        private static void TryDeleteDirectorySafe(string path)
+        {
+            try { if (Directory.Exists(path)) Directory.Delete(path, true); }
+            catch { /* ignore */ }
         }
 
         private static void ShowElement(UIElement element)

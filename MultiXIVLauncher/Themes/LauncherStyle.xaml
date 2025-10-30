@@ -5,8 +5,9 @@
     <SolidColorBrush x:Key="ClrTextPrimary" Color="#E6E6E6"/>
     <SolidColorBrush x:Key="ClrAccent" Color="#4A90E2"/>
     <SolidColorBrush x:Key="ClrAccent2" Color="#B993FF"/>
+    <SolidColorBrush x:Key="ClrTextSecondary" Color="#AAE6E6E6"/>
 
-    <LinearGradientBrush x:Key="BgGradient" StartPoint="0,0" EndPoint="1,1">
+  <LinearGradientBrush x:Key="BgGradient" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Color="#101424" Offset="0"/>
         <GradientStop Color="#191E33" Offset="1"/>
     </LinearGradientBrush>

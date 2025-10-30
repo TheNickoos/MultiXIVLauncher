@@ -1,0 +1,43 @@
+<Window x:Class="MultiXIVLauncher.View.PresetDownloadWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:services="clr-namespace:MultiXIVLauncher.Services"
+        Title="Download Preset"
+        Width="600"
+        Height="500"
+        WindowStartupLocation="CenterOwner"
+        Background="{StaticResource BgGradient}"
+        BorderBrush="{StaticResource ClrAccent}"
+        BorderThickness="1"
+        WindowStyle="None"
+        AllowsTransparency="True">
+
+    <Border CornerRadius="10" Background="{StaticResource ClrBgCard}" Padding="12">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- === PRESETS LIST === -->
+            <ScrollViewer Grid.Row="0"
+                          VerticalScrollBarVisibility="Auto"
+                          Margin="0,0,0,12">
+                <StackPanel x:Name="PresetsListPanel" />
+            </ScrollViewer>
+
+            <!-- === ACTION BAR === -->
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,8,0,0">
+                <Button x:Name="BtnClose"
+                        Content="Close"
+                        Width="100"
+                        Height="34"
+                        Style="{StaticResource OutlineButton}"
+                        Click="BtnClose_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
