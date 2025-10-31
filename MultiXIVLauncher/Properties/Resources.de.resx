@@ -409,4 +409,22 @@
   <data name="Job_Unknown" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="LauncherStatus_WaitingForGame" xml:space="preserve">
+    <value>Warten auf den Spielstart …</value>
+  </data>
+  <data name="XIVLauncherNotFoundException" xml:space="preserve">
+    <value>XIVLauncher.exe wurde nicht gefunden. Bitte legen Sie den richtigen Pfad in den Einstellungen fest.</value>
+  </data>
+  <data name="ActionCanceled" xml:space="preserve">
+    <value>Vorgang abgebrochen.</value>
+  </data>
+  <data name="MonitoringError" xml:space="preserve">
+    <value>Überwachungsfehler</value>
+  </data>
+  <data name="MonitoringErrorMessage" xml:space="preserve">
+    <value>Beim Überwachen des Starts ist ein Fehler aufgetreten: {0}</value>
+  </data>
+  <data name="Main_Header_AllCharacters" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
 </root>

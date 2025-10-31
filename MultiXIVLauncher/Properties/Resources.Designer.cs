@@ -61,6 +61,15 @@ namespace MultiXIVLauncher.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Operation canceled..
+        /// </summary>
+        internal static string ActionCanceled {
+            get {
+                return ResourceManager.GetString("ActionCanceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Back.
         /// </summary>
         internal static string Character_Edit_Button_Back {
@@ -502,6 +511,15 @@ namespace MultiXIVLauncher.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Waiting for the game to start….
+        /// </summary>
+        internal static string LauncherStatus_WaitingForGame {
+            get {
+                return ResourceManager.GetString("LauncherStatus_WaitingForGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Characters.
         /// </summary>
         internal static string Main_Button_Characters {
@@ -556,6 +574,15 @@ namespace MultiXIVLauncher.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à All characters.
+        /// </summary>
+        internal static string Main_Header_AllCharacters {
+            get {
+                return ResourceManager.GetString("Main_Header_AllCharacters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Launch Group.
         /// </summary>
         internal static string Main_Header_Button_LaunchGroup {
@@ -606,6 +633,24 @@ namespace MultiXIVLauncher.Properties {
         internal static string Main_View_Button_Run {
             get {
                 return ResourceManager.GetString("Main_View_Button_Run", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Monitoring error.
+        /// </summary>
+        internal static string MonitoringError {
+            get {
+                return ResourceManager.GetString("MonitoringError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à An error occurred while monitoring the launch: {0}.
+        /// </summary>
+        internal static string MonitoringErrorMessage {
+            get {
+                return ResourceManager.GetString("MonitoringErrorMessage", resourceCulture);
             }
         }
         
@@ -931,6 +976,15 @@ namespace MultiXIVLauncher.Properties {
         internal static string Window_Preset_Add_Item {
             get {
                 return ResourceManager.GetString("Window_Preset_Add_Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à XIVLauncher.exe was not found. Please set the correct path in Settings..
+        /// </summary>
+        internal static string XIVLauncherNotFoundException {
+            get {
+                return ResourceManager.GetString("XIVLauncherNotFoundException", resourceCulture);
             }
         }
     }

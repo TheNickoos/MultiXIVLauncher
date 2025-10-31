@@ -3,6 +3,9 @@ using MultiXIVLauncher.Services;
 using MultiXIVLauncher.View.Headers;
 using System;
 using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,45 +13,201 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
+using System.Collections.Generic;
 
 namespace MultiXIVLauncher.View
 {
     public partial class MainView : UserControl
     {
+        private MainHeader _header;
+        private readonly string _allKey;
+
         public MainView()
         {
             InitializeComponent();
-            ((LauncherWindow)Application.Current.MainWindow).SetHeaderContent(new MainHeader());
-            LoadCharacterCards();
-        }
-        private static ImageSource LoadBitmapFromResources(System.Drawing.Bitmap bitmap)
-        {
-            using (var memory = new MemoryStream())
-            {
-                bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Png);
-                memory.Position = 0;
+            _allKey = LanguageManager.T("Main_Header_AllCharacters");
+            _header = new MainHeader();
+            ((LauncherWindow)Application.Current.MainWindow).SetHeaderContent(_header);
 
-                var bmp = new BitmapImage();
-                bmp.BeginInit();
-                bmp.CacheOption = BitmapCacheOption.OnLoad;
-                bmp.StreamSource = memory;
-                bmp.EndInit();
-                bmp.Freeze();
-                return bmp;
+            WireHeader();
+            PopulateGroups();
+            RefreshCharacterCardsForSelection(); // affiche selon la sélection courante
+        }
+
+        private void WireHeader()
+        {
+            if (_header == null) return;
+
+            if (_header.BtnLaunchGroup != null)
+                _header.BtnLaunchGroup.Click += async (s, e) => await LaunchSelectedGroupAsync();
+
+            if (_header.CmbGroups != null)
+                _header.CmbGroups.SelectionChanged += (s, e) => RefreshCharacterCardsForSelection();
+        }
+
+        private void PopulateGroups()
+        {
+            if (_header?.CmbGroups == null) return;
+
+            _header.CmbGroups.Items.Clear();
+            _header.CmbGroups.Items.Add(_allKey);
+
+            var groups = ConfigManager.Current?.Groups;
+            if (groups != null)
+            {
+                foreach (var g in groups)
+                {
+                    if (g != null && !string.IsNullOrWhiteSpace(g.Name))
+                        _header.CmbGroups.Items.Add(g.Name);
+                }
+            }
+
+            if (_header.CmbGroups.Items.Count > 0)
+                _header.CmbGroups.SelectedIndex = 0;
+        }
+
+        // ------- LANCEMENT DE GROUPE (séquentiel strict) -------
+
+        private async Task LaunchSelectedGroupAsync()
+        {
+            if (_header?.CmbGroups == null) return;
+
+            var selectedName = _header.CmbGroups.SelectedItem as string;
+            if (string.IsNullOrWhiteSpace(selectedName)) return;
+
+            var allChars = ConfigManager.Current?.Characters;
+            if (allChars == null || allChars.Count == 0)
+            {
+                MessageBox.Show("Aucun personnage configuré.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            _header.BtnLaunchGroup.IsEnabled = false;
+
+            try
+            {
+                // Tous les personnages -> lance tout (séquentiel)
+                if (string.Equals(selectedName, _allKey, StringComparison.OrdinalIgnoreCase))
+                {
+                    foreach (var ch in allChars)
+                    {
+                        await CharacterLauncher.LaunchCharacterAsync(
+                            ch,
+                            ConfigManager.Current,
+                            Application.Current.MainWindow,
+                            timeout: TimeSpan.FromSeconds(90),
+                            cancellationToken: CancellationToken.None);
+                    }
+                    return;
+                }
+
+                // Trouver le groupe par nom
+                var group = FindGroupByName(selectedName);
+                if (group == null)
+                {
+                    MessageBox.Show($"Groupe introuvable : {selectedName}", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+
+                // Filtrer les personnages appartenant au groupe (via Character.GroupIds)
+                var targetChars = GetCharactersByGroupId(group.Id, allChars);
+                if (targetChars.Count == 0)
+                {
+                    MessageBox.Show($"Le groupe \"{selectedName}\" ne contient aucun personnage.", "Info",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+
+                // Lancement séquentiel strict
+                foreach (var ch in targetChars)
+                {
+                    await CharacterLauncher.LaunchCharacterAsync(
+                        ch,
+                        ConfigManager.Current,
+                        Application.Current.MainWindow,
+                        timeout: TimeSpan.FromSeconds(90),
+                        cancellationToken: CancellationToken.None);
+                }
+            }
+            finally
+            {
+                _header.BtnLaunchGroup.IsEnabled = true;
             }
         }
 
+        // ------- AFFICHAGE FILTRÉ SELON LA COMBO -------
 
+        private void RefreshCharacterCardsForSelection()
+        {
+            var allChars = ConfigManager.Current?.Characters ?? new List<Character>();
 
+            if (_header?.CmbGroups == null)
+            {
+                LoadCharacterCards(allChars);
+                return;
+            }
 
-        private void LoadCharacterCards()
+            var selectedName = _header.CmbGroups.SelectedItem as string;
+            if (string.IsNullOrWhiteSpace(selectedName) || string.Equals(selectedName, _allKey, StringComparison.OrdinalIgnoreCase))
+            {
+                LoadCharacterCards(allChars);
+                return;
+            }
+
+            var group = FindGroupByName(selectedName);
+            if (group == null)
+            {
+                LoadCharacterCards(new List<Character>()); // groupe inconnu -> rien
+                return;
+            }
+
+            var filtered = GetCharactersByGroupId(group.Id, allChars);
+            LoadCharacterCards(filtered);
+        }
+
+        // ------- HELPERS GROUPES / PERSONNAGES (fortement typés) -------
+
+        private dynamic FindGroupByName(string groupName)
+        {
+            var groups = ConfigManager.Current?.Groups;
+            if (groups == null) return null;
+
+            foreach (var g in groups)
+            {
+                if (g == null) continue;
+                if (!string.IsNullOrWhiteSpace(g.Name) &&
+                    string.Equals(g.Name, groupName, StringComparison.OrdinalIgnoreCase))
+                {
+                    return g; // on suppose g.Id (int) et g.Name (string)
+                }
+            }
+            return null;
+        }
+
+        private static List<Character> GetCharactersByGroupId(int groupId, IList<Character> allChars)
+        {
+            var result = new List<Character>();
+            if (allChars == null) return result;
+
+            foreach (var c in allChars)
+            {
+                if (c == null || c.GroupIds == null) continue;
+                if (c.GroupIds.Contains(groupId))
+                    result.Add(c);
+            }
+            return result;
+        }
+
+        // ----------------- Rendu des cartes -----------------
+
+        private void LoadCharacterCards(IList<Character> characters)
         {
             CharacterContainer.Children.Clear();
 
-            if (ConfigManager.Current?.Characters == null)
+            if (characters == null || characters.Count == 0)
                 return;
 
-            foreach (var c in ConfigManager.Current.Characters)
+            foreach (var c in characters)
             {
                 var card = CreateCharacterCard(c);
                 CharacterContainer.Children.Add(card);
@@ -161,6 +320,23 @@ namespace MultiXIVLauncher.View
             return card;
         }
 
+        private static ImageSource LoadBitmapFromResources(System.Drawing.Bitmap bitmap)
+        {
+            using (var memory = new MemoryStream())
+            {
+                bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Png);
+                memory.Position = 0;
+
+                var bmp = new BitmapImage();
+                bmp.BeginInit();
+                bmp.CacheOption = BitmapCacheOption.OnLoad;
+                bmp.StreamSource = memory;
+                bmp.EndInit();
+                bmp.Freeze();
+                return bmp;
+            }
+        }
+
         private static ImageSource? LoadImageSafe(string path)
         {
             if (!File.Exists(path))
@@ -202,16 +378,18 @@ namespace MultiXIVLauncher.View
             };
 
             card.BeginAnimation(OpacityProperty, fadeIn);
+            // Note: si tu veux une vraie translation, mets un TranslateTransform séparé.
             card.RenderTransform.BeginAnimation(TranslateTransform.YProperty, slideUp);
         }
 
-        private void LaunchCharacter(Character character)
+        private async void LaunchCharacter(Character character)
         {
-            MessageBox.Show(
-                $"Launching FFXIV for {character.Name}\nServer: {character.Server}\nJob: {character.Class}\nLevel: {character.Level}",
-                "Launch",
-                MessageBoxButton.OK,
-                MessageBoxImage.Information);
+            await CharacterLauncher.LaunchCharacterAsync(
+                character,
+                ConfigManager.Current,
+                Application.Current.MainWindow,
+                timeout: TimeSpan.FromSeconds(90),
+                cancellationToken: CancellationToken.None);
         }
     }
 }

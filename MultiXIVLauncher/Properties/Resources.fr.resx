@@ -409,4 +409,22 @@
   <data name="Job_Unknown" xml:space="preserve">
     <value>Inconnu</value>
   </data>
+  <data name="LauncherStatus_WaitingForGame" xml:space="preserve">
+    <value>En attente du démarrage du jeu…</value>
+  </data>
+  <data name="XIVLauncherNotFoundException" xml:space="preserve">
+    <value>XIVLauncher.exe est introuvable. Veuillez définir le chemin correct dans les paramètres.</value>
+  </data>
+  <data name="ActionCanceled" xml:space="preserve">
+    <value>Opération annulée.</value>
+  </data>
+  <data name="MonitoringError" xml:space="preserve">
+    <value>Erreur de surveillance</value>
+  </data>
+  <data name="MonitoringErrorMessage" xml:space="preserve">
+    <value>Une erreur est survenue lors de la surveillance du lancement : {0}</value>
+  </data>
+  <data name="Main_Header_AllCharacters" xml:space="preserve">
+    <value>Tout les personnages</value>
+  </data>
 </root>

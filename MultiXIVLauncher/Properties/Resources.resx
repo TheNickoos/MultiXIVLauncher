@@ -409,4 +409,22 @@
   <data name="Job_Unknown" xml:space="preserve">
     <value>Unknown</value>
   </data>
+  <data name="LauncherStatus_WaitingForGame" xml:space="preserve">
+    <value>Waiting for the game to start…</value>
+  </data>
+  <data name="XIVLauncherNotFoundException" xml:space="preserve">
+    <value>XIVLauncher.exe was not found. Please set the correct path in Settings.</value>
+  </data>
+  <data name="ActionCanceled" xml:space="preserve">
+    <value>Operation canceled.</value>
+  </data>
+  <data name="MonitoringError" xml:space="preserve">
+    <value>Monitoring error</value>
+  </data>
+  <data name="MonitoringErrorMessage" xml:space="preserve">
+    <value>An error occurred while monitoring the launch: {0}</value>
+  </data>
+  <data name="Main_Header_AllCharacters" xml:space="preserve">
+    <value>All characters</value>
+  </data>
 </root>

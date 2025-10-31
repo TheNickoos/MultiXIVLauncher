@@ -13,26 +13,24 @@
                    VerticalAlignment="Center"
                    Margin="0,0,8,0"/>
 
-        <ComboBox Width="220"
+        <ComboBox x:Name="CmbGroups"
+                  Width="220"
                   Height="32"
                   VerticalAlignment="Center"
-                  Margin="0,0,8,0">
-            <ComboBoxItem Content="Tous les personnages"/>
-            <ComboBoxItem Content="Raids — Dimanche"/>
-            <ComboBoxItem Content="Crafter/Gatherer"/>
-        </ComboBox>
+                  Margin="0,0,8,0"/>
 
-        <Button services:LanguageBehavior.Key="Main_Header_Button_LaunchGroup"
+        <Button x:Name="BtnLaunchGroup"
+                services:LanguageBehavior.Key="Main_Header_Button_LaunchGroup"
                 Width="200"
                 Height="32"
                 FontWeight="Bold"
                 Style="{StaticResource RoundedButton}"
                 Margin="0,0,8,0"/>
 
-        <Button Content="⚙"
+        <!-- <Button Content="⚙"
                 Width="36"
                 Height="32"
                 Style="{StaticResource OutlineButton}"
-                ToolTip="Paramètres"/>
+                ToolTip="Paramètres"/>-->
     </StackPanel>
 </UserControl>

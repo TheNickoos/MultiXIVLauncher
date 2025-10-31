@@ -104,5 +104,10 @@ namespace MultiXIVLauncher
             if (e.ButtonState == MouseButtonState.Pressed)
                 DragMove();
         }
+
+        public void SetLauncherInteractivity(bool enable)
+        {
+            this.IsEnabled = enable;
+        }
     }
 }

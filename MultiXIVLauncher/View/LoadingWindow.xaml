@@ -1,0 +1,50 @@
+<Window x:Class="MultiXIVLauncher.View.LoadingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Chargement"
+        Width="420" Height="160"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        WindowStyle="ToolWindow"
+        ShowInTaskbar="False"
+        Topmost="True"
+        Background="#1E1E2A"
+        Foreground="#E8E8F0"
+        AllowsTransparency="False">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="12"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="12"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Titre -->
+        <TextBlock Text="Veuillez patienter..."
+                   FontSize="18"
+                   FontWeight="SemiBold"
+                   Opacity="0.95"/>
+
+        <!-- Espace -->
+        <Rectangle Grid.Row="1" Height="12" Fill="Transparent"/>
+
+        <!-- Barre de progression indéterminée -->
+        <ProgressBar Grid.Row="2"
+                     Height="8"
+                     IsIndeterminate="True"
+                     Minimum="0" Maximum="100"
+                     SnapsToDevicePixels="True"/>
+
+        <!-- Espace -->
+        <Rectangle Grid.Row="3" Height="12" Fill="Transparent"/>
+
+        <!-- Texte de statut dynamique -->
+        <TextBlock Grid.Row="4"
+                   Text="{Binding StatusText}"
+                   FontSize="14"
+                   TextWrapping="Wrap"
+                   Opacity="0.9"/>
+    </Grid>
+</Window>
