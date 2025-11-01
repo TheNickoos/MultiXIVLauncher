@@ -1,0 +1,33 @@
+﻿<Application x:Class="MultiXIVLauncher.Updater.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             ShutdownMode="OnMainWindowClose">
+    <Application.Resources>
+        <!-- Palette proche de ton launcher -->
+        <SolidColorBrush x:Key="ClrBgCard" Color="#1E1E2A"/>
+        <SolidColorBrush x:Key="ClrTextPrimary" Color="#E6E6E6"/>
+        <SolidColorBrush x:Key="ClrAccent" Color="#4A90E2"/>
+        <SolidColorBrush x:Key="ClrAccent2" Color="#B993FF"/>
+
+        <Style x:Key="RoundedButton" TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource ClrTextPrimary}"/>
+            <Setter Property="Background" Value="{StaticResource ClrAccent}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ClrAccent2}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="12" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+</Application>

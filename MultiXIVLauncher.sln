@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36623.8 d17.14
+VisualStudioVersion = 17.14.36623.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiXIVLauncher", "MultiXIVLauncher\MultiXIVLauncher.csproj", "{5C038013-972A-42A8-AB33-272FAF904AE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.csproj", "{459146ED-0129-4F30-8E57-0D330F2D7E01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5C038013-972A-42A8-AB33-272FAF904AE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C038013-972A-42A8-AB33-272FAF904AE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C038013-972A-42A8-AB33-272FAF904AE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{459146ED-0129-4F30-8E57-0D330F2D7E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{459146ED-0129-4F30-8E57-0D330F2D7E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{459146ED-0129-4F30-8E57-0D330F2D7E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{459146ED-0129-4F30-8E57-0D330F2D7E01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
