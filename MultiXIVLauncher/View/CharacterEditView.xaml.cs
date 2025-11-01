@@ -1,9 +1,11 @@
-﻿using System.Diagnostics;
+﻿using MultiXIVLauncher.Models;
+using MultiXIVLauncher.Services;
+using MultiXIVLauncher.Utils;
+using MultiXIVLauncher.View.Headers;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using MultiXIVLauncher.Models;
-using MultiXIVLauncher.Services;
 
 namespace MultiXIVLauncher.View
 {
@@ -22,6 +24,8 @@ namespace MultiXIVLauncher.View
         public CharacterEditView(Character tempCharacter, CharactersView parentView)
         {
             InitializeComponent();
+
+            UIHelper.SetHeaderButtonsVisible(false);
 
             CurrentCharacter = tempCharacter;
             ParentView = parentView;
@@ -141,6 +145,8 @@ namespace MultiXIVLauncher.View
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             ParentView.RefreshCharacterList();
+            UIHelper.SetHeaderButtonsVisible(true);
+
             ((LauncherWindow)Application.Current.MainWindow).SetPage(ParentView);
         }
     }

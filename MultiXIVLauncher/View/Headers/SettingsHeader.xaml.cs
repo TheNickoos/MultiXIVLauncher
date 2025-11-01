@@ -35,5 +35,15 @@ namespace MultiXIVLauncher.View.Headers
         {
             ((LauncherWindow)Application.Current.MainWindow).MainContent.Content = new View.MainView();
         }
+
+        /// <summary>
+        /// Shows or hides the Save and Return buttons in the header.
+        /// </summary>
+        /// <param name="isVisible">True to show, false to hide.</param>
+        public void SetButtonsVisible(bool isVisible)
+        {
+            BtnSave.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
+            BtnReturn.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
+        }
     }
 }

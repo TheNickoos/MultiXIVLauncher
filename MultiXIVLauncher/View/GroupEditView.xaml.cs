@@ -1,6 +1,7 @@
 ﻿using MultiXIVLauncher.Models;
 using MultiXIVLauncher.Services;
 using MultiXIVLauncher.Utils;
+using MultiXIVLauncher.View.Headers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -57,6 +58,8 @@ namespace MultiXIVLauncher.View
 
             Members = new ObservableCollection<Character>(groupMembers);
             MembersList.ItemsSource = Members;
+
+            UIHelper.SetHeaderButtonsVisible(false);
         }
         /// <summary>
         /// Opens the "Add Member" window to add a new character to the group.
@@ -139,6 +142,10 @@ namespace MultiXIVLauncher.View
         /// </summary>
         private void GoBackToGroups(object sender, RoutedEventArgs e)
         {
+            ParentView.RefreshGroupCounts();
+
+            UIHelper.SetHeaderButtonsVisible(true);
+
             ((LauncherWindow)Application.Current.MainWindow).SetPage(ParentView);
         }
 

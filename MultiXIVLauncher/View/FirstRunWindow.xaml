@@ -1,0 +1,155 @@
+﻿<Window x:Class="MultiXIVLauncher.View.FirstRunWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:services="clr-namespace:MultiXIVLauncher.Services"
+        Title="{Binding TitleText}" Height="520" Width="760"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Background="#1E1E2A" Foreground="#EDEDED" >
+    <Window.Resources>
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="Margin" Value="6,0,0,0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="#6C5CE7"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style x:Key="SecondaryButton" TargetType="Button" BasedOn="{StaticResource PrimaryButton}">
+            <Setter Property="Background" Value="#2D2D3A"/>
+        </Style>
+        <Style x:Key="TitleText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,0,0,6"/>
+        </Style>
+        <Style x:Key="Section" TargetType="StackPanel">
+            <Setter Property="Margin" Value="0,12,0,0"/>
+        </Style>
+        <Style x:Key="Textbox" TargetType="TextBox">
+            <Setter Property="Background" Value="#2A2A39"/>
+            <Setter Property="Foreground" Value="#EDEDED"/>
+            <Setter Property="BorderBrush" Value="#3D3D52"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,6"/>
+        </Style>
+        <Style x:Key="Combo" TargetType="ComboBox">
+            <Setter Property="Background" Value="#2A2A39"/>
+            <Setter Property="Foreground" Value="#EDEDED"/>
+            <Setter Property="BorderBrush" Value="#3D3D52"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6,4"/>
+        </Style>
+
+        <!-- ✅ Converter déclaré ici -->
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Window.Resources>
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel>
+            <TextBlock Text="{Binding WelcomeTitle}" Style="{StaticResource TitleText}"/>
+            <TextBlock Text="{Binding WelcomeSubtitle}" Opacity="0.85"/>
+        </StackPanel>
+
+        <!-- Content -->
+        <Border Grid.Row="1" Background="#232334" CornerRadius="10" Padding="16" Margin="0,12,0,12">
+            <Grid>
+                <Grid x:Name="StepPreset" Visibility="Visible">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Step1Title}" Style="{StaticResource TitleText}"/>
+                        <TextBlock Text="{Binding Step1Desc}" TextWrapping="Wrap" Opacity="0.9"/>
+
+                        <StackPanel Style="{StaticResource Section}">
+                            <RadioButton Content="{Binding UseDownloadPresetText}" IsChecked="{Binding UseDownloadPreset, Mode=TwoWay}" GroupName="Preset"/>
+                            <RadioButton Content="{Binding CreateEmptyPresetText}" IsChecked="{Binding UseEmptyPreset, Mode=TwoWay}" GroupName="Preset"/>
+                        </StackPanel>
+
+                        <!-- Create empty preset -->
+                        <StackPanel Style="{StaticResource Section}"
+                                    Visibility="{Binding UseEmptyPreset, Converter={StaticResource BoolToVis}}">
+                            <TextBlock Text="{Binding EmptyPresetNameLabel}" />
+                            <TextBox Text="{Binding NewPresetName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource Textbox}" Width="320"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,18,0,0">
+                            <Button Content="{Binding CancelText}" Style="{StaticResource SecondaryButton}" Click="Cancel_Click"/>
+                            <Button Content="{Binding NextText}" Style="{StaticResource PrimaryButton}" Click="NextFromPreset_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+                <Grid x:Name="StepCharacter" Visibility="Collapsed">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Step2Title}" Style="{StaticResource TitleText}"/>
+                        <TextBlock Text="{Binding Step2Desc}" TextWrapping="Wrap" Opacity="0.9"/>
+
+                        <StackPanel Style="{StaticResource Section}">
+                            <TextBlock Text="{Binding CharacterNameLabel}"/>
+                            <TextBox Text="{Binding CharacterName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource Textbox}" Width="320"/>
+                        </StackPanel>
+
+                        <StackPanel Style="{StaticResource Section}">
+                            <TextBlock Text="{Binding LodestoneIdLabel}"/>
+                            <TextBox Text="{Binding LodestoneIdText, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource Textbox}" Width="200"/>
+                        </StackPanel>
+
+                        <StackPanel Style="{StaticResource Section}">
+                            <TextBlock Text="{Binding CharacterPresetLabel}"/>
+                            <ComboBox ItemsSource="{Binding PresetChoices}"
+                                      SelectedItem="{Binding SelectedPresetName, Mode=TwoWay}"
+                                      Style="{StaticResource Combo}" Width="340"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,18,0,0">
+                            <Button Content="{Binding BackText}" Style="{StaticResource SecondaryButton}" Click="BackToPreset_Click"/>
+                            <Button Content="{Binding LaunchCharacterText}" Style="{StaticResource SecondaryButton}" Click="LaunchCharacter_Click"/>
+                            <Button Content="{Binding NextText}" Style="{StaticResource PrimaryButton}" Click="NextFromCharacter_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+                <Grid x:Name="StepGroup" Visibility="Collapsed">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Step3Title}" Style="{StaticResource TitleText}"/>
+                        <TextBlock Text="{Binding Step3Desc}" TextWrapping="Wrap" Opacity="0.9"/>
+
+                        <StackPanel Style="{StaticResource Section}">
+                            <TextBlock Text="{Binding GroupNameLabel}"/>
+                            <TextBox Text="{Binding GroupName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource Textbox}" Width="320"/>
+                        </StackPanel>
+
+                        <StackPanel Style="{StaticResource Section}">
+                            <TextBlock Text="{Binding GroupAssignLabel}"/>
+                            <ComboBox ItemsSource="{Binding CharacterChoices}"
+                                      SelectedItem="{Binding SelectedCharacterName, Mode=TwoWay}"
+                                      Style="{StaticResource Combo}" Width="340"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,18,0,0">
+                            <Button Content="{Binding BackText}" Style="{StaticResource SecondaryButton}" Click="BackToCharacter_Click"/>
+                            <Button Content="{Binding FinishText}" Style="{StaticResource PrimaryButton}" Click="Finish_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+                <Grid x:Name="StepDone" Visibility="Collapsed">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding CongratsTitle}" Style="{StaticResource TitleText}" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding CongratsDesc}" TextAlignment="Center" Opacity="0.9" Margin="0,8,0,0"/>
+                        <Button Content="{Binding GoHomeText}" Style="{StaticResource PrimaryButton}" Margin="0,20,0,0" Width="200" Click="Close_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <!-- Step indicator -->
+        <TextBlock Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"
+                   Text="{Binding StepIndicator}" Opacity="0.7"/>
+    </Grid>
+</Window>

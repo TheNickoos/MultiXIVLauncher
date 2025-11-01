@@ -41,6 +41,12 @@ namespace MultiXIVLauncher.View
         {
             InitializeComponent();
             ((LauncherWindow)Application.Current.MainWindow).SetHeaderContent(new SettingsHeader());
+            if (Application.Current.MainWindow is LauncherWindow mainWindow &&
+                mainWindow.FindName("HeaderDynamicArea") is ContentControl headerArea &&
+                headerArea.Content is SettingsHeader header)
+            {
+                header.SetButtonsVisible(true);
+            }
 
             LoadTemporaryData();
             RefreshGroupList();

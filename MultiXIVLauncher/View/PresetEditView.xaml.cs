@@ -1,4 +1,5 @@
 ﻿using MultiXIVLauncher.Models;
+using MultiXIVLauncher.Utils;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -22,6 +23,8 @@ namespace MultiXIVLauncher.View
             InitializeComponent();
             currentPreset = preset ?? throw new ArgumentNullException(nameof(preset));
             parentView = parent ?? throw new ArgumentNullException(nameof(parent));
+
+            UIHelper.SetHeaderButtonsVisible(false);
 
             TxtPresetName.Text = currentPreset.Name;
         }
@@ -224,6 +227,7 @@ namespace MultiXIVLauncher.View
         {
             ApplyChanges();                 // Update in-memory preset and filesystem
             parentView.RefreshList();       // Refresh existing list UI
+            UIHelper.SetHeaderButtonsVisible(true);
             ((LauncherWindow)Application.Current.MainWindow).SetPage(parentView); // Navigate back to the SAME instance
         }
     }
