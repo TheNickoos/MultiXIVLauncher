@@ -1,4 +1,5 @@
 ﻿using MultiXIVLauncher.View;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -66,7 +67,21 @@ namespace MultiXIVLauncher
         /// </summary>
         private void OpenMogStation(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.mogstation.com");
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = "https://www.mogstation.com",
+                    UseShellExecute = true   // indispensable en .NET 5+/8
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Impossible d'ouvrir le navigateur.\n{ex.Message}",
+                    "Ouverture du lien", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+
         }
 
         /// <summary>
@@ -74,7 +89,19 @@ namespace MultiXIVLauncher
         /// </summary>
         private void OpenXIVISUP(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://is.xivup.com/");
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = "https://is.xivup.com/",
+                    UseShellExecute = true   // indispensable en .NET 5+/8
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Impossible d'ouvrir le navigateur.\n{ex.Message}",
+                    "Ouverture du lien", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         /// <summary>
