@@ -18,13 +18,6 @@
                        VerticalAlignment="Center"
                        Margin="0,0,12,0"/>
 
-            <Button services:LanguageBehavior.Key="Preset_View_Button_Download"
-                    x:Name="BtnDownloadPreset"
-                    Height="34"
-                    Margin="0,0,8,0"
-                    Style="{StaticResource OutlineButton}"
-                    Click="BtnDownloadPreset_Click"/>
-
             <Button services:LanguageBehavior.Key="Preset_View_Button_AddPreset"
                     x:Name="BtnAddPreset"
                     Height="34"
