@@ -326,5 +326,26 @@ namespace MultiXIVLauncher.View
             fadeOut.Completed += (s, _) => element.Visibility = Visibility.Collapsed;
             element.BeginAnimation(OpacityProperty, fadeOut);
         }
+
+        private void BtnDownloadPreset_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var downloadWindow = new PresetDownloadWindow(null)
+                {
+                    Owner = Application.Current.MainWindow
+                };
+
+                downloadWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to open preset download window:\n{ex.Message}",
+                    "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
+
     }
 }

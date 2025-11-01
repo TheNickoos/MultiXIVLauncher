@@ -144,8 +144,9 @@ namespace MultiXIVLauncher.View
 
                 downloadButton.Content = "Installed";
                 await Task.Delay(700);
-                this.DialogResult = true;
-                Close();
+
+                // Sécurisé : pas d'exception si la fenêtre n'est pas en modal
+                SetDialogResultSafe(true);
             };
 
             panel.Children.Add(progressBar);
@@ -220,8 +221,40 @@ namespace MultiXIVLauncher.View
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = false;
-            this.Close();
+            // Sécurisé : supporte ShowDialog() et Show()
+            SetDialogResultSafe(false);
+        }
+
+        /// <summary>
+        /// Définit DialogResult en toute sécurité (ShowDialog) sinon ferme proprement (Show),
+        /// tout en garantissant l’exécution sur le thread UI.
+        /// </summary>
+        private void SetDialogResultSafe(bool? result)
+        {
+            if (!Dispatcher.CheckAccess())
+            {
+                Dispatcher.Invoke(() => SetDialogResultSafe(result));
+                return;
+            }
+
+            if (!IsLoaded || !IsVisible)
+            {
+                try { Close(); } catch { /* ignore */ }
+                return;
+            }
+
+            try
+            {
+                if (result.HasValue)
+                    DialogResult = result; // OK si ouverte via ShowDialog()
+                else
+                    Close();
+            }
+            catch (InvalidOperationException)
+            {
+                // Pas en modal (ouverte via Show()) -> on ferme sans DialogResult
+                try { Close(); } catch { /* ignore */ }
+            }
         }
     }
 }
